@@ -34,7 +34,7 @@ fun Tile(
     ) {
         Text(
             text = content,
-            style = MaterialTheme.typography.body1,
+            style = MaterialTheme.typography.button,
 //            fontWeight = FontWeight.SemiBold,
             color = if (isSelected) Color.Black else Yellow,
             textAlign = TextAlign.Center

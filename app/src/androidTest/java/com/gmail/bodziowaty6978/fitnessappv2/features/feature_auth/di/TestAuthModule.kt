@@ -7,6 +7,7 @@ import com.gmail.bodziowaty6978.fitnessappv2.features.feature_auth.domain.use_ca
 import com.gmail.bodziowaty6978.fitnessappv2.features.feature_auth.domain.use_case.RegisterUser
 import com.gmail.bodziowaty6978.fitnessappv2.features.feature_auth.domain.use_case.ResetPasswordWithEmail
 import com.gmail.bodziowaty6978.fitnessappv2.common.util.ResourceProvider
+import com.gmail.bodziowaty6978.fitnessappv2.common.util.Result
 import com.google.firebase.auth.FirebaseAuth
 import dagger.Module
 import dagger.Provides
@@ -21,13 +22,19 @@ object TestAuthModule {
 
     @Provides
     @Singleton
-    fun provideFirebaseAuth(): FirebaseAuth {
-        return FirebaseAuth.getInstance()
-    }
+    fun provideAuthRepository(): AuthRepository = object :AuthRepository{
+        override suspend fun logInUser(email: String, password: String): Result {
+            return Result.Success
+        }
 
-    @Provides
-    @Singleton
-    fun provideAuthRepository(firebaseAuth: FirebaseAuth): AuthRepository = AuthRepositoryImp(firebaseAuth)
+        override suspend fun registerUser(email: String, password: String): Result {
+            return Result.Success
+        }
+
+        override suspend fun sendPasswordResetEmail(email: String): Result {
+            return Result.Success
+        }
+    }
 
     @Provides
     @Singleton

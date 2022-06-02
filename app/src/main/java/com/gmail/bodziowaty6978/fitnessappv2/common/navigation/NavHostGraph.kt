@@ -1,15 +1,19 @@
 package com.gmail.bodziowaty6978.fitnessappv2.common.navigation
 
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Scaffold
+import androidx.compose.material.Surface
+import androidx.compose.runtime.*
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalLifecycleOwner
-import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.gmail.bodziowaty6978.fitnessappv2.common.navigation.navigator.Navigator
+import com.gmail.bodziowaty6978.fitnessappv2.common.presentation.components.BottomBar
 import com.gmail.bodziowaty6978.fitnessappv2.common.presentation.util.BottomBarScreen
 import com.gmail.bodziowaty6978.fitnessappv2.common.presentation.util.Screen
 import com.gmail.bodziowaty6978.fitnessappv2.common.util.extensions.asLifecycleAwareState
@@ -34,6 +38,10 @@ fun NavHostGraph(
         initialState = null
     )
 
+    var bottomNavigationState by remember {
+        mutableStateOf(false)
+    }
+
     LaunchedEffect(navigatorState) {
         navigatorState?.let {
             it.parcelableArguments.forEach { argument ->
@@ -46,60 +54,79 @@ fun NavHostGraph(
         }
     }
 
-    NavHost(
-        navController = navController,
-        startDestination = AuthScreen.LoginAuthScreen.route
+
+    Scaffold(
+        bottomBar = {
+            if (bottomNavigationState) {
+                BottomBar(navController = navController)
+            }
+        }
     ) {
-        composable(
-            route = Screen.SplashScreen.route
+        Surface(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(it),
+            color = MaterialTheme.colors.background
         ) {
-            SplashScreen(navHostController = navController)
-        }
+            NavHost(
+                navController = navController,
+                startDestination = Screen.LoadingScreen.route
+            ) {
+                composable(
+                    route = Screen.LoadingScreen.route
+                ) {
+                    bottomNavigationState = false
+                    SplashScreen()
+                }
 
-        composable(
-            route = Screen.IntroductionScreen.route
-        ) {
-            IntroductionScreen(navController = navController)
-        }
+                composable(
+                    route = Screen.IntroductionScreen.route
+                ) {
+                    bottomNavigationState = false
+                    IntroductionScreen()
+                }
 
-        composable(
-            route = AuthScreen.LoginAuthScreen.route
-        ) {
-            LoginScreen()
-        }
-        composable(
-            route = AuthScreen.RegisterAuthScreen.route
-        ) {
-            RegisterScreen()
-        }
-        composable(
-            route = AuthScreen.ResetPasswordAuthScreen.route
-        ) {
-            ResetPasswordScreen()
-        }
-        composable(
-            route = BottomBarScreen.Summary.route
-        ) {
-            SummaryScreen(
-                navController = navController
-            )
-        }
+                composable(
+                    route = AuthScreen.LoginAuthScreen.route
+                ) {
+                    bottomNavigationState = false
+                    LoginScreen()
+                }
+                composable(
+                    route = AuthScreen.RegisterAuthScreen.route
+                ) {
+                    bottomNavigationState = false
+                    RegisterScreen()
+                }
+                composable(
+                    route = AuthScreen.ResetPasswordAuthScreen.route
+                ) {
+                    bottomNavigationState = false
+                    ResetPasswordScreen()
+                }
+                composable(
+                    route = BottomBarScreen.Summary.route
+                ) {
+                    bottomNavigationState = true
+                    SummaryScreen()
+                }
 
-        composable(
-            route = BottomBarScreen.Diary.route
-        ) {
-            DiaryScreen(
-                navController = navController
-            )
-        }
+                composable(
+                    route = BottomBarScreen.Diary.route
+                ) {
+                    bottomNavigationState = true
+                    DiaryScreen()
+                }
 
-        composable(
-            route = BottomBarScreen.Account.route
-        ) {
-            AccountScreen(
-                navController = navController
-            )
+                composable(
+                    route = BottomBarScreen.Account.route
+                ) {
+                    bottomNavigationState = true
+                    AccountScreen()
+                }
+            }
         }
     }
+
 
 }

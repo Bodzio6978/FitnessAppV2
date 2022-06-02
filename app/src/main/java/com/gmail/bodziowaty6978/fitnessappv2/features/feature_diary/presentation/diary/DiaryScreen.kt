@@ -17,7 +17,6 @@ import com.gmail.bodziowaty6978.fitnessappv2.common.presentation.ui.theme.Grey
 
 @Composable
 fun DiaryScreen(
-    navController: NavController,
     viewModel: DiaryViewModel = hiltViewModel()
 ) {
 

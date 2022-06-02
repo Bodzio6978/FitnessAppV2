@@ -4,12 +4,12 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.gmail.bodziowaty6978.fitnessappv2.common.navigation.NavigationActions
 import com.gmail.bodziowaty6978.fitnessappv2.common.navigation.navigator.Navigator
 import com.gmail.bodziowaty6978.fitnessappv2.features.feature_auth.domain.use_case.AuthUseCases
 import com.gmail.bodziowaty6978.fitnessappv2.features.feature_auth.presentation.util.AuthEvent
 import com.gmail.bodziowaty6978.fitnessappv2.features.feature_auth.presentation.util.TextFieldState
 import com.gmail.bodziowaty6978.fitnessappv2.common.util.Result
-import com.gmail.bodziowaty6978.fitnessappv2.features.feature_auth.navigation.AuthNavigationActions
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -87,14 +87,14 @@ class RegisterViewModel @Inject constructor(
                     if (result is Result.Error){
                         _snackbarState.emit(result.message)
                     }else{
-                        navigator.navigate(AuthNavigationActions.RegisterScreen.registerToSummary())
+                        navigator.navigate(NavigationActions.RegisterScreen.registerToSummary())
                     }
 
                     _isLoading.value = false
                 }
             }
             else -> {
-                navigator.navigate(AuthNavigationActions.RegisterScreen.registerToLogin())
+                navigator.navigate(NavigationActions.RegisterScreen.registerToLogin())
             }
         }
     }

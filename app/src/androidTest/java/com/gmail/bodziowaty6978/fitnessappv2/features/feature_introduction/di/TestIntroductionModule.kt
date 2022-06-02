@@ -8,6 +8,7 @@ import com.gmail.bodziowaty6978.fitnessappv2.features.feature_introduction.domai
 import com.gmail.bodziowaty6978.fitnessappv2.features.feature_introduction.domain.use_cases.CalculateNutritionValues
 import com.gmail.bodziowaty6978.fitnessappv2.features.feature_introduction.domain.use_cases.SaveIntroductionInformation
 import com.gmail.bodziowaty6978.fitnessappv2.common.util.ResourceProvider
+import com.gmail.bodziowaty6978.fitnessappv2.common.util.Result
 import com.google.firebase.firestore.FirebaseFirestore
 import dagger.Module
 import dagger.Provides
@@ -21,17 +22,14 @@ object TestIntroductionModule {
 
     @Provides
     @Singleton
-    fun provideIntroductionRepository(
-        firebaseFirestore: FirebaseFirestore,
-        userId:String?,
-        informationDatastore: DataStore<UserInformation>,
-        nutritionDatastore: DataStore<NutritionValues>,
-    ): IntroductionRepository = IntroductionRepositoryImp(
-        firestore = firebaseFirestore,
-        userId = userId,
-        informationDatastore = informationDatastore,
-        nutritionDatastore = nutritionDatastore
-    )
+    fun provideIntroductionRepository(): IntroductionRepository = object :IntroductionRepository{
+        override suspend fun saveIntroductionInformation(
+            userInformation: UserInformation,
+            nutritionValues: NutritionValues
+        ): Result {
+            return Result.Success
+        }
+    }
 
     @Provides
     @Singleton

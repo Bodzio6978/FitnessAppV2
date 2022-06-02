@@ -48,29 +48,7 @@ class MainActivity : ComponentActivity() {
 //        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
         setContent {
             FitnessAppV2Theme {
-                val navController = rememberNavController()
-                var bottomNavigationState by remember{
-                    mutableStateOf(false)
-                }
-                Scaffold(
-                    bottomBar = {
-                        if (bottomNavigationState){
-                            BottomBar(navController = navController)
-                        }
-                    }
-                ) {
-                    Surface(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .padding(it),
-                        color = MaterialTheme.colors.background
-                    ) {
-                        NavHostGraph(
-                            navigator = navigator,
-                            navController = navController
-                        )
-                    }
-                }
+                NavHostGraph(navigator = navigator)
             }
         }
     }

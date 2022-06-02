@@ -29,38 +29,9 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun SplashScreen(
-    navHostController: NavHostController,
     viewModel: LoadingViewModel = hiltViewModel()
 ) {
     val context = LocalContext.current
-
-    LaunchedEffect(key1 = true) {
-        viewModel.loadingState.collect { splashState ->
-            Log.e(TAG, splashState.toString())
-            splashState.isLoggedIn?.let { isLogged ->
-                if (isLogged) {
-                    val hasInformation = splashState.hasInformation
-                    val hasNutrition = splashState.hasNutritionValues
-                    if (hasInformation != null && hasNutrition != null) {
-                        if (!hasInformation || !hasNutrition) {
-                            navHostController.navigate(Screen.IntroductionScreen.route) {
-                                popUpTo(0)
-                            }
-                        } else {
-                            navHostController.navigate(BottomBarScreen.Summary.route) {
-                                popUpTo(0)
-                            }
-                        }
-                    }
-
-                } else {
-                    navHostController.navigate(AuthScreen.LoginAuthScreen.route) {
-                        popUpTo(0)
-                    }
-                }
-            }
-        }
-    }
 
     LaunchedEffect(key1 = true) {
         context.datastoreInformation.data.collect {
@@ -85,7 +56,7 @@ fun SplashScreen(
     }
 
     LaunchedEffect(key1 = true) {
-        viewModel.checkUser()
+        viewModel.checkIfUserLoggedIn()
     }
 
     Box(

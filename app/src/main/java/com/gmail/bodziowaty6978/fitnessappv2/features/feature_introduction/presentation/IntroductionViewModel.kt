@@ -5,6 +5,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.gmail.bodziowaty6978.fitnessappv2.R
+import com.gmail.bodziowaty6978.fitnessappv2.common.navigation.NavigationActions
+import com.gmail.bodziowaty6978.fitnessappv2.common.navigation.navigator.Navigator
 import com.gmail.bodziowaty6978.fitnessappv2.features.feature_introduction.domain.model.Question
 import com.gmail.bodziowaty6978.fitnessappv2.features.feature_introduction.domain.use_cases.SaveIntroductionInformation
 import com.gmail.bodziowaty6978.fitnessappv2.features.feature_introduction.presentation.util.IntroductionExpectedQuestionAnswer
@@ -20,7 +22,8 @@ import javax.inject.Inject
 @HiltViewModel
 class IntroductionViewModel @Inject constructor(
     resourceProvider: ResourceProvider,
-    private val saveIntroductionInformation: SaveIntroductionInformation
+    private val saveIntroductionInformation: SaveIntroductionInformation,
+    private val navigator: Navigator
 ): ViewModel(){
 
     private val _questionState = mutableStateOf<Map<IntroductionExpectedQuestionAnswer,Question>>(
@@ -103,11 +106,13 @@ class IntroductionViewModel @Inject constructor(
             is IntroductionEvent.FinishIntroduction -> {
                 viewModelScope.launch(Dispatchers.IO) {
                     val result = saveIntroductionInformation(answers = _introductionAnswerState.value)
-                    _introductionUiEvent.emit(
-                        if(result is Result.Error) IntroductionUiEvent.ShowSnackbar(
-                            result.message
-                        ) else IntroductionUiEvent.Finish
-                    )
+                    if (result is Result.Error){
+                        _introductionUiEvent.emit(
+                            IntroductionUiEvent.ShowSnackbar(result.message)
+                        )
+                    }else{
+                        navigator.navigate(NavigationActions.IntroductionScreen.introductionToSummary())
+                    }
                 }
             }
         }

@@ -30,7 +30,6 @@ import kotlinx.coroutines.flow.collectLatest
 @OptIn(ExperimentalPagerApi::class, ExperimentalComposeUiApi::class)
 @Composable
 fun IntroductionScreen(
-    navController:NavHostController,
     viewModel: IntroductionViewModel = hiltViewModel()
 ) {
     val questions = viewModel.questionState.value
@@ -72,11 +71,6 @@ fun IntroductionScreen(
                     scaffoldState.snackbarHostState.showSnackbar(
                         it.message
                     )
-                }
-                is IntroductionUiEvent.Finish -> {
-                    navController.navigate(Screen.SplashScreen.route){
-                        popUpTo(0)
-                    }
                 }
             }
         }

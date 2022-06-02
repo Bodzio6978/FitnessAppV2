@@ -4,19 +4,15 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.gmail.bodziowaty6978.fitnessappv2.common.navigation.model.NavigationAction
+import com.gmail.bodziowaty6978.fitnessappv2.common.navigation.NavigationActions
 import com.gmail.bodziowaty6978.fitnessappv2.common.navigation.navigator.Navigator
 import com.gmail.bodziowaty6978.fitnessappv2.features.feature_auth.domain.repository.AuthRepository
 import com.gmail.bodziowaty6978.fitnessappv2.features.feature_auth.domain.use_case.AuthUseCases
 import com.gmail.bodziowaty6978.fitnessappv2.features.feature_auth.presentation.util.AuthEvent
 import com.gmail.bodziowaty6978.fitnessappv2.features.feature_auth.presentation.util.TextFieldState
 import com.gmail.bodziowaty6978.fitnessappv2.common.util.Result
-import com.gmail.bodziowaty6978.fitnessappv2.features.feature_auth.navigation.AuthNavigationActions
-import com.google.rpc.context.AttributeContext.Auth
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Delay
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.launch
@@ -62,10 +58,10 @@ class LoginViewModel @Inject constructor(
 
             }
             is AuthEvent.RegisterLoginButtonClicked -> {
-                navigator.navigate(AuthNavigationActions.LoginScreen.loginToRegister())
+                navigator.navigate(NavigationActions.LoginScreen.loginToRegister())
             }
             is AuthEvent.ForgotButtonClicked -> {
-                navigator.navigate(AuthNavigationActions.LoginScreen.loginToReset())
+                navigator.navigate(NavigationActions.LoginScreen.loginToReset())
             }
             else -> {
                 viewModelScope.launch(Dispatchers.IO) {
@@ -77,7 +73,7 @@ class LoginViewModel @Inject constructor(
                     if (result is Result.Error){
                         _snackbarState.emit(result.message)
                     }else{
-                        navigator.navigate(AuthNavigationActions.LoginScreen.loginToSummary())
+                        navigator.navigate(NavigationActions.LoginScreen.loginToSummary())
                     }
                     _isLoading.value = false
                 }
