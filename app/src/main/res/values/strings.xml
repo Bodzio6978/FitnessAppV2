@@ -1,0 +1,215 @@
+<resources>
+    <string name="app_name">Fitness App</string>
+    <string name="this_will_be_implemented_in_the_future">This Will Be Implemented In The Future.</string>
+    <string name="wait">Wait…</string>
+
+    <string name="email_address">Email Address</string>
+    <string name="password">Password</string>
+    <string name="login">Log into your account</string>
+    <string name="sign_in">Sign In</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="help">Help</string>
+    <string name="register">Create your account</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="confirm_your_password">Confirm Your Password</string>
+    <string name="i_don_t_have_an_account_register">I Don\'t Have An Account! Register</string>
+    <string name="please_make_sure_all_fields_are_filled_in_correctly">Please Make Sure All Fields Are Filled In Correctly.</string>
+    <string name="please_make_sure_both_passwords_are_the_same">Please Make Sure Both Passwords Are The Same.</string>
+    <string name="i_have_an_account_login">I Have An Account! Login</string>
+    <string name="please_enter_your_email_in_order_to_reset_your_password">Please Enter Your Email In Order To Reset Your Password.</string>
+    <string name="reset_your_password">Reset your password</string>
+    <string name="reset_my_password">Reset My Password</string>
+    <string name="please_make_sure_your_password_is_at_least_6_characters_and_is_not_longer_than_24_characters">please make sure your password is at least 6 characters and is not longer than 24 characters</string>
+    <string name="please_make_sure_you_have_entered_correct_email">Please make sure you have entered the correct email</string>
+
+    <string name="what_is_your_gender">What is your gender?</string>
+    <string name="what_is_your_age">What is your age?</string>
+    <string name="what_is_your_current_weight">What is your current weight?</string>
+    <string name="what_is_your_desired_weight">What is your desired weight?</string>
+    <string name="what_is_your_height">What is your height?</string>
+    <string name="what_type_of_work_do_you_have">What type of work do you have?</string>
+    <string name="how_often_do_you_train_in_a_week">How often do you train in a week</string>
+    <string name="how_would_you_describe_your_activity_level_during_a_day">How would you describe your activity level during a day?</string>
+    <string name="please_make_sure_you_have_entered_your_weight">Please make sure you have entered your weight</string>
+    <string name="please_make_sure_you_have_entered_your_desired_weight">Please make sure you have entered your desired weight</string>
+    <string name="please_make_sure_you_have_entered_your_age">Please make sure you have entered your age</string>
+
+    <string name="please_enter_your_username">Please Enter Your Username.</string>
+    <string name="it_will_be_displayed_to_all_users">It Will Be Displayed To All Users.</string>
+    <string name="set_username">Set Username</string>
+    <string name="your_username">Your Username</string>
+    <string name="username_length_notification">Please Make Sure Your Username Is At Least 6 Characters Long And No Longer Than 24 Characters</string>
+    <string name="username_exists_notification">There Is Already User With This Username</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="account">Account</string>
+    <string name="training">Training</string>
+    <string name="calories">Calories</string>
+
+    <string-array name="meal_names">
+        <item>Breakfast</item>
+        <item>Lunch</item>
+        <item>Supper</item>
+        <item>Dinner</item>
+    </string-array>
+
+    <string name="breakfast">Breakfast</string>
+    <string name="lunch">Lunch</string>
+    <string name="supper">Supper</string>
+    <string name="dinner">Dinner</string>
+
+    <string name="tomorrow">Tomorrow</string>
+    <string name="today">Today</string>
+    <string name="yesterday">Yesterday</string>
+
+
+    <string name="kcal"> Kcal</string>
+    <string name="g_carb">g Carbs</string>
+    <string name="g_prot">g Prot</string>
+    <string name="g_fat">g Fat</string>
+    <string name="fatStar"> Fat*</string>
+    <string name="delete">delete</string>
+    <string name="meal_has_been_removed">Meal Has Been Removed</string>
+    <string name="name">Name*</string>
+    <string name="carbohydratesStar">Carbohydrates*</string>
+    <string name="proteinStar">Protein*</string>
+    <string name="brand">Brand</string>
+    <string name="caloriesStar">Calories*</string>
+    <string name="product_name">Product name</string>
+    <string name="save">Save</string>
+
+    <string name="carbs">Carbs</string>
+    <string name="protein">Protein</string>
+
+    <string name="container_weight">Container weight</string>
+    <string name="portion_weight_star">Portion weight*</string>
+    <string name="container_weight_star">Container weight*</string>
+    <string name="add">Add</string>
+    <string name="add_button">Add button</string>
+
+    <string name="carbohydrates_g">Carbohydrates(g)</string>
+    <string name="protein_g">Protein(g)</string>
+    <string name="fat_g">Fat(g)</string>
+    <string name="percentage">%</string>
+    <string name="carbohydrates">Carbohydrates</string>
+    <string name="fat">Fat</string>
+
+    <string name="sedentary">Sedentary</string>
+    <string name="none">None</string>
+    <string name="low">Low</string>
+    <string name="female">Female</string>
+    <string name="kilograms">Kilograms</string>
+    <string name="next">NEXT</string>
+    <string name="finish">FINISH</string>
+    <string name="back">back</string>
+    <string name="age">Age</string>
+    <string name="gender">Gender</string>
+    <string name="current_weight">Current Weight</string>
+    <string name="kg">kg</string>
+    <string name="desired_weight">Desired Weight</string>
+    <string name="let_us_know_something_about_you">Let Us Know Something About You!</string>
+    <string name="cm">cm</string>
+    <string name="please_make_sure_you_have_entered_your_height">Please Make Sure You Have Entered Your Height</string>
+    <string name="search">Search</string>
+    <string name="back_button">Back button</string>
+    <string name="in_container">In container</string>
+    <string name="in_portion">In portion</string>
+
+    <string name="in_100g">In 100 g</string>
+    <string name="in_100ml">In 100 ml</string>
+
+    <string name="nutrition_values_in">Nutrition values in:</string>
+    <string name="g">g</string>
+    <string name="bar_code">Bar code</string>
+    <string name="weight">Weight</string>
+    <string name="camera_permission_is_required_to_scan_a_product_barcode">Camera permission is required to scan a product barcode</string>
+
+    <string name="an_error_has_occurred_during_adding_your_product">An error has occurred during adding your product</string>
+    <string name="adding_new_meal">Adding new meal</string>
+
+    <string name="edit">edit</string>
+    <string name="body_measurements">Body measurements</string>
+    <string name="log_out">Log out</string>
+    <string name="add_product">Add Product</string>
+    <string name="diary">Diary</string>
+    <string name="summary">Summary</string>
+    <string name="you_have_logged_for">You have logged for</string>
+    <string name="don_t_show_me_this_dialog_again">Don\'t show me this dialog again</string>
+    <string name="cancel">Cancel</string>
+
+    <string name="are_weight_dialogs_enabled">AreWeightDialogsEnabled</string>
+
+    <string name="do_you_want_us_to_help_you_track_your_weight">Do you want us to help you track your weight?</string>
+    <string name="we_will_ask_you_everyday_about_your_weight_automatically">We will ask you everyday about your weight automatically, so you that don\'t forget about it</string>
+    <string name="accept">accept</string>
+    <string name="decline">decline</string>
+    <string name="something_went_wrong">Something went wrong</string>
+    <string name="filters">filters</string>
+    <string name="error">An Error has occurred</string>
+    <string name="username">Username</string>
+    <string name="submit">Submit</string>
+    <string name="zl" format="false">\?zł</string>
+    <string name="macro_elements">Macro elements</string>
+    <string name="total">Total %</string>
+    <string name="your_total_have_to_be_at_100">Your total have to be at 100%</string>
+
+    <string name="settings_nutrition_values">"%s kcal, Carbs: %sg, Prot: %sg, Fat:%sg "</string>
+
+    <string name="hips">Hips</string>
+    <string name="fullest_part_of_your_hip">Fullest part of your hip</string>
+    <string name="waist">Waist</string>
+    <string name="smallest_part_of_your_belly">Smallest part of your belly</string>
+    <string name="thigh">Thigh</string>
+    <string name="biggest_part_of_your_thigh">Biggest part of your thigh</string>
+    <string name="bust">Bust</string>
+    <string name="over_nipples">Over nipples</string>
+    <string name="biceps">Biceps</string>
+    <string name="largest_part_of_your_upper_arm">Largest part of your upper arm</string>
+    <string name="calf">Calf</string>
+    <string name="biggest_part_of_your_calf">Biggest part of your calf</string>
+    <string name="not_entered_yet">Not entered yet</string>
+
+    <string name="hips_value">Hips: %scm</string>
+    <string name="waist_value">Waist: %scm</string>
+    <string name="thigh_value">Thigh: %scm</string>
+    <string name="biceps_value">Biceps: %scm</string>
+    <string name="bust_value">Bust: %scm</string>
+    <string name="calf_value">Calf: %scm</string>
+    <string name="we_recommend_measuring_the_body_not_often_than_once_a_month">We recommend measuring the body not often than once a month</string>
+    <string name="nutrition_goals">Nutrition goals</string>
+
+    <string-array name="works">
+        <item>Sedentary</item>
+        <item>Mixed</item>
+        <item>Physical</item>
+    </string-array>
+
+    <string-array name="trainingsPerWeek">
+        <item>none</item>
+        <item>1–2</item>
+        <item>3–4</item>
+        <item>5–6</item>
+        <item>7–8</item>
+    </string-array>
+
+    <string-array name="activity">
+        <item>Low</item>
+        <item>Moderate</item>
+        <item>High</item>
+        <item>Very High</item>
+    </string-array>
+
+    <string-array name="gender">
+        <item>Female</item>
+        <item>Male</item>
+    </string-array>
+
+<!--    Test tags-->
+    <string name="NEXT">NEXT</string>
+    <string name="BACK">BACK</string>
+    <string name="NEXT_TEXT">NEXT TEXT</string>
+    <string name="CALENDAR_BACK">CALENDAR BACK</string>
+    <string name="CALENDAR_DATE">CALENDAR DATE</string>
+    <string name="CALENDAR_FORWARD">CALENDAR FORWARD</string>
+
+</resources>
