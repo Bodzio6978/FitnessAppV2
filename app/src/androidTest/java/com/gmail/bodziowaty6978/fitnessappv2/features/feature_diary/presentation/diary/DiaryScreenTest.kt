@@ -1,6 +1,5 @@
 package com.gmail.bodziowaty6978.fitnessappv2.features.feature_diary.presentation.diary
 
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.navigation.compose.NavHost
@@ -13,21 +12,17 @@ import com.gmail.bodziowaty6978.fitnessappv2.common.presentation.util.BottomBarS
 import com.gmail.bodziowaty6978.fitnessappv2.R
 import com.gmail.bodziowaty6978.fitnessappv2.common.data.singleton.CurrentDate
 import com.gmail.bodziowaty6978.fitnessappv2.common.util.ResourceProvider
-import com.gmail.bodziowaty6978.fitnessappv2.features.feature_auth.di.AuthModule
-import com.gmail.bodziowaty6978.fitnessappv2.features.feature_diary.di.DiaryModule
 import com.gmail.bodziowaty6978.fitnessappv2.features.feature_diary.domain.repository.DiaryRepository
-import com.gmail.bodziowaty6978.fitnessappv2.features.feature_introduction.di.IntroductionModule
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import dagger.hilt.android.testing.UninstallModules
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import java.util.Date
 import javax.inject.Inject
 
 @HiltAndroidTest
-@UninstallModules(AppModule::class, IntroductionModule::class, AuthModule::class, DiaryModule::class)
+@UninstallModules(AppModule::class)
 internal class DiaryScreenTest{
 
     @get:Rule(order = 0)
@@ -35,9 +30,6 @@ internal class DiaryScreenTest{
 
     @get:Rule(order = 1)
     val composeRule = createAndroidComposeRule<MainActivity>()
-
-    @Inject
-    lateinit var fakeDiaryRepository:DiaryRepository
 
     lateinit var mealNames:List<String>
 
@@ -50,7 +42,7 @@ internal class DiaryScreenTest{
             FitnessAppV2Theme {
                 NavHost(navController = navController, startDestination = BottomBarScreen.Diary.route){
                     composable(route = BottomBarScreen.Diary.route){
-                        DiaryScreen(navController = navController)
+                        DiaryScreen()
                     }
                 }
             }

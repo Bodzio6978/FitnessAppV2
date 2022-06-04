@@ -7,6 +7,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
@@ -82,6 +83,7 @@ fun ResetPasswordScreen(
                         keyboardType = KeyboardType.Email,
                         modifier = Modifier
                             .fillMaxWidth()
+                            .testTag(stringResource(id = R.string.EMAIL))
                     )
 
                     Button(
@@ -91,6 +93,7 @@ fun ResetPasswordScreen(
                         modifier = Modifier
                             .padding(top = 20.dp, end = 20.dp, start = 20.dp)
                             .fillMaxWidth()
+                            .testTag(stringResource(id = R.string.BUTTON))
                     ) {
 
                         Text(

@@ -8,6 +8,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -79,6 +80,7 @@ fun RegisterScreen(
                         keyboardType = KeyboardType.Email,
                         modifier = Modifier
                             .fillMaxWidth()
+                            .testTag(stringResource(id = R.string.EMAIL))
                     )
 
                     TextField(
@@ -86,13 +88,14 @@ fun RegisterScreen(
                         hint = stringResource(id = R.string.username),
                         onValueChange = {
                             viewModel.onEvent(
-                                AuthEvent.EnteredPassword(password = it)
+                                AuthEvent.EnteredUsername(username = it)
                             )
                         },
                         isHintVisible = usernameState.isHintVisible,
                         textStyle = MaterialTheme.typography.body1,
                         modifier = Modifier
                             .fillMaxWidth()
+                            .testTag(stringResource(id = R.string.USERNAME))
                     )
 
                     TextField(
@@ -109,6 +112,7 @@ fun RegisterScreen(
                         visualTransformation = PasswordVisualTransformation(),
                         modifier = Modifier
                             .fillMaxWidth()
+                            .testTag(stringResource(id = R.string.PASSWORD))
                     )
 
                     TextField(
@@ -116,7 +120,7 @@ fun RegisterScreen(
                         hint = stringResource(id = R.string.confirm_your_password),
                         onValueChange = {
                             viewModel.onEvent(
-                                AuthEvent.EnteredPassword(password = it)
+                                AuthEvent.EnteredConfirmPassword(confirmPassword = it)
                             )
                         },
                         isHintVisible = confirmPasswordState.isHintVisible,
@@ -124,6 +128,7 @@ fun RegisterScreen(
                         keyboardType = KeyboardType.Password,
                         modifier = Modifier
                             .fillMaxWidth()
+                            .testTag(stringResource(id = R.string.CONFIRM))
                     )
 
 
@@ -134,6 +139,7 @@ fun RegisterScreen(
                         modifier = Modifier
                             .padding(top = 20.dp, end = 20.dp, start = 20.dp)
                             .fillMaxWidth()
+                            .testTag(stringResource(id = R.string.BUTTON))
                     ) {
 
                         Text(

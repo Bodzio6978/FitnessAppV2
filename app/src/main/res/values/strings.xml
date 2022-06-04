@@ -3,6 +3,7 @@
     <string name="this_will_be_implemented_in_the_future">This Will Be Implemented In The Future.</string>
     <string name="wait">Wait…</string>
 
+<!--    Auth-->
     <string name="email_address">Email Address</string>
     <string name="password">Password</string>
     <string name="login">Log into your account</string>
@@ -22,6 +23,8 @@
     <string name="please_make_sure_your_password_is_at_least_6_characters_and_is_not_longer_than_24_characters">please make sure your password is at least 6 characters and is not longer than 24 characters</string>
     <string name="please_make_sure_you_have_entered_correct_email">Please make sure you have entered the correct email</string>
 
+
+<!--    Introduction-->
     <string name="what_is_your_gender">What is your gender?</string>
     <string name="what_is_your_age">What is your age?</string>
     <string name="what_is_your_current_weight">What is your current weight?</string>
@@ -33,14 +36,6 @@
     <string name="please_make_sure_you_have_entered_your_weight">Please make sure you have entered your weight</string>
     <string name="please_make_sure_you_have_entered_your_desired_weight">Please make sure you have entered your desired weight</string>
     <string name="please_make_sure_you_have_entered_your_age">Please make sure you have entered your age</string>
-
-    <string name="please_enter_your_username">Please Enter Your Username.</string>
-    <string name="it_will_be_displayed_to_all_users">It Will Be Displayed To All Users.</string>
-    <string name="set_username">Set Username</string>
-    <string name="your_username">Your Username</string>
-    <string name="username_length_notification">Please Make Sure Your Username Is At Least 6 Characters Long And No Longer Than 24 Characters</string>
-    <string name="username_exists_notification">There Is Already User With This Username</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <string name="account">Account</string>
     <string name="training">Training</string>
@@ -211,5 +206,10 @@
     <string name="CALENDAR_BACK">CALENDAR BACK</string>
     <string name="CALENDAR_DATE">CALENDAR DATE</string>
     <string name="CALENDAR_FORWARD">CALENDAR FORWARD</string>
+    <string name="EMAIL">EMAIL</string>
+    <string name="PASSWORD">PASSWORD</string>
+    <string name="CONFIRM">CONFIRM</string>
+    <string name="USERNAME">USERNAME</string>
+    <string name="BUTTON">BUTTON</string>
 
 </resources>

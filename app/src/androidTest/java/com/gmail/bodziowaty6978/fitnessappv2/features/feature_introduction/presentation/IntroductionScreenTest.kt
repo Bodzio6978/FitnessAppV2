@@ -1,7 +1,6 @@
 package com.gmail.bodziowaty6978.fitnessappv2.features.feature_introduction.presentation
 
 import android.content.Context
-import android.util.Log
 import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.navigation.compose.NavHost
@@ -9,32 +8,21 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.test.core.app.ApplicationProvider
 import com.gmail.bodziowaty6978.fitnessappv2.common.di.AppModule
-import com.gmail.bodziowaty6978.fitnessappv2.features.feature_introduction.di.IntroductionModule
 import com.gmail.bodziowaty6978.fitnessappv2.common.presentation.MainActivity
 import com.gmail.bodziowaty6978.fitnessappv2.common.presentation.ui.theme.FitnessAppV2Theme
 import com.gmail.bodziowaty6978.fitnessappv2.common.presentation.util.Screen
 import dagger.hilt.android.testing.HiltAndroidRule
 import com.gmail.bodziowaty6978.fitnessappv2.R
-import com.gmail.bodziowaty6978.fitnessappv2.features.feature_auth.di.AuthModule
-import com.gmail.bodziowaty6978.fitnessappv2.features.feature_diary.di.DiaryModule
 import com.gmail.bodziowaty6978.fitnessappv2.features.feature_introduction.presentation.util.IntroductionExpectedQuestionAnswer
 import com.gmail.bodziowaty6978.fitnessappv2.util.TAG
 import dagger.hilt.android.testing.HiltAndroidTest
 import dagger.hilt.android.testing.UninstallModules
-import kotlinx.coroutines.Delay
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.test.runTest
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.junit.runner.RunWith
-import org.mockito.junit.MockitoJUnit
-import org.mockito.junit.MockitoJUnitRunner
-import org.mockito.junit.MockitoRule
 
 @HiltAndroidTest
-@UninstallModules(AppModule::class, IntroductionModule::class, AuthModule::class, DiaryModule::class)
+@UninstallModules(AppModule::class)
 internal class IntroductionScreenTest {
 
     @get:Rule(order = 0)
@@ -60,7 +48,7 @@ internal class IntroductionScreenTest {
                     composable(
                         route = Screen.IntroductionScreen.route
                     ) {
-                        IntroductionScreen(navController = navController)
+                        IntroductionScreen()
                     }
                 }
             }
