@@ -5,6 +5,7 @@ import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.gmail.bodziowaty6978.fitnessappv2.FitnessApp
 import com.gmail.bodziowaty6978.fitnessappv2.common.di.AppModule
 import com.gmail.bodziowaty6978.fitnessappv2.common.presentation.MainActivity
 import com.gmail.bodziowaty6978.fitnessappv2.common.presentation.ui.theme.FitnessAppV2Theme
@@ -19,10 +20,14 @@ import dagger.hilt.android.testing.UninstallModules
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import javax.inject.Inject
+import org.junit.runner.RunWith
+import org.mockito.Mock
+import org.mockito.Mockito
+import org.mockito.junit.MockitoJUnitRunner
 
 @HiltAndroidTest
 @UninstallModules(AppModule::class)
+@RunWith(MockitoJUnitRunner::class)
 internal class DiaryScreenTest{
 
     @get:Rule(order = 0)

@@ -1,25 +1,28 @@
 package com.gmail.bodziowaty6978.fitnessappv2.common.util.extensions
 
+import android.content.Context
 import android.text.format.DateUtils
+import com.gmail.bodziowaty6978.fitnessappv2.FitnessApp
 import com.gmail.bodziowaty6978.fitnessappv2.common.domain.model.DateModel
-import com.gmail.bodziowaty6978.fitnessappv2.common.domain.util.DateType
 import java.text.SimpleDateFormat
 import java.util.*
+import com.gmail.bodziowaty6978.fitnessappv2.R
+import com.gmail.bodziowaty6978.fitnessappv2.common.util.ResourceProvider
 
-fun Long.formatToAppDateModel(): DateModel {
+fun Long.formatToAppDateModel(resourceProvider: ResourceProvider): DateModel {
     val format = SimpleDateFormat("yyyy/MM/dd", Locale.getDefault())
     val currentDate = Date(this)
     val formattedDate = format.format(currentDate)
 
     if (DateUtils.isToday(this)){
-        return DateModel(this,formattedDate,DateType.Today)
+        return DateModel(this,formattedDate,resourceProvider.getString(R.string.today))
     }
     if(DateUtils.isToday(currentDate.time - DateUtils.DAY_IN_MILLIS)){
-        return DateModel(this,formattedDate,DateType.Tomorrow)
+        return DateModel(this,formattedDate,resourceProvider.getString(R.string.tomorrow))
     }
 
     if(DateUtils.isToday(currentDate.time + DateUtils.DAY_IN_MILLIS)){
-        return DateModel(this,formattedDate,DateType.Yesterday)
+        return DateModel(this,formattedDate,resourceProvider.getString(R.string.yesterday))
     }
 
     return DateModel(this,formattedDate)

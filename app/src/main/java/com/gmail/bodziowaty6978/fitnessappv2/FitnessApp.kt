@@ -15,14 +15,4 @@ val Context.datastoreNutrition by dataStore(Constants.DATASTORE_NUTRITION, Nutri
 
 @HiltAndroidApp
 class FitnessApp:Application() {
-
-    companion object {
-        lateinit var instance: FitnessApp private set
-    }
-
-    override fun onCreate() {
-        super.onCreate()
-        instance = this
-    }
-
 }

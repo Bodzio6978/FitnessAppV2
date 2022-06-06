@@ -8,10 +8,13 @@ import androidx.compose.material.Surface
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalLifecycleOwner
+import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.gmail.bodziowaty6978.fitnessappv2.common.navigation.navigator.Navigator
 import com.gmail.bodziowaty6978.fitnessappv2.common.presentation.components.BottomBar
 import com.gmail.bodziowaty6978.fitnessappv2.common.presentation.util.BottomBarScreen
@@ -23,6 +26,7 @@ import com.gmail.bodziowaty6978.fitnessappv2.features.feature_auth.presentation.
 import com.gmail.bodziowaty6978.fitnessappv2.features.feature_auth.presentation.reset_password.ResetPasswordScreen
 import com.gmail.bodziowaty6978.fitnessappv2.features.feature_auth.presentation.util.AuthScreen
 import com.gmail.bodziowaty6978.fitnessappv2.features.feature_diary.presentation.diary.DiaryScreen
+import com.gmail.bodziowaty6978.fitnessappv2.features.feature_diary.presentation.search.SearchScreen
 import com.gmail.bodziowaty6978.fitnessappv2.features.feature_introduction.presentation.IntroductionScreen
 import com.gmail.bodziowaty6978.fitnessappv2.features.feature_splash.loading.presentation.SplashScreen
 import com.gmail.bodziowaty6978.fitnessappv2.features.feature_summary.presentation.SummaryScreen
@@ -123,6 +127,26 @@ fun NavHostGraph(
                 ) {
                     bottomNavigationState = true
                     AccountScreen()
+                }
+                composable(
+                    route = Screen.SearchScreen.route + "?mealName={mealName}&date={date}",
+                    arguments = listOf(
+                        navArgument(
+                            name = "mealName"
+                        ){
+                            type = NavType.StringType
+                            defaultValue = "Breakfast"
+                        },
+                        navArgument(
+                            name = "date"
+                        ){
+                            type = NavType.StringType
+                            defaultValue = "Breakfast"
+                        }
+                    )
+                ){
+                    bottomNavigationState = false
+                    SearchScreen()
                 }
             }
         }

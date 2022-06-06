@@ -14,18 +14,17 @@ import androidx.compose.material.icons.filled.ArrowForwardIos
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.gmail.bodziowaty6978.fitnessappv2.R
 import com.gmail.bodziowaty6978.fitnessappv2.common.data.singleton.CurrentDate
-import com.gmail.bodziowaty6978.fitnessappv2.common.domain.util.DateType
 
 @Composable
 fun CalendarSection(
     onArrowPressed: () -> Unit
 ) {
-    val currentDateModel = CurrentDate.dateModel()
 
     Row(
         modifier = Modifier
@@ -47,12 +46,7 @@ fun CalendarSection(
 
 
         Text(
-            text = when (currentDateModel.dateType) {
-                is DateType.Tomorrow -> stringResource(id = R.string.tomorrow)
-                is DateType.Yesterday -> stringResource(id = R.string.yesterday)
-                is DateType.Today -> stringResource(id = R.string.today)
-                else -> currentDateModel.date
-            },
+            text = CurrentDate.dateModel(LocalContext.current).valueToDisplay ?: CurrentDate.dateModel(LocalContext.current).date,
             style = MaterialTheme.typography.h2,
             modifier = Modifier.testTag(stringResource(id = R.string.CALENDAR_DATE))
         )

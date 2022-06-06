@@ -65,4 +65,37 @@ object NavigationActions {
             override val navOptions: NavOptions = NavOptions.Builder().setPopUpTo(0,true).build()
         }
     }
+
+    //Summary
+    object SummaryScreen{
+        fun summaryToDiary() = object : NavigationAction {
+            override val destination: String = BottomBarScreen.Diary.route
+        }
+        fun summaryToAccount() = object : NavigationAction {
+            override val destination: String = BottomBarScreen.Account.route
+        }
+    }
+
+    //Account
+    object AccountScreen{
+        fun accountToDiary() = object : NavigationAction {
+            override val destination: String = BottomBarScreen.Diary.route
+        }
+        fun accountToSummary() = object : NavigationAction {
+            override val destination: String = BottomBarScreen.Summary.route
+        }
+    }
+
+    //Diary
+    object DiaryScreen{
+        fun diaryToAccount() = object : NavigationAction {
+            override val destination: String = BottomBarScreen.Account.route
+        }
+        fun diaryToSummary() = object : NavigationAction {
+            override val destination: String = BottomBarScreen.Summary.route
+        }
+        fun diaryToSearch() = object : NavigationAction {
+            override val destination: String = Screen.SearchScreen.route
+        }
+    }
 }

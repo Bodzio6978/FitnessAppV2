@@ -3,6 +3,7 @@ package com.gmail.bodziowaty6978.fitnessappv2.features.feature_diary.presentatio
 import android.util.Log
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.gmail.bodziowaty6978.fitnessappv2.R
@@ -47,7 +48,7 @@ class DiaryViewModel @Inject constructor(
     }
 
     fun getDiaryEntries(){
-        val currentDate = CurrentDate.dateModel().date
+        val currentDate = CurrentDate.dateModel(resourceProvider = resourceProvider).date
 
         viewModelScope.launch(Dispatchers.IO) {
             val resource = getDiaryEntries(
