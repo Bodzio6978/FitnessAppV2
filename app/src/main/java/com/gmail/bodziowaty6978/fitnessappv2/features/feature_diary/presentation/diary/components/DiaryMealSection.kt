@@ -27,11 +27,13 @@ import com.gmail.bodziowaty6978.fitnessappv2.common.presentation.ui.theme.TextGr
 import com.gmail.bodziowaty6978.fitnessappv2.common.presentation.ui.theme.Yellow
 import com.gmail.bodziowaty6978.fitnessappv2.features.feature_diary.domain.model.DiaryEntry
 import com.gmail.bodziowaty6978.fitnessappv2.features.feature_diary.domain.model.Meal
+import com.gmail.bodziowaty6978.fitnessappv2.features.feature_diary.presentation.diary.DiaryEvent
 import com.gmail.bodziowaty6978.fitnessappv2.util.TAG
 
 @Composable
 fun DiaryMealSection(
-    meal:Meal
+    meal:Meal,
+    onAddProductClick:(String) -> Unit
 ) {
     val diaryEntriesValues = meal.diaryEntries
 
@@ -97,7 +99,6 @@ fun DiaryMealSection(
             modifier = Modifier
                 .testTag(meal.mealName+"LazyColumn")
         ){
-            Log.e(TAG,meal.mealName+"LazyColumn")
             items(diaryEntriesValues.size){
                 DiaryEntryItem(
                     diaryEntry = diaryEntriesValues[it].diaryEntry,
@@ -120,7 +121,7 @@ fun DiaryMealSection(
                 .fillMaxWidth()
                 .background(Grey)
                 .clickable {
-
+                    onAddProductClick(meal.mealName)
                 }
                 .padding(vertical = 8.dp, horizontal = 20.dp),
             verticalAlignment = Alignment.CenterVertically

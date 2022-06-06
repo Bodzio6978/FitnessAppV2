@@ -2,10 +2,10 @@ package com.gmail.bodziowaty6978.fitnessappv2.features.feature_diary.presentatio
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.gmail.bodziowaty6978.fitnessappv2.common.domain.model.NutritionValues
@@ -14,14 +14,26 @@ import com.gmail.bodziowaty6978.fitnessappv2.features.feature_diary.presentation
 import com.gmail.bodziowaty6978.fitnessappv2.features.feature_diary.presentation.diary.components.NutritionBottomSection
 import com.gmail.bodziowaty6978.fitnessappv2.features.feature_diary.presentation.diary.components.NutritionTopSection
 import com.gmail.bodziowaty6978.fitnessappv2.common.presentation.ui.theme.Grey
+import com.gmail.bodziowaty6978.fitnessappv2.datastoreNutrition
 
 @Composable
 fun DiaryScreen(
     viewModel: DiaryViewModel = hiltViewModel()
 ) {
+    val context = LocalContext.current
+
+    var nutritionValues by remember{
+        mutableStateOf(NutritionValues())
+    }
 
     LaunchedEffect(key1 = true){
         viewModel.getDiaryEntries()
+    }
+
+    LaunchedEffect(key1 = true){
+        context.datastoreNutrition.data.collect{
+            nutritionValues = it
+        }
     }
 
     val meals = viewModel.mealsState.value
@@ -43,17 +55,18 @@ fun DiaryScreen(
             NutritionTopSection()
 
             meals.forEach { meal ->
-                DiaryMealSection(meal = meal)
+                DiaryMealSection(
+                    meal = meal,
+                    onAddProductClick = {
+                        viewModel.onEvent(DiaryEvent.ClickedAddProduct(it))
+                    }
+                )
             }
 
         }
         
         NutritionBottomSection(meals = meals,
-            wantedNutritionValues = NutritionValues(
-            calories = 3384,
-            protein = 253.0,
-            carbohydrates = 338.4,
-            fat = 112.8),
+            wantedNutritionValues = nutritionValues,
             modifier = Modifier
                 .align(Alignment.BottomCenter)
                 .background(Grey)

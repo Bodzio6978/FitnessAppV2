@@ -90,12 +90,13 @@ object NavigationActions {
     object DiaryScreen{
         fun diaryToAccount() = object : NavigationAction {
             override val destination: String = BottomBarScreen.Account.route
+
         }
         fun diaryToSummary() = object : NavigationAction {
             override val destination: String = BottomBarScreen.Summary.route
         }
-        fun diaryToSearch() = object : NavigationAction {
-            override val destination: String = Screen.SearchScreen.route
+        fun diaryToSearch(mealName:String) = object : NavigationAction {
+            override val destination: String = Screen.SearchScreen.route + "?mealName=$mealName"
         }
     }
 }

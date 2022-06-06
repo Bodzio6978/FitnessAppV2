@@ -3,4 +3,5 @@ package com.gmail.bodziowaty6978.fitnessappv2.features.feature_diary.presentatio
 sealed class DiaryEvent {
     object ChangedDate:DiaryEvent()
     data class ClickedDiaryEntry(val diaryEntryId:String):DiaryUiEvent()
+    data class ClickedAddProduct(val mealName:String):DiaryEvent()
 }

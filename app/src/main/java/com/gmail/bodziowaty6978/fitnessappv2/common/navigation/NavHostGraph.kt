@@ -65,7 +65,7 @@ fun NavHostGraph(
                 BottomBar(navController = navController)
             }
         }
-    ) {
+    ) { it ->
         Surface(
             modifier = Modifier
                 .fillMaxSize()
@@ -136,17 +136,12 @@ fun NavHostGraph(
                         ){
                             type = NavType.StringType
                             defaultValue = "Breakfast"
-                        },
-                        navArgument(
-                            name = "date"
-                        ){
-                            type = NavType.StringType
-                            defaultValue = "Breakfast"
                         }
                     )
-                ){
+                ){ backStackEntry ->
                     bottomNavigationState = false
-                    SearchScreen()
+                    val mealName = backStackEntry.arguments?.getString("mealName")
+                    SearchScreen(mealName!!)
                 }
             }
         }

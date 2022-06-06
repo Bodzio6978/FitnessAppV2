@@ -8,6 +8,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.gmail.bodziowaty6978.fitnessappv2.R
 import com.gmail.bodziowaty6978.fitnessappv2.common.data.singleton.CurrentDate
+import com.gmail.bodziowaty6978.fitnessappv2.common.navigation.NavigationActions
+import com.gmail.bodziowaty6978.fitnessappv2.common.navigation.navigator.Navigator
 import com.gmail.bodziowaty6978.fitnessappv2.features.feature_diary.domain.model.Meal
 import com.gmail.bodziowaty6978.fitnessappv2.features.feature_diary.domain.use_cases.GetDiaryEntries
 import com.gmail.bodziowaty6978.fitnessappv2.common.util.Resource
@@ -23,7 +25,8 @@ import javax.inject.Inject
 @HiltViewModel
 class DiaryViewModel @Inject constructor(
     private val getDiaryEntries: GetDiaryEntries,
-    private val resourceProvider: ResourceProvider
+    private val resourceProvider: ResourceProvider,
+    private val navigator: Navigator
 ): ViewModel(){
 
     private val _mealsState = mutableStateOf<List<Meal>>(
@@ -43,6 +46,9 @@ class DiaryViewModel @Inject constructor(
         when(event){
             is DiaryEvent.ChangedDate -> {
                 getDiaryEntries()
+            }
+            is DiaryEvent.ClickedAddProduct -> {
+                navigator.navigate(NavigationActions.DiaryScreen.diaryToSearch(event.mealName))
             }
         }
     }
