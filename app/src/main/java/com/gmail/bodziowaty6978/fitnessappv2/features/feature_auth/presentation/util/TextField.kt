@@ -1,4 +1,4 @@
-package com.gmail.bodziowaty6978.fitnessappv2.features.feature_auth.presentation.components
+package com.gmail.bodziowaty6978.fitnessappv2.features.feature_auth.presentation.util
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -56,9 +56,9 @@ fun TextField(
             ),
             modifier = modifier
                 .padding(10.dp)
-                .clip(RoundedCornerShape(8.dp))
+                .clip(RoundedCornerShape(30))
                 .background(LightGrey)
-                .padding(vertical = 15.dp, horizontal = 10.dp),
+                .padding(vertical = 12.dp, horizontal = 12.dp),
             keyboardOptions = KeyboardOptions(keyboardType = keyboardType),
             visualTransformation = visualTransformation
 
@@ -71,7 +71,7 @@ fun TextField(
                 ),
                 modifier = Modifier
                     .padding(10.dp)
-                    .padding(vertical = 15.dp, horizontal = 10.dp)
+                    .padding(vertical = 12.dp, horizontal = 12.dp)
                     .fillMaxWidth(),
             )
         }

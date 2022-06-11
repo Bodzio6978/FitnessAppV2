@@ -25,6 +25,7 @@ import com.gmail.bodziowaty6978.fitnessappv2.features.feature_diary.domain.model
 import com.gmail.bodziowaty6978.fitnessappv2.features.feature_diary.domain.model.DiaryEntryWithId
 import com.gmail.bodziowaty6978.fitnessappv2.features.feature_diary.domain.repository.DiaryRepository
 import com.gmail.bodziowaty6978.fitnessappv2.features.feature_diary.domain.use_cases.GetDiaryEntries
+import com.gmail.bodziowaty6978.fitnessappv2.features.feature_diary.domain.use_cases.SearchForProducts
 import com.gmail.bodziowaty6978.fitnessappv2.features.feature_diary.domain.use_cases.SortDiaryEntries
 import com.gmail.bodziowaty6978.fitnessappv2.features.feature_introduction.data.repository.IntroductionRepositoryImp
 import com.gmail.bodziowaty6978.fitnessappv2.features.feature_introduction.domain.repository.IntroductionRepository
@@ -132,4 +133,8 @@ object TestAppModule {
         diaryRepository = diaryRepository,
         sortDiaryEntries = SortDiaryEntries()
     )
+
+    @Singleton
+    @Provides
+    fun provideSearchForProductsUseCase(diaryRepository: DiaryRepository) : SearchForProducts = SearchForProducts(diaryRepository)
 }

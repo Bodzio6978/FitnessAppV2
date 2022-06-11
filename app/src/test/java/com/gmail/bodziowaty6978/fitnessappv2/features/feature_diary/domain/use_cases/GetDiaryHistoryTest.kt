@@ -11,12 +11,12 @@ import org.mockito.Mock
 import org.mockito.Mockito
 
 @OptIn(ExperimentalCoroutinesApi::class)
-internal class GetHistoryTest{
+internal class GetDiaryHistoryTest{
 
     @Mock
     private lateinit var mockDiaryRepository: DiaryRepository
 
-    private lateinit var getHistory: GetHistory
+    private lateinit var getDiaryHistory: GetDiaryHistory
 
     @Before
     fun setUp() = runTest{
@@ -24,12 +24,12 @@ internal class GetHistoryTest{
         Mockito.`when`(mockDiaryRepository.getLocalProductHistory()).thenReturn(
             Resource.Success(data = emptyList())
         )
-        getHistory = GetHistory(mockDiaryRepository)
+        getDiaryHistory = GetDiaryHistory(mockDiaryRepository)
     }
 
     @Test
     fun searchForProducts_ResourceSuccess() = runTest{
-        val result = getHistory()
+        val result = getDiaryHistory()
         assertTrue(result is Resource.Success)
     }
 

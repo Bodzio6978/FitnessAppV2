@@ -34,7 +34,7 @@ import com.gmail.bodziowaty6978.fitnessappv2.features.feature_summary.presentati
 @Composable
 fun NavHostGraph(
     navController: NavHostController = rememberNavController(),
-    navigator: Navigator,
+    navigator: Navigator
 ) {
     val lifecycleOwner = LocalLifecycleOwner.current
     val navigatorState by navigator.navActions.asLifecycleAwareState(
@@ -54,7 +54,11 @@ fun NavHostGraph(
                     argument.value
                 )
             }
-            navController.navigate(it.destination, it.navOptions)
+            if (it.destination == "navigateUp"){
+                navController.navigateUp()
+            }else{
+                navController.navigate(it.destination, it.navOptions)
+            }
         }
     }
 
@@ -129,7 +133,7 @@ fun NavHostGraph(
                     AccountScreen()
                 }
                 composable(
-                    route = Screen.SearchScreen.route + "?mealName={mealName}&date={date}",
+                    route = Screen.SearchScreen.route + "?mealName={mealName}",
                     arguments = listOf(
                         navArgument(
                             name = "mealName"

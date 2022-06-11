@@ -4,6 +4,7 @@ import com.gmail.bodziowaty6978.fitnessappv2.common.util.Resource
 import com.gmail.bodziowaty6978.fitnessappv2.common.util.Result
 import com.gmail.bodziowaty6978.fitnessappv2.features.feature_diary.domain.model.DiaryEntry
 import com.gmail.bodziowaty6978.fitnessappv2.features.feature_diary.domain.model.DiaryEntryWithId
+import com.gmail.bodziowaty6978.fitnessappv2.features.feature_diary.domain.model.ProductWithId
 import com.gmail.bodziowaty6978.fitnessappv2.features.feature_diary.domain.repository.DiaryRepository
 
 
@@ -14,6 +15,10 @@ class FakeDiaryRepository: DiaryRepository {
 
     override suspend fun getDiaryEntries(date: String): Resource<List<DiaryEntryWithId>> {
         return Resource.Success(diaryEntries)
+    }
+
+    override suspend fun searchForProducts(productName: String): Resource<List<ProductWithId>> {
+        TODO("Not yet implemented")
     }
 
     override suspend fun addDiaryEntry(diaryEntry: DiaryEntry): Result {

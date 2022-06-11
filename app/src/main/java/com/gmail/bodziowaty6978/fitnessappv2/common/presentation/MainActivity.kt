@@ -48,7 +48,9 @@ class MainActivity : ComponentActivity() {
 //        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
         setContent {
             FitnessAppV2Theme {
-                NavHostGraph(navigator = navigator)
+                NavHostGraph(
+                    navigator = navigator
+                )
             }
         }
     }

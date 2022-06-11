@@ -3,6 +3,10 @@ package com.gmail.bodziowaty6978.fitnessappv2.common.di
 import android.app.Application
 import android.content.Context
 import androidx.datastore.core.DataStore
+import androidx.room.Room
+import androidx.room.RoomDatabase
+import com.gmail.bodziowaty6978.fitnessappv2.common.data.room.AppRoomDatabase
+import com.gmail.bodziowaty6978.fitnessappv2.common.data.room.dao.ProductDao
 import com.gmail.bodziowaty6978.fitnessappv2.datastoreInformation
 import com.gmail.bodziowaty6978.fitnessappv2.datastoreNutrition
 import com.gmail.bodziowaty6978.fitnessappv2.common.domain.model.NutritionValues
@@ -18,8 +22,7 @@ import com.gmail.bodziowaty6978.fitnessappv2.features.feature_auth.domain.use_ca
 import com.gmail.bodziowaty6978.fitnessappv2.features.feature_auth.domain.use_case.ResetPasswordWithEmail
 import com.gmail.bodziowaty6978.fitnessappv2.features.feature_diary.data.repository.remote.DiaryRepositoryImp
 import com.gmail.bodziowaty6978.fitnessappv2.features.feature_diary.domain.repository.DiaryRepository
-import com.gmail.bodziowaty6978.fitnessappv2.features.feature_diary.domain.use_cases.GetDiaryEntries
-import com.gmail.bodziowaty6978.fitnessappv2.features.feature_diary.domain.use_cases.SortDiaryEntries
+import com.gmail.bodziowaty6978.fitnessappv2.features.feature_diary.domain.use_cases.*
 import com.gmail.bodziowaty6978.fitnessappv2.features.feature_introduction.data.repository.IntroductionRepositoryImp
 import com.gmail.bodziowaty6978.fitnessappv2.features.feature_introduction.domain.repository.IntroductionRepository
 import com.gmail.bodziowaty6978.fitnessappv2.features.feature_introduction.domain.use_cases.CalculateNutritionValues
@@ -36,6 +39,16 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
+
+    @Singleton
+    @Provides
+    fun provideRoomDatabase(
+        @ApplicationContext context: Context
+    ):AppRoomDatabase = Room.databaseBuilder(
+        context,
+        AppRoomDatabase::class.java,
+        AppRoomDatabase.DATABASE_NAME
+    ).build()
 
     @Singleton
     @Provides
@@ -132,10 +145,12 @@ object AppModule {
     @Provides
     fun provideDiaryRepository(
         firebaseFirestore: FirebaseFirestore,
-        userId:String?
+        userId:String?,
+        roomDatabase: AppRoomDatabase
     ): DiaryRepository = DiaryRepositoryImp(
         firebaseFirestore = firebaseFirestore,
-        userId = userId
+        userId = userId,
+        productDao = roomDatabase.productDao()
     )
 
     @Singleton
@@ -146,5 +161,21 @@ object AppModule {
         diaryRepository = diaryRepository,
         sortDiaryEntries = SortDiaryEntries()
     )
+
+    @Singleton
+    @Provides
+    fun provideSearchForProductsUseCase(diaryRepository: DiaryRepository) : SearchForProducts = SearchForProducts(diaryRepository)
+
+    @Singleton
+    @Provides
+    fun provideGetDiaryHistoryUseCase(diaryRepository: DiaryRepository) : GetDiaryHistory = GetDiaryHistory(diaryRepository)
+
+    @Singleton
+    @Provides
+    fun provideDiarySearchUseCases(diaryRepository: DiaryRepository):SearchDiaryUseCases =
+        SearchDiaryUseCases(
+            searchForProducts = SearchForProducts(diaryRepository),
+            getDiaryHistory = GetDiaryHistory(diaryRepository)
+        )
 
 }

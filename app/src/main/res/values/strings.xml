@@ -57,6 +57,8 @@
     <string name="today">Today</string>
     <string name="yesterday">Yesterday</string>
 
+    <string name="scan">Scan</string>
+    <string name="filter">Filter</string>
 
     <string name="kcal"> Kcal</string>
     <string name="g_carb">g Carbs</string>
@@ -211,5 +213,6 @@
     <string name="CONFIRM">CONFIRM</string>
     <string name="USERNAME">USERNAME</string>
     <string name="BUTTON">BUTTON</string>
+    <string name="TEXT_FIELD">TEXT FIELD</string>
 
 </resources>

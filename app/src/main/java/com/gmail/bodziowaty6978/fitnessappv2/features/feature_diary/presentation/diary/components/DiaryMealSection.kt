@@ -129,13 +129,13 @@ fun DiaryMealSection(
             Icon(
                 imageVector = Icons.Default.Add,
                 contentDescription = "Add icon",
-                tint = Yellow
+                tint = MaterialTheme.colors.primary
             )
 
             Text(
                 text = stringResource(id = R.string.add_product),
                 style = MaterialTheme.typography.body1,
-                color = Yellow,
+                color = MaterialTheme.colors.primary,
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier.padding(start = 10.dp)
             )

@@ -27,7 +27,6 @@ import org.mockito.junit.MockitoJUnitRunner
 
 @HiltAndroidTest
 @UninstallModules(AppModule::class)
-@RunWith(MockitoJUnitRunner::class)
 internal class DiaryScreenTest{
 
     @get:Rule(order = 0)

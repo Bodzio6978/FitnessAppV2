@@ -14,15 +14,10 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavController
 import com.gmail.bodziowaty6978.fitnessappv2.R
 import com.gmail.bodziowaty6978.fitnessappv2.common.presentation.components.Toolbar
-import com.gmail.bodziowaty6978.fitnessappv2.features.feature_auth.presentation.components.TextField
+import com.gmail.bodziowaty6978.fitnessappv2.features.feature_auth.presentation.util.TextField
 import com.gmail.bodziowaty6978.fitnessappv2.features.feature_auth.presentation.util.AuthEvent
-import com.gmail.bodziowaty6978.fitnessappv2.common.util.Result
-import com.gmail.bodziowaty6978.fitnessappv2.features.feature_auth.presentation.util.AuthScreen
-import com.gmail.bodziowaty6978.fitnessappv2.common.presentation.util.BottomBarScreen
-import com.gmail.bodziowaty6978.fitnessappv2.common.presentation.util.Screen
 import kotlinx.coroutines.flow.collectLatest
 
 @Composable

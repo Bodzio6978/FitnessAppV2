@@ -8,6 +8,12 @@ import com.gmail.bodziowaty6978.fitnessappv2.features.feature_auth.presentation.
 
 object NavigationActions {
 
+    object General{
+        fun navigateUp() = object :NavigationAction{
+            override val destination: String = "navigateUp"
+        }
+    }
+
     //Auth
     object LoginScreen{
         fun loginToRegister() = object : NavigationAction {
@@ -97,6 +103,14 @@ object NavigationActions {
         }
         fun diaryToSearch(mealName:String) = object : NavigationAction {
             override val destination: String = Screen.SearchScreen.route + "?mealName=$mealName"
+        }
+    }
+
+
+    //Search
+    object SearchScreen{
+        fun searchToDiary() = object : NavigationAction{
+            override val destination: String = BottomBarScreen.Diary.route
         }
     }
 }
