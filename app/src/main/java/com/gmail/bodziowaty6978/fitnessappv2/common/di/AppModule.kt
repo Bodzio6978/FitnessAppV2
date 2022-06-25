@@ -4,29 +4,27 @@ import android.app.Application
 import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.room.Room
-import androidx.room.RoomDatabase
 import com.gmail.bodziowaty6978.fitnessappv2.common.data.room.AppRoomDatabase
-import com.gmail.bodziowaty6978.fitnessappv2.common.data.room.dao.ProductDao
-import com.gmail.bodziowaty6978.fitnessappv2.datastoreInformation
-import com.gmail.bodziowaty6978.fitnessappv2.datastoreNutrition
 import com.gmail.bodziowaty6978.fitnessappv2.common.domain.model.NutritionValues
 import com.gmail.bodziowaty6978.fitnessappv2.common.domain.model.UserInformation
 import com.gmail.bodziowaty6978.fitnessappv2.common.navigation.navigator.ComposeCustomNavigator
 import com.gmail.bodziowaty6978.fitnessappv2.common.navigation.navigator.Navigator
 import com.gmail.bodziowaty6978.fitnessappv2.common.util.ResourceProvider
-import com.gmail.bodziowaty6978.fitnessappv2.features.feature_auth.data.repository.AuthRepositoryImp
-import com.gmail.bodziowaty6978.fitnessappv2.features.feature_auth.domain.repository.AuthRepository
-import com.gmail.bodziowaty6978.fitnessappv2.features.feature_auth.domain.use_case.AuthUseCases
-import com.gmail.bodziowaty6978.fitnessappv2.features.feature_auth.domain.use_case.LogInUser
-import com.gmail.bodziowaty6978.fitnessappv2.features.feature_auth.domain.use_case.RegisterUser
-import com.gmail.bodziowaty6978.fitnessappv2.features.feature_auth.domain.use_case.ResetPasswordWithEmail
-import com.gmail.bodziowaty6978.fitnessappv2.features.feature_diary.data.repository.remote.DiaryRepositoryImp
-import com.gmail.bodziowaty6978.fitnessappv2.features.feature_diary.domain.repository.DiaryRepository
-import com.gmail.bodziowaty6978.fitnessappv2.features.feature_diary.domain.use_cases.*
-import com.gmail.bodziowaty6978.fitnessappv2.features.feature_introduction.data.repository.IntroductionRepositoryImp
-import com.gmail.bodziowaty6978.fitnessappv2.features.feature_introduction.domain.repository.IntroductionRepository
-import com.gmail.bodziowaty6978.fitnessappv2.features.feature_introduction.domain.use_cases.CalculateNutritionValues
-import com.gmail.bodziowaty6978.fitnessappv2.features.feature_introduction.domain.use_cases.SaveIntroductionInformation
+import com.gmail.bodziowaty6978.fitnessappv2.datastoreInformation
+import com.gmail.bodziowaty6978.fitnessappv2.datastoreNutrition
+import com.gmail.bodziowaty6978.fitnessappv2.feature_auth.data.repository.AuthRepositoryImp
+import com.gmail.bodziowaty6978.fitnessappv2.feature_auth.domain.repository.AuthRepository
+import com.gmail.bodziowaty6978.fitnessappv2.feature_auth.domain.use_case.AuthUseCases
+import com.gmail.bodziowaty6978.fitnessappv2.feature_auth.domain.use_case.LogInUser
+import com.gmail.bodziowaty6978.fitnessappv2.feature_auth.domain.use_case.RegisterUser
+import com.gmail.bodziowaty6978.fitnessappv2.feature_auth.domain.use_case.ResetPasswordWithEmail
+import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.data.repository.remote.DiaryRepositoryImp
+import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.domain.repository.DiaryRepository
+import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.domain.use_cases.*
+import com.gmail.bodziowaty6978.fitnessappv2.feature_introduction.data.repository.IntroductionRepositoryImp
+import com.gmail.bodziowaty6978.fitnessappv2.feature_introduction.domain.repository.IntroductionRepository
+import com.gmail.bodziowaty6978.fitnessappv2.feature_introduction.domain.use_cases.CalculateNutritionValues
+import com.gmail.bodziowaty6978.fitnessappv2.feature_introduction.domain.use_cases.SaveIntroductionInformation
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import dagger.Module
@@ -147,11 +145,12 @@ object AppModule {
         firebaseFirestore: FirebaseFirestore,
         userId:String?,
         roomDatabase: AppRoomDatabase
-    ): DiaryRepository = DiaryRepositoryImp(
-        firebaseFirestore = firebaseFirestore,
-        userId = userId,
-        productDao = roomDatabase.productDao()
-    )
+    ): DiaryRepository =
+        DiaryRepositoryImp(
+            firebaseFirestore = firebaseFirestore,
+            userId = userId,
+            productDao = roomDatabase.productDao()
+        )
 
     @Singleton
     @Provides
@@ -172,7 +171,7 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideDiarySearchUseCases(diaryRepository: DiaryRepository):SearchDiaryUseCases =
+    fun provideDiarySearchUseCases(diaryRepository: DiaryRepository): SearchDiaryUseCases =
         SearchDiaryUseCases(
             searchForProducts = SearchForProducts(diaryRepository),
             getDiaryHistory = GetDiaryHistory(diaryRepository)

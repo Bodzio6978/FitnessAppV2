@@ -1,8 +1,6 @@
 package com.gmail.bodziowaty6978.fitnessappv2.common.navigation.navigator
 
-import android.util.Log
 import com.gmail.bodziowaty6978.fitnessappv2.common.navigation.model.NavigationAction
-import com.gmail.bodziowaty6978.fitnessappv2.util.TAG
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow

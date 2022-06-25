@@ -2,9 +2,7 @@ package com.gmail.bodziowaty6978.fitnessappv2.common.data.singleton
 
 import android.text.format.DateUtils
 import com.google.common.truth.Truth.assertThat
-import org.junit.Before
 import org.junit.Test
-import org.junit.jupiter.api.Assertions.*
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 

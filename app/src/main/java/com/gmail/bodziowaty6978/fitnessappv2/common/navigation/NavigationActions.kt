@@ -4,7 +4,7 @@ import androidx.navigation.NavOptions
 import com.gmail.bodziowaty6978.fitnessappv2.common.navigation.model.NavigationAction
 import com.gmail.bodziowaty6978.fitnessappv2.common.presentation.util.BottomBarScreen
 import com.gmail.bodziowaty6978.fitnessappv2.common.presentation.util.Screen
-import com.gmail.bodziowaty6978.fitnessappv2.features.feature_auth.presentation.util.AuthScreen
+import com.gmail.bodziowaty6978.fitnessappv2.feature_auth.presentation.util.AuthScreen
 
 object NavigationActions {
 

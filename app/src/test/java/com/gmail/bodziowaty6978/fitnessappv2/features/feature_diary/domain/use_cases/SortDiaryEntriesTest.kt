@@ -1,15 +1,15 @@
 package com.gmail.bodziowaty6978.fitnessappv2.features.feature_diary.domain.use_cases
 
+import com.gmail.bodziowaty6978.fitnessappv2.R
+import com.gmail.bodziowaty6978.fitnessappv2.common.util.ResourceProvider
 import com.gmail.bodziowaty6978.fitnessappv2.features.feature_diary.domain.model.DiaryEntry
 import com.gmail.bodziowaty6978.fitnessappv2.features.feature_diary.domain.model.DiaryEntryWithId
+import com.google.common.truth.Truth.assertThat
 import org.junit.Before
+import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.RuntimeEnvironment
-import com.gmail.bodziowaty6978.fitnessappv2.R
-import com.gmail.bodziowaty6978.fitnessappv2.common.util.ResourceProvider
-import com.google.common.truth.Truth.assertThat
-import org.junit.Test
 
 @RunWith(RobolectricTestRunner::class)
 internal class SortDiaryEntriesTest{

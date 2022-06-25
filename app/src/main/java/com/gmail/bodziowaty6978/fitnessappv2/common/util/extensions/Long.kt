@@ -1,13 +1,11 @@
 package com.gmail.bodziowaty6978.fitnessappv2.common.util.extensions
 
-import android.content.Context
 import android.text.format.DateUtils
-import com.gmail.bodziowaty6978.fitnessappv2.FitnessApp
+import com.gmail.bodziowaty6978.fitnessappv2.R
 import com.gmail.bodziowaty6978.fitnessappv2.common.domain.model.DateModel
+import com.gmail.bodziowaty6978.fitnessappv2.common.util.ResourceProvider
 import java.text.SimpleDateFormat
 import java.util.*
-import com.gmail.bodziowaty6978.fitnessappv2.R
-import com.gmail.bodziowaty6978.fitnessappv2.common.util.ResourceProvider
 
 fun Long.formatToAppDateModel(resourceProvider: ResourceProvider): DateModel {
     val format = SimpleDateFormat("yyyy/MM/dd", Locale.getDefault())

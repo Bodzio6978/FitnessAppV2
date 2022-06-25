@@ -20,29 +20,24 @@ val Typography = Typography(
         fontFamily = Roboto,
         fontWeight = FontWeight.Normal,
         fontSize = 16.sp,
-        color = TextWhite
     ),
     body2 = TextStyle(
         fontFamily = Roboto,
         fontWeight = FontWeight.Normal,
         fontSize = 14.sp,
-        color = TextWhite
     ),
     h1 = TextStyle(
         fontFamily = Roboto,
-        color = TextWhite,
         fontWeight = FontWeight.Bold,
         fontSize = 22.sp
     ),
     h2 = TextStyle(
         fontFamily = Roboto,
-        color = TextWhite,
         fontWeight = FontWeight.Bold,
         fontSize = 18.sp
     ),
     button = TextStyle(
         fontFamily = Roboto,
-        color = Color.Black,
         fontWeight = FontWeight.Medium,
         fontSize = 14.sp,
     )

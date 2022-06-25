@@ -8,7 +8,6 @@ import androidx.compose.material.Surface
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalLifecycleOwner
-import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -20,16 +19,16 @@ import com.gmail.bodziowaty6978.fitnessappv2.common.presentation.components.Bott
 import com.gmail.bodziowaty6978.fitnessappv2.common.presentation.util.BottomBarScreen
 import com.gmail.bodziowaty6978.fitnessappv2.common.presentation.util.Screen
 import com.gmail.bodziowaty6978.fitnessappv2.common.util.extensions.asLifecycleAwareState
-import com.gmail.bodziowaty6978.fitnessappv2.features.feature_account.presentation.AccountScreen
-import com.gmail.bodziowaty6978.fitnessappv2.features.feature_auth.presentation.login.LoginScreen
-import com.gmail.bodziowaty6978.fitnessappv2.features.feature_auth.presentation.register.RegisterScreen
-import com.gmail.bodziowaty6978.fitnessappv2.features.feature_auth.presentation.reset_password.ResetPasswordScreen
-import com.gmail.bodziowaty6978.fitnessappv2.features.feature_auth.presentation.util.AuthScreen
-import com.gmail.bodziowaty6978.fitnessappv2.features.feature_diary.presentation.diary.DiaryScreen
-import com.gmail.bodziowaty6978.fitnessappv2.features.feature_diary.presentation.search.SearchScreen
-import com.gmail.bodziowaty6978.fitnessappv2.features.feature_introduction.presentation.IntroductionScreen
-import com.gmail.bodziowaty6978.fitnessappv2.features.feature_splash.loading.presentation.SplashScreen
-import com.gmail.bodziowaty6978.fitnessappv2.features.feature_summary.presentation.SummaryScreen
+import com.gmail.bodziowaty6978.fitnessappv2.feature_account.presentation.AccountScreen
+import com.gmail.bodziowaty6978.fitnessappv2.feature_auth.presentation.login.LoginScreen
+import com.gmail.bodziowaty6978.fitnessappv2.feature_auth.presentation.register.RegisterScreen
+import com.gmail.bodziowaty6978.fitnessappv2.feature_auth.presentation.reset_password.ResetPasswordScreen
+import com.gmail.bodziowaty6978.fitnessappv2.feature_auth.presentation.util.AuthScreen
+import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.presentation.diary.DiaryScreen
+import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.presentation.search.SearchScreen
+import com.gmail.bodziowaty6978.fitnessappv2.feature_introduction.presentation.IntroductionScreen
+import com.gmail.bodziowaty6978.fitnessappv2.feature_splash.loading.presentation.SplashScreen
+import com.gmail.bodziowaty6978.fitnessappv2.feature_summary.presentation.SummaryScreen
 
 @Composable
 fun NavHostGraph(
