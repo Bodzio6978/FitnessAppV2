@@ -44,8 +44,8 @@
     <string-array name="meal_names">
         <item>Breakfast</item>
         <item>Lunch</item>
-        <item>Supper</item>
         <item>Dinner</item>
+        <item>Supper</item>
     </string-array>
 
     <string name="breakfast">Breakfast</string>
@@ -98,7 +98,7 @@
     <string name="kilograms">Kilograms</string>
     <string name="next">NEXT</string>
     <string name="finish">FINISH</string>
-    <string name="back">back</string>
+    <string name="back">BACK</string>
     <string name="age">Age</string>
     <string name="gender">Gender</string>
     <string name="current_weight">Current Weight</string>

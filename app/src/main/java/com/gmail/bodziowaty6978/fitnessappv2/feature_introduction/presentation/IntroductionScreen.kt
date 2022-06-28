@@ -17,7 +17,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.gmail.bodziowaty6978.fitnessappv2.R
-import com.gmail.bodziowaty6978.fitnessappv2.common.presentation.ui.theme.LightBlue
 import com.gmail.bodziowaty6978.fitnessappv2.feature_introduction.presentation.components.QuestionSection
 import com.gmail.bodziowaty6978.fitnessappv2.feature_introduction.presentation.components.TextQuestion
 import com.gmail.bodziowaty6978.fitnessappv2.feature_introduction.presentation.components.TilesQuestion
@@ -145,12 +144,12 @@ fun IntroductionScreen(
                         )
                     },
                     colors = ButtonDefaults.buttonColors(
-                        backgroundColor = LightBlue
+                        backgroundColor = MaterialTheme.colors.secondary
                     )
                 ) {
                     Text(
-                        text = "Back",
-                        color = Color.Black,
+                        text = stringResource(id = R.string.back),
+                        color = MaterialTheme.colors.onPrimary,
                         modifier = Modifier.padding(vertical = 6.dp, horizontal = 10.dp)
                     )
                 }
@@ -180,7 +179,7 @@ fun IntroductionScreen(
                             id = R.string.next
                         )
                     },
-                    color = Color.Black,
+                    color = MaterialTheme.colors.onPrimary,
                     modifier = Modifier
                         .padding(vertical = 6.dp, horizontal = 10.dp)
                         .testTag(

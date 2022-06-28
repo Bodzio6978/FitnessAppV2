@@ -1,6 +1,5 @@
 package com.gmail.bodziowaty6978.fitnessappv2.feature_auth.presentation.login
 
-import android.util.Log
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
@@ -11,10 +10,8 @@ import com.gmail.bodziowaty6978.fitnessappv2.common.navigation.navigator.Navigat
 import com.gmail.bodziowaty6978.fitnessappv2.common.presentation.components.TextFieldState
 import com.gmail.bodziowaty6978.fitnessappv2.common.util.ResourceProvider
 import com.gmail.bodziowaty6978.fitnessappv2.common.util.Result
-import com.gmail.bodziowaty6978.fitnessappv2.feature_auth.domain.repository.AuthRepository
 import com.gmail.bodziowaty6978.fitnessappv2.feature_auth.domain.use_case.AuthUseCases
 import com.gmail.bodziowaty6978.fitnessappv2.feature_auth.presentation.util.AuthEvent
-import com.gmail.bodziowaty6978.fitnessappv2.util.TAG
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -46,13 +43,11 @@ class LoginViewModel @Inject constructor(
     val snackbarState: SharedFlow<String> = _snackbarState
 
     fun onEvent(event: AuthEvent){
-        Log.e(TAG,event.toString())
         when(event){
             is AuthEvent.EnteredEmail -> {
                 _emailState.value = emailState.value.copy(
                     text = event.email,
                 )
-                Log.e(TAG,event.email)
             }
             is AuthEvent.EnteredPassword -> {
                 _passwordState.value = passwordState.value.copy(
@@ -75,7 +70,7 @@ class LoginViewModel @Inject constructor(
                     if (result is Result.Error){
                         _snackbarState.emit(result.message)
                     }else{
-                        navigator.navigate(NavigationActions.LoginScreen.loginToSummary())
+                        navigator.navigate(NavigationActions.LoginScreen.loginToLoading())
                     }
                     _isLoading.value = false
                 }

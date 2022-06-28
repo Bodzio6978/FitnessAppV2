@@ -37,11 +37,11 @@ class IntroductionViewModel @Inject constructor(
             ),
             IntroductionExpectedQuestionAnswer.Height to Question(
                 title = resourceProvider.getString(R.string.what_is_your_height),
-                unit = "cm"
+                unit = "cm",
             ),
             IntroductionExpectedQuestionAnswer.CurrentWeight to Question(
                 title = resourceProvider.getString(R.string.what_is_your_current_weight),
-                unit = "kg"
+                unit = "kg",
             ),
             IntroductionExpectedQuestionAnswer.TypeOfWork to Question(
                 title = resourceProvider.getString(R.string.what_type_of_work_do_you_have),
@@ -57,7 +57,7 @@ class IntroductionViewModel @Inject constructor(
             ),
             IntroductionExpectedQuestionAnswer.DesiredWeight to Question(
                 title = resourceProvider.getString(R.string.what_is_your_desired_weight),
-                unit = "kg"
+                unit = "kg",
             )
         )
     )

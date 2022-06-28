@@ -1,5 +1,6 @@
 package com.gmail.bodziowaty6978.fitnessappv2.feature_diary.presentation.diary.components
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -29,7 +30,8 @@ fun CalendarSection(
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(vertical = 8.dp, horizontal = 20.dp),
+            .background(MaterialTheme.colors.background)
+            .padding(horizontal = 20.dp, vertical = 2.dp),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -41,13 +43,19 @@ fun CalendarSection(
             },
             modifier = Modifier.testTag(stringResource(id = R.string.CALENDAR_BACK))
         ) {
-            Icon(imageVector = Icons.Default.ArrowBackIos, contentDescription = "Back arrow")
+            Icon(
+                imageVector = Icons.Default.ArrowBackIos,
+                contentDescription = "Back arrow",
+                tint = MaterialTheme.colors.onBackground
+            )
         }
 
 
         Text(
             text = CurrentDate.dateModel(LocalContext.current).valueToDisplay ?: CurrentDate.dateModel(LocalContext.current).date,
-            style = MaterialTheme.typography.h2,
+            style = MaterialTheme.typography.h2.copy(
+                color = MaterialTheme.colors.onBackground
+            ),
             modifier = Modifier.testTag(stringResource(id = R.string.CALENDAR_DATE))
         )
 
@@ -58,7 +66,11 @@ fun CalendarSection(
             },
             modifier = Modifier.testTag(stringResource(id = R.string.CALENDAR_FORWARD))
         ) {
-            Icon(imageVector = Icons.Default.ArrowForwardIos, contentDescription = "Back arrow")
+            Icon(
+                imageVector = Icons.Default.ArrowForwardIos,
+                contentDescription = "Back arrow",
+                tint = MaterialTheme.colors.onBackground
+            )
         }
 
 

@@ -10,7 +10,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.gmail.bodziowaty6978.fitnessappv2.common.presentation.ui.theme.Grey
-import com.gmail.bodziowaty6978.fitnessappv2.common.presentation.ui.theme.TextGrey
+import com.gmail.bodziowaty6978.fitnessappv2.common.presentation.ui.theme.AquaBlue
 import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.domain.model.Product
 
 @Composable
@@ -39,7 +39,7 @@ fun SearchProductItem(
             Text(
                 text = "${product.containerWeight}${product.unit}",
                 style = MaterialTheme.typography.body2.copy(
-                    color = TextGrey
+                    color = AquaBlue
                 )
             )
         }
@@ -47,7 +47,7 @@ fun SearchProductItem(
         Text(
             text = product.calories.toString()+"kcal",
             style = MaterialTheme.typography.body2.copy(
-                color = TextGrey
+                color = AquaBlue
             )
         )
 

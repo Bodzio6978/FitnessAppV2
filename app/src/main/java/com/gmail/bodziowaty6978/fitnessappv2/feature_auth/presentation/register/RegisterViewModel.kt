@@ -86,7 +86,7 @@ class RegisterViewModel @Inject constructor(
                     if (result is Result.Error){
                         _snackbarState.emit(result.message)
                     }else{
-                        navigator.navigate(NavigationActions.RegisterScreen.registerToSummary())
+                        navigator.navigate(NavigationActions.RegisterScreen.registerToLoading())
                     }
 
                     _isLoading.value = false

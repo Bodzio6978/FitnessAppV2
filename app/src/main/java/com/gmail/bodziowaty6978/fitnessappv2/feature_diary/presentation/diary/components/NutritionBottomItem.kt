@@ -31,6 +31,7 @@ fun NutritionBottomItem(
 
         LinearProgressIndicator(
             progress = currentValue.toFloat() / wantedValue.toFloat(),
+            color = MaterialTheme.colors.primaryVariant
         )
 
         Text(

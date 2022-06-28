@@ -11,8 +11,9 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.gmail.bodziowaty6978.fitnessappv2.R
+import com.gmail.bodziowaty6978.fitnessappv2.common.presentation.components.DefaultTextField
 import com.gmail.bodziowaty6978.fitnessappv2.common.presentation.components.TextFieldState
-import com.gmail.bodziowaty6978.fitnessappv2.common.presentation.ui.theme.TextGrey
+import com.gmail.bodziowaty6978.fitnessappv2.common.presentation.ui.theme.AquaBlue
 import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.presentation.search.SearchEvent
 
 @Composable
@@ -53,7 +54,7 @@ fun SearchTopSection(
                 Text(
                     text = date,
                     style = MaterialTheme.typography.body2,
-                    color = TextGrey
+                    color = AquaBlue
                 )
 
             }
@@ -63,18 +64,22 @@ fun SearchTopSection(
             )
         }
 
-        TextField(
+        Spacer(modifier = Modifier.height(5.dp))
+
+        DefaultTextField(
             value = searchState.text,
             placeholder = {
                 Text(text = searchState.hint)
             },
             modifier = Modifier
                 .fillMaxWidth()
-                .testTag(stringResource(id = R.string.TEXT_FIELD)),
-            textStyle = MaterialTheme.typography.body2,
+                .testTag(stringResource(id = R.string.TEXT_FIELD))
+                .padding(horizontal = 20.dp),
             onValueChange = {
                 onEvent(SearchEvent.EnteredSearchText(it))
-            }
+            },
         )
+
+        Spacer(modifier = Modifier.height(5.dp))
     }
 }

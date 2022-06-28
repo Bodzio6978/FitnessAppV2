@@ -43,6 +43,7 @@ fun SearchButton(
         Text(
             text = text,
             style = MaterialTheme.typography.button,
+            color = MaterialTheme.colors.onPrimary,
             modifier = Modifier
                 .padding(start = 10.dp),
             maxLines = 1

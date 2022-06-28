@@ -17,6 +17,7 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.gmail.bodziowaty6978.fitnessappv2.common.presentation.components.DefaultTextField
 import com.gmail.bodziowaty6978.fitnessappv2.common.presentation.ui.theme.LightGrey
 
 @Composable
@@ -34,29 +35,24 @@ fun TextQuestion(
         horizontalArrangement = Arrangement.Center,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        BasicTextField(
+        DefaultTextField(
             value = text,
             onValueChange = {
                 onTextEntered(it.replace(",","."))
             },
+            modifier = Modifier
+                .width(80.dp)
+                .testTag(tag),
             textStyle = MaterialTheme.typography.h2.copy(
                 textAlign = TextAlign.Center
             ),
-            cursorBrush = SolidColor(Color.White),
-            singleLine = true,
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-            modifier = Modifier
-                .width(80.dp)
-                .clip(RoundedCornerShape(50))
-                .background(LightGrey)
-                .padding(horizontal = 10.dp, vertical = 7.dp)
-                .testTag(tag)
+            singleLine = true
         )
 
         Text(
             text = unit,
             style = MaterialTheme.typography.body1.copy(
-                color = Color.White
+                color = MaterialTheme.colors.onBackground
             ),
             modifier = Modifier
                 .padding(start = 10.dp)

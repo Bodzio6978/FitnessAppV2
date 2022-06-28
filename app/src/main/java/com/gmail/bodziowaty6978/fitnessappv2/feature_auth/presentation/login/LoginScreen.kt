@@ -76,7 +76,6 @@ fun LoginScreen(
                             Text(text = emailState.hint)
                         },
                         onValueChange = {
-                            Log.e("huj2",it)
                             viewModel.onEvent(AuthEvent.EnteredEmail(email = it))
                         },
                         keyboardOptions = KeyboardOptions().copy(

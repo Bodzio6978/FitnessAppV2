@@ -22,8 +22,8 @@ object NavigationActions {
         fun loginToReset() = object : NavigationAction {
             override val destination: String = AuthScreen.ResetPasswordAuthScreen.route
         }
-        fun loginToSummary() = object : NavigationAction {
-            override val destination: String = BottomBarScreen.Summary.route
+        fun loginToLoading() = object : NavigationAction {
+            override val destination: String = Screen.LoadingScreen.route
             override val navOptions: NavOptions = NavOptions.Builder().setPopUpTo(0,true).build()
         }
     }
@@ -32,8 +32,8 @@ object NavigationActions {
             override val destination: String
                 get() = AuthScreen.LoginAuthScreen.route
         }
-        fun registerToSummary() = object : NavigationAction {
-            override val destination: String = BottomBarScreen.Summary.route
+        fun registerToLoading() = object : NavigationAction {
+            override val destination: String = Screen.LoadingScreen.route
             override val navOptions: NavOptions = NavOptions.Builder().setPopUpTo(0,true).build()
         }
 

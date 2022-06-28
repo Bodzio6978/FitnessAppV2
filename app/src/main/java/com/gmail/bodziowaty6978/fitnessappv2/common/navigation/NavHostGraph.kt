@@ -68,11 +68,11 @@ fun NavHostGraph(
                 BottomBar(navController = navController)
             }
         }
-    ) { it ->
+    ) { paddingValues ->
         Surface(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(it),
+                .padding(paddingValues),
             color = MaterialTheme.colors.background
         ) {
             NavHost(
@@ -122,7 +122,9 @@ fun NavHostGraph(
                     route = BottomBarScreen.Diary.route
                 ) {
                     bottomNavigationState = true
-                    DiaryScreen()
+                    DiaryScreen(
+                        paddingValues = paddingValues
+                    )
                 }
 
                 composable(

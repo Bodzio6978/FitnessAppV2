@@ -1,10 +1,9 @@
 package com.gmail.bodziowaty6978.fitnessappv2.feature_diary.presentation.diary
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -20,7 +19,8 @@ import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.presentation.diary.co
 
 @Composable
 fun DiaryScreen(
-    viewModel: DiaryViewModel = hiltViewModel()
+    viewModel: DiaryViewModel = hiltViewModel(),
+    paddingValues: PaddingValues
 ) {
     val context = LocalContext.current
 
@@ -46,6 +46,8 @@ fun DiaryScreen(
         Column(
             modifier = Modifier
                 .fillMaxWidth()
+                .padding(paddingValues),
+            verticalArrangement = Arrangement.SpaceBetween
         ) {
             CalendarSection(
                 onArrowPressed = {
@@ -56,17 +58,21 @@ fun DiaryScreen(
             )
             NutritionTopSection()
 
-            meals.forEach { meal ->
-                DiaryMealSection(
-                    meal = meal,
-                    onAddProductClick = {
-                        viewModel.onEvent(DiaryEvent.ClickedAddProduct(it))
-                    }
-                )
+            Column(
+                modifier = Modifier
+                    .verticalScroll(rememberScrollState())
+                    .weight(1f, fill = false)
+            ) {
+                meals.forEach { meal ->
+                    DiaryMealSection(
+                        meal = meal,
+                        onAddProductClick = {
+                            viewModel.onEvent(DiaryEvent.ClickedAddProduct(mealName = it))
+                        }
+                    )
+                }
             }
-
         }
-        
         NutritionBottomSection(meals = meals,
             wantedNutritionValues = nutritionValues,
             modifier = Modifier
@@ -74,5 +80,4 @@ fun DiaryScreen(
                 .background(Grey)
         )
     }
-
 }

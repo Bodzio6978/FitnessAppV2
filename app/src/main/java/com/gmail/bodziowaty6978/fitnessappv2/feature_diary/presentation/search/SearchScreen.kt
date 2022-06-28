@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.Icon
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
@@ -18,9 +19,6 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.gmail.bodziowaty6978.fitnessappv2.R
 import com.gmail.bodziowaty6978.fitnessappv2.common.data.singleton.CurrentDate
-import com.gmail.bodziowaty6978.fitnessappv2.common.presentation.ui.theme.BabyBlue
-import com.gmail.bodziowaty6978.fitnessappv2.common.presentation.ui.theme.BabyYellow
-import com.gmail.bodziowaty6978.fitnessappv2.common.presentation.ui.theme.Yellow
 import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.presentation.search.componens.SearchButton
 import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.presentation.search.componens.SearchProductItem
 import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.presentation.search.componens.SearchTopSection
@@ -43,7 +41,7 @@ fun SearchScreen(
                 onClick = {
                     viewModel.onEvent(SearchEvent.ClickedSearch(searchState.text))
                 },
-                backgroundColor = Yellow
+                backgroundColor = MaterialTheme.colors.primaryVariant
             ) {
                 Icon(
                     imageVector = Icons.Default.Search,
@@ -75,7 +73,7 @@ fun SearchScreen(
                 SearchButton(
                     text = stringResource(id = R.string.scan),
                     modifier = Modifier.weight(1F),
-                    color = BabyYellow,
+                    color = MaterialTheme.colors.primary,
                     onClick = {
 
                     },
@@ -92,7 +90,7 @@ fun SearchScreen(
                 SearchButton(
                     text = stringResource(id = R.string.filter),
                     modifier = Modifier.weight(1F),
-                    color = BabyBlue,
+                    color = MaterialTheme.colors.secondary,
                     onClick = {
 
                     },
