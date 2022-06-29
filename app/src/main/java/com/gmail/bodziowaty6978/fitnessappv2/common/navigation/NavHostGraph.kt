@@ -24,7 +24,9 @@ import com.gmail.bodziowaty6978.fitnessappv2.feature_auth.presentation.login.Log
 import com.gmail.bodziowaty6978.fitnessappv2.feature_auth.presentation.register.RegisterScreen
 import com.gmail.bodziowaty6978.fitnessappv2.feature_auth.presentation.reset_password.ResetPasswordScreen
 import com.gmail.bodziowaty6978.fitnessappv2.feature_auth.presentation.util.AuthScreen
+import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.domain.model.ProductWithId
 import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.presentation.diary.DiaryScreen
+import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.presentation.product.ProductScreen
 import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.presentation.search.SearchScreen
 import com.gmail.bodziowaty6978.fitnessappv2.feature_introduction.presentation.IntroductionScreen
 import com.gmail.bodziowaty6978.fitnessappv2.feature_splash.loading.presentation.SplashScreen
@@ -147,6 +149,13 @@ fun NavHostGraph(
                     bottomNavigationState = false
                     val mealName = backStackEntry.arguments?.getString("mealName")
                     SearchScreen(mealName!!)
+                }
+
+                composable(
+                    route = Screen.ProductScreen.route
+                ){
+                    val productWithId = navController.previousBackStackEntry?.arguments?.getParcelable<ProductWithId>("productWithId")
+                    ProductScreen(productWithId = productWithId!!)
                 }
             }
         }

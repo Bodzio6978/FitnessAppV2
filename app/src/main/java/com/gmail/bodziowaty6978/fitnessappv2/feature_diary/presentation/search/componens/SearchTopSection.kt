@@ -1,7 +1,11 @@
 package com.gmail.bodziowaty6978.fitnessappv2.feature_diary.presentation.search.componens
 
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.*
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
@@ -59,9 +63,7 @@ fun SearchTopSection(
 
             }
 
-            Text(
-                text = ""
-            )
+            Spacer(modifier = Modifier.width(24.dp))
         }
 
         Spacer(modifier = Modifier.height(5.dp))
@@ -78,8 +80,9 @@ fun SearchTopSection(
             onValueChange = {
                 onEvent(SearchEvent.EnteredSearchText(it))
             },
+            shape = RoundedCornerShape(25)
         )
 
-        Spacer(modifier = Modifier.height(5.dp))
+        Spacer(modifier = Modifier.height(8.dp))
     }
 }

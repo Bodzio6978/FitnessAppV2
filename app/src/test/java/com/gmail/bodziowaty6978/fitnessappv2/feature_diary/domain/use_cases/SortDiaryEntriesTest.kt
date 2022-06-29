@@ -1,4 +1,4 @@
-package com.gmail.bodziowaty6978.fitnessappv2.features.feature_diary.domain.use_cases
+package com.gmail.bodziowaty6978.fitnessappv2.feature_diary.domain.use_cases
 
 import com.gmail.bodziowaty6978.fitnessappv2.R
 import com.gmail.bodziowaty6978.fitnessappv2.common.util.ResourceProvider

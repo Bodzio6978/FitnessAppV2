@@ -1,10 +1,10 @@
-package com.gmail.bodziowaty6978.fitnessappv2.features.feature_auth.domain.use_case
+package com.gmail.bodziowaty6978.fitnessappv2.feature_auth.domain.use_case
 
 import com.gmail.bodziowaty6978.fitnessappv2.common.util.ResourceProvider
 import com.gmail.bodziowaty6978.fitnessappv2.common.util.Result
 import com.gmail.bodziowaty6978.fitnessappv2.feature_auth.domain.repository.AuthRepository
 import com.gmail.bodziowaty6978.fitnessappv2.feature_auth.domain.use_case.RegisterUser
-import com.gmail.bodziowaty6978.fitnessappv2.features.feature_auth.util.AuthConstants
+import com.gmail.bodziowaty6978.fitnessappv2.feature_auth.util.AuthConstants
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.runTest

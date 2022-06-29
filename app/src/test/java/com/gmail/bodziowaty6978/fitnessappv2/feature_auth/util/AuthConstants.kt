@@ -1,4 +1,4 @@
-package com.gmail.bodziowaty6978.fitnessappv2.features.feature_auth.util
+package com.gmail.bodziowaty6978.fitnessappv2.feature_auth.util
 
 object AuthConstants {
     const val ValidEmail = "email@email.com"

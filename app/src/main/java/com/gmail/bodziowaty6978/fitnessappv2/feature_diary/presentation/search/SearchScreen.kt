@@ -19,6 +19,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.gmail.bodziowaty6978.fitnessappv2.R
 import com.gmail.bodziowaty6978.fitnessappv2.common.data.singleton.CurrentDate
+import com.gmail.bodziowaty6978.fitnessappv2.common.presentation.ui.theme.Beige1
 import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.presentation.search.componens.SearchButton
 import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.presentation.search.componens.SearchProductItem
 import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.presentation.search.componens.SearchTopSection
@@ -28,18 +29,20 @@ fun SearchScreen(
     mealName: String,
     viewModel: SearchViewModel = hiltViewModel()
 ) {
-    val searchState = viewModel.searchBarState.value
-    val displayedItems = viewModel.searchState.value
+    val searchBarState = viewModel.searchBarState.value
+    val searchState = viewModel.searchState.value
 
     LaunchedEffect(key1 = true) {
         viewModel.initializeHistory()
     }
 
+
+
     Scaffold(
         floatingActionButton = {
             FloatingActionButton(
                 onClick = {
-                    viewModel.onEvent(SearchEvent.ClickedSearch(searchState.text))
+                    viewModel.onEvent(SearchEvent.ClickedSearch(searchBarState.text))
                 },
                 backgroundColor = MaterialTheme.colors.primaryVariant
             ) {
@@ -50,13 +53,13 @@ fun SearchScreen(
             }
         }
 
-    ) {
+    ) { paddingValues ->
         Column(
             modifier = Modifier
                 .fillMaxSize()
         ) {
             SearchTopSection(
-                searchState = searchState,
+                searchState = searchBarState,
                 mealName = mealName,
                 date = CurrentDate.dateModel(LocalContext.current).valueToDisplay
                     ?: CurrentDate.dateModel(LocalContext.current).date,
@@ -73,7 +76,7 @@ fun SearchScreen(
                 SearchButton(
                     text = stringResource(id = R.string.scan),
                     modifier = Modifier.weight(1F),
-                    color = MaterialTheme.colors.primary,
+                    color = Beige1,
                     onClick = {
 
                     },
@@ -103,17 +106,32 @@ fun SearchScreen(
                     }
                 )
             }
+            
+            Spacer(modifier = Modifier.height(16.dp))
 
-            LazyColumn(
-                modifier = Modifier
-                .fillMaxWidth()
-            ){
-                items(displayedItems.size){
-                    SearchProductItem(product = displayedItems[it]) {
-                        viewModel.onEvent(SearchEvent.ClickedSearchItem(displayedItems[it]))
+            if (searchState is SearchState.Success){
+
+                val items = searchState.products
+
+                LazyColumn(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                ){
+                    items(items.size){
+                        SearchProductItem(product = items[it].product) {
+                            viewModel.onEvent(SearchEvent.ClickedSearchItem(items[it]))
+                        }
                     }
                 }
             }
+//            else{
+//                Text(
+//                    text = stringResource(id = R.string.searching_for_products),
+//                    style = MaterialTheme.typography.body2,
+//                    modifier = Modifier
+//                        .padding(start = 20.dp)
+//                )
+//            }
         }
     }
 }

@@ -60,6 +60,8 @@
     <string name="scan">Scan</string>
     <string name="filter">Filter</string>
 
+    <string name="searching_for_products">Searching for products…</string>
+
     <string name="kcal"> Kcal</string>
     <string name="g_carb">g Carbs</string>
     <string name="g_prot">g Prot</string>

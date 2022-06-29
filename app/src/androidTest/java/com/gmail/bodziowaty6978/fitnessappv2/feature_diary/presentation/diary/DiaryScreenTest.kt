@@ -1,7 +1,9 @@
 package com.gmail.bodziowaty6978.fitnessappv2.feature_diary.presentation.diary
 
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
+import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -40,7 +42,7 @@ internal class DiaryScreenTest{
             FitnessAppV2Theme {
                 NavHost(navController = navController, startDestination = BottomBarScreen.Diary.route){
                     composable(route = BottomBarScreen.Diary.route){
-                        DiaryScreen()
+                        DiaryScreen(paddingValues = PaddingValues(bottom = 20.dp))
                     }
                 }
             }

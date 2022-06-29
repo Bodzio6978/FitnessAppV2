@@ -2,14 +2,10 @@ package com.gmail.bodziowaty6978.fitnessappv2.feature_diary.domain.model
 
 import android.os.Parcelable
 import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.PrimaryKey
 import kotlinx.parcelize.Parcelize
 
-@Entity
 @Parcelize
 data class Product(
-    @PrimaryKey val id:Int? = null,
     @ColumnInfo(name = "author") val author: String = "",
     @ColumnInfo(name = "name") val name: String = "",
     @ColumnInfo(name = "brand") val brand: String? = null,

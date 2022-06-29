@@ -6,7 +6,7 @@ import androidx.navigation.NavOptions
 interface NavigationAction {
     val destination:String
     val parcelableArguments:Map<String,Parcelable>
-        get() = emptyMap()
+        get() = emptyMap<String,Parcelable>()
     val navOptions:NavOptions
         get() = NavOptions.Builder().build()
 }

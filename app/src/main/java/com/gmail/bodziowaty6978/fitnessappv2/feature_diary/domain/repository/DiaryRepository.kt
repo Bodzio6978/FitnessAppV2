@@ -4,7 +4,6 @@ import com.gmail.bodziowaty6978.fitnessappv2.common.util.Resource
 import com.gmail.bodziowaty6978.fitnessappv2.common.util.Result
 import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.domain.model.DiaryEntry
 import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.domain.model.DiaryEntryWithId
-import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.domain.model.Product
 import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.domain.model.ProductWithId
 
 interface DiaryRepository {
@@ -13,7 +12,7 @@ interface DiaryRepository {
 
     suspend fun searchForProducts(productName:String) : Resource<List<ProductWithId>>
 
-    suspend fun getLocalProductHistory():Resource<List<Product>>
+    suspend fun getLocalProductHistory():Resource<List<ProductWithId>>
 
     suspend fun addDiaryEntry(diaryEntry: DiaryEntry):Result
 

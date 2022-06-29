@@ -37,7 +37,7 @@ class DiaryRepositoryImp(
         }
     }
 
-    override suspend fun getLocalProductHistory(): Resource<List<Product>> {
+    override suspend fun getLocalProductHistory(): Resource<List<ProductWithId>> {
         return try {
             val result = productDao.getHistory()
             Resource.Success(data = result)

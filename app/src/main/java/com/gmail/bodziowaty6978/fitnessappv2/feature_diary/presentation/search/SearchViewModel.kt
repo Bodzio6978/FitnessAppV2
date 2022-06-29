@@ -1,5 +1,6 @@
 package com.gmail.bodziowaty6978.fitnessappv2.feature_diary.presentation.search
 
+import android.util.Log
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
@@ -8,9 +9,10 @@ import com.gmail.bodziowaty6978.fitnessappv2.R
 import com.gmail.bodziowaty6978.fitnessappv2.common.navigation.NavigationActions
 import com.gmail.bodziowaty6978.fitnessappv2.common.navigation.navigator.Navigator
 import com.gmail.bodziowaty6978.fitnessappv2.common.presentation.components.TextFieldState
+import com.gmail.bodziowaty6978.fitnessappv2.common.util.Resource
 import com.gmail.bodziowaty6978.fitnessappv2.common.util.ResourceProvider
-import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.domain.model.Product
 import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.domain.use_cases.SearchDiaryUseCases
+import com.gmail.bodziowaty6978.fitnessappv2.util.TAG
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -30,8 +32,8 @@ class SearchViewModel @Inject constructor(
     )
     val searchBarState : State<TextFieldState> = _searchBarState
 
-    private val _searchState = mutableStateOf<List<Product>>(emptyList())
-    val searchState : State<List<Product>> = _searchState
+    private val _searchState = mutableStateOf<SearchState>(SearchState.Success())
+    val searchState : State<SearchState> = _searchState
 
 
     fun onEvent(event: SearchEvent){
@@ -40,8 +42,16 @@ class SearchViewModel @Inject constructor(
                 navigator.navigate(NavigationActions.General.navigateUp())
             }
             is SearchEvent.ClickedSearch -> {
+//                _searchState.value = SearchState.Loading
                 viewModelScope.launch(Dispatchers.IO) {
                     val result = searchDiaryUseCases.searchForProducts(event.searchText)
+                    Log.e(TAG,result.toString())
+                    if(result is Resource.Error){
+
+                    }else{
+                        val data = result.data!!
+                        _searchState.value = SearchState.Success(products = data)
+                    }
                 }
             }
             is SearchEvent.EnteredSearchText -> {
@@ -50,14 +60,15 @@ class SearchViewModel @Inject constructor(
                 )
             }
             is SearchEvent.ClickedSearchItem -> {
-
+                val clickedItem = event.item
+                navigator.navigate(NavigationActions.SearchScreen.searchToProduct(clickedItem))
             }
         }
     }
     fun initializeHistory(){
         viewModelScope.launch(Dispatchers.IO) {
             val history = searchDiaryUseCases.getDiaryHistory()
-            _searchState.value = history.data!!
+            _searchState.value = SearchState.Success(history.data!!)
         }
 
     }
