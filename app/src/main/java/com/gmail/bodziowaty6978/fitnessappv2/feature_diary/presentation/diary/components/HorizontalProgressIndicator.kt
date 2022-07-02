@@ -28,13 +28,13 @@ fun HorizontalProgressIndicator(
     ) {
         Box(
             modifier = Modifier
-                .weight(if ((1F - mProgress.value) == 0F) 0.0001F else 1 - mProgress.value)
+                .weight(if ((1F - mProgress.value) <= 0F) 0.0001F else 1 - mProgress.value)
                 .fillMaxWidth()
         )
         Box(
             modifier = Modifier
                 .clip(RoundedCornerShape(12.dp))
-                .weight(if (mProgress.value==0F) 0.0001F else mProgress.value)
+                .weight(if (mProgress.value<=0F) 0.0001F else mProgress.value)
                 .fillMaxWidth()
                 .background(
                     Blue

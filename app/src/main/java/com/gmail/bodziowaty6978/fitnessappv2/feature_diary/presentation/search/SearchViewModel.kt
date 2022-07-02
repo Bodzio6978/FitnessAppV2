@@ -1,6 +1,5 @@
 package com.gmail.bodziowaty6978.fitnessappv2.feature_diary.presentation.search
 
-import android.util.Log
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
@@ -12,7 +11,6 @@ import com.gmail.bodziowaty6978.fitnessappv2.common.presentation.components.Text
 import com.gmail.bodziowaty6978.fitnessappv2.common.util.Resource
 import com.gmail.bodziowaty6978.fitnessappv2.common.util.ResourceProvider
 import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.domain.use_cases.SearchDiaryUseCases
-import com.gmail.bodziowaty6978.fitnessappv2.util.TAG
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -42,12 +40,11 @@ class SearchViewModel @Inject constructor(
                 navigator.navigate(NavigationActions.General.navigateUp())
             }
             is SearchEvent.ClickedSearch -> {
-//                _searchState.value = SearchState.Loading
+                _searchState.value = SearchState.Loading
                 viewModelScope.launch(Dispatchers.IO) {
                     val result = searchDiaryUseCases.searchForProducts(event.searchText)
-                    Log.e(TAG,result.toString())
                     if(result is Resource.Error){
-
+                        _searchState.value = SearchState.Error(result.uiText.toString())
                     }else{
                         val data = result.data!!
                         _searchState.value = SearchState.Success(products = data)
@@ -70,6 +67,5 @@ class SearchViewModel @Inject constructor(
             val history = searchDiaryUseCases.getDiaryHistory()
             _searchState.value = SearchState.Success(history.data!!)
         }
-
     }
 }

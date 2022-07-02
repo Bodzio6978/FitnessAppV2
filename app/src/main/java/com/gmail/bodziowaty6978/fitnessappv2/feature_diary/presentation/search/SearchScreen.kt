@@ -2,10 +2,7 @@ package com.gmail.bodziowaty6978.fitnessappv2.feature_diary.presentation.search
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material.FloatingActionButton
-import androidx.compose.material.Icon
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Scaffold
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
@@ -20,6 +17,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.gmail.bodziowaty6978.fitnessappv2.R
 import com.gmail.bodziowaty6978.fitnessappv2.common.data.singleton.CurrentDate
 import com.gmail.bodziowaty6978.fitnessappv2.common.presentation.ui.theme.Beige1
+import com.gmail.bodziowaty6978.fitnessappv2.common.presentation.ui.theme.LightRed
 import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.presentation.search.componens.SearchButton
 import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.presentation.search.componens.SearchProductItem
 import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.presentation.search.componens.SearchTopSection
@@ -53,7 +51,7 @@ fun SearchScreen(
             }
         }
 
-    ) { paddingValues ->
+    ) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -123,15 +121,23 @@ fun SearchScreen(
                         }
                     }
                 }
+            }else if(searchState is SearchState.Error){
+                Text(
+                    text = searchState.message,
+                    style = MaterialTheme.typography.body2.copy(
+                        color = LightRed
+                    ),
+                    modifier = Modifier
+                        .padding(start = 20.dp)
+                )
+            }else{
+                Text(
+                    text = stringResource(id = R.string.searching_for_products),
+                    style = MaterialTheme.typography.body2,
+                    modifier = Modifier
+                        .padding(start = 20.dp)
+                )
             }
-//            else{
-//                Text(
-//                    text = stringResource(id = R.string.searching_for_products),
-//                    style = MaterialTheme.typography.body2,
-//                    modifier = Modifier
-//                        .padding(start = 20.dp)
-//                )
-//            }
         }
     }
 }

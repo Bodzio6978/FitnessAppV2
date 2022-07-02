@@ -142,3 +142,7 @@ dependencies {
 kapt {
     correctErrorTypes = true
 }
+
+kotlin.sourceSets.all {
+    languageSettings.optIn("kotlin.RequiresOptIn")
+}

@@ -44,7 +44,10 @@ fun SearchTopSection(
                     onEvent(SearchEvent.ClickedBackArrow)
                 }
             ) {
-                Icon(imageVector = Icons.Default.ArrowBack, contentDescription = "arrow back")
+                Icon(
+                    imageVector = Icons.Default.ArrowBack,
+                    contentDescription = "arrow back"
+                )
             }
 
             Column(

@@ -18,7 +18,6 @@ import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.domain.model.DiaryEnt
 @Composable
 fun DiaryEntryItem(
     diaryEntry: DiaryEntry,
-    modifier: Modifier,
     onItemClicked: () -> Unit
 ) {
 

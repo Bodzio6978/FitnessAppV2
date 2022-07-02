@@ -1,5 +1,6 @@
 package com.gmail.bodziowaty6978.fitnessappv2.feature_diary.presentation.diary.components
 
+import android.util.Log
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -24,12 +25,14 @@ fun DiaryMealSection(
     meal: Meal,
     onAddProductClick: (String) -> Unit,
     wantedNutritionValues: NutritionValues = NutritionValues(
-        calories = 2500,
-        carbohydrates = 250.0,
-        protein = 187.5,
-        fat = 83.3
+        calories = 2500*25/100,
+        carbohydrates = 250.0*25.0/100.0,
+        protein = 187.5*25.0/100.0,
+        fat = 83.3*25.0/100.0
     )
 ) {
+
+    Log.e("huj",wantedNutritionValues.toString())
 
     val diaryEntriesValues = meal.diaryEntries
 
@@ -87,37 +90,10 @@ fun DiaryMealSection(
             }
 
             diaryEntriesValues.forEach {
-                DiaryEntryItem(diaryEntry = it.diaryEntry, modifier = Modifier.fillMaxWidth()) {
+                DiaryEntryItem(diaryEntry = it.diaryEntry) {
 
                 }
             }
-
-
-
-//            FlowColumn(
-//                modifier = Modifier
-//                    .fillMaxWidth()
-//                    .testTag(meal.mealName + "LazyColumn")
-//            ) {
-//                diaryEntriesValues.forEach {
-//                    Card(
-//                        modifier = Modifier
-//                        .fillMaxWidth(),
-//                        elevation = 8.dp
-//                    ) {
-//
-//                        Row(
-//                            modifier = Modifier
-//                            .fillMaxWidth(),
-//                            horizontalArrangement = Arrangement.SpaceBetween
-//                        ) {
-//                            DiaryEntryItem(diaryEntry = it.diaryEntry, Modifier.fillMaxWidth()) {
-//
-//                            }
-//                        }
-//                    }
-//                }
-//            }
 
             Divider(
                 modifier = Modifier
