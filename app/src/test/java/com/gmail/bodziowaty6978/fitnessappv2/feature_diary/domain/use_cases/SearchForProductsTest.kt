@@ -1,17 +1,22 @@
 package com.gmail.bodziowaty6978.fitnessappv2.feature_diary.domain.use_cases
 
 import com.gmail.bodziowaty6978.fitnessappv2.common.util.Resource
-import com.gmail.bodziowaty6978.fitnessappv2.features.feature_diary.domain.repository.DiaryRepository
+import com.gmail.bodziowaty6978.fitnessappv2.common.util.ResourceProvider
+import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.domain.repository.DiaryRepository
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.Before
 import org.junit.Test
-import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Assertions.assertTrue
+import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.Mockito
+import org.robolectric.RobolectricTestRunner
+import org.robolectric.RuntimeEnvironment
 
 
 @OptIn(ExperimentalCoroutinesApi::class)
+@RunWith(RobolectricTestRunner::class)
 internal class SearchForProductsTest{
 
     @Mock
@@ -25,7 +30,10 @@ internal class SearchForProductsTest{
         Mockito.`when`(mockDiaryRepository.searchForProducts(Mockito.anyString())).thenReturn(
             Resource.Success(data = emptyList())
         )
-        searchForProducts = SearchForProducts(mockDiaryRepository)
+        searchForProducts = SearchForProducts(
+            diaryRepository = mockDiaryRepository,
+            resourceProvider = ResourceProvider(RuntimeEnvironment.getApplication())
+        )
     }
 
     @Test

@@ -6,8 +6,8 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Product(
-    @ColumnInfo(name = "author") val author: String = "",
-    @ColumnInfo(name = "name") val name: String = "",
+    @ColumnInfo(name = "author") val author: String = "Joe Mama",
+    @ColumnInfo(name = "name") val name: String = "White rice",
     @ColumnInfo(name = "brand") val brand: String? = null,
     @ColumnInfo(name = "containerWeight") val containerWeight: Double = 0.0,
     @ColumnInfo(name = "position") val position: Int = 0,

@@ -39,31 +39,30 @@
     <string name="please_make_sure_you_have_entered_your_desired_weight">Please make sure you have entered your desired weight</string>
     <string name="please_make_sure_you_have_entered_your_age">Please make sure you have entered your age</string>
 
+<!--    Common-->
     <string name="account">Account</string>
     <string name="training">Training</string>
     <string name="calories">Calories</string>
 
+<!--    Diary-->
     <string-array name="meal_names">
         <item>Breakfast</item>
         <item>Lunch</item>
         <item>Dinner</item>
         <item>Supper</item>
     </string-array>
-
     <string name="breakfast">Breakfast</string>
     <string name="lunch">Lunch</string>
     <string name="supper">Supper</string>
     <string name="dinner">Dinner</string>
-
     <string name="tomorrow">Tomorrow</string>
     <string name="today">Today</string>
     <string name="yesterday">Yesterday</string>
-
     <string name="scan">Scan</string>
     <string name="filter">Filter</string>
-
     <string name="searching_for_products">Searching for products…</string>
     <string name="please_make_sure_you_have_entered_some_text_before_searching">Please make sure you have entered some text before searching for a product</string>
+    <string name="product_name">Product name</string>
 
     <string name="kcal"> Kcal</string>
     <string name="g_carb">g Carbs</string>
@@ -77,7 +76,6 @@
     <string name="proteinStar">Protein*</string>
     <string name="brand">Brand</string>
     <string name="caloriesStar">Calories*</string>
-    <string name="product_name">Product name</string>
     <string name="save">Save</string>
 
     <string name="carbs">Carbs</string>
@@ -219,6 +217,8 @@
     <string name="USERNAME">USERNAME</string>
     <string name="BUTTON">BUTTON</string>
     <string name="SEARCH_TEXT_FIELD">SEARCH TEXT FIELD</string>
+    <string name="WEIGHT_TEXT_FIELD">WEIGHT TEXT FIELD</string>
     <string name="SEARCH_BUTTON">SEARCH BUTTON</string>
+    <string name="WEIGHT_BUTTON">WEIGHT BUTTON</string>
 
 </resources>

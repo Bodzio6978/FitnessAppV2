@@ -37,7 +37,7 @@ import com.gmail.bodziowaty6978.fitnessappv2.feature_summary.presentation.Summar
 fun NavHostGraph(
     navController: NavHostController = rememberNavController(),
     navigator: Navigator,
-    startDestination:String = Screen.LoadingScreen.route
+    startDestination:String = Screen.ProductScreen.route + "?mealName={mealName}"
 ) {
     val lifecycleOwner = LocalLifecycleOwner.current
     val navigatorState by navigator.navActions.asLifecycleAwareState(
@@ -154,20 +154,29 @@ fun NavHostGraph(
                 }
 
                 composable(
-                    route = Screen.ProductScreen.route
+                    route = Screen.ProductScreen.route + "?mealName={mealName}",
+                    arguments = listOf(
+                        navArgument(
+                            name = "mealName"
+                        ) {
+                            type = NavType.StringType
+                            defaultValue = "Breakfast"
+                        }
+                    )
                 ) {
-                    val productWithId =
-                        navController.previousBackStackEntry?.arguments?.getParcelable<ProductWithId>(
+                    val productWithId = navController.previousBackStackEntry?.arguments?.getParcelable<ProductWithId>(
                             "productWithId"
                         )
+                    val mealName = it.arguments?.getString("mealName")
                     if (productWithId != null) {
-                        ProductScreen(productWithId = productWithId)
+                        ProductScreen(productWithId = productWithId, mealName = mealName!!)
                     } else {
                         ProductScreen(
                             productWithId = ProductWithId(
                                 product = Product(),
                                 productId = ""
-                            )
+                            ),
+                            mealName = mealName!!
                         )
                     }
 
