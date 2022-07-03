@@ -8,7 +8,7 @@ import com.gmail.bodziowaty6978.fitnessappv2.R
 import com.gmail.bodziowaty6978.fitnessappv2.common.navigation.NavigationActions
 import com.gmail.bodziowaty6978.fitnessappv2.common.navigation.navigator.Navigator
 import com.gmail.bodziowaty6978.fitnessappv2.common.util.ResourceProvider
-import com.gmail.bodziowaty6978.fitnessappv2.common.util.Result
+import com.gmail.bodziowaty6978.fitnessappv2.common.util.CustomResult
 import com.gmail.bodziowaty6978.fitnessappv2.feature_introduction.domain.model.Question
 import com.gmail.bodziowaty6978.fitnessappv2.feature_introduction.domain.use_cases.SaveIntroductionInformation
 import com.gmail.bodziowaty6978.fitnessappv2.feature_introduction.presentation.util.IntroductionExpectedQuestionAnswer
@@ -106,7 +106,7 @@ class IntroductionViewModel @Inject constructor(
             is IntroductionEvent.FinishIntroduction -> {
                 viewModelScope.launch(Dispatchers.IO) {
                     val result = saveIntroductionInformation(answers = _introductionAnswerState.value)
-                    if (result is Result.Error){
+                    if (result is CustomResult.Error){
                         _introductionUiEvent.emit(
                             IntroductionUiEvent.ShowSnackbar(result.message)
                         )

@@ -144,12 +144,14 @@ object AppModule {
     fun provideDiaryRepository(
         firebaseFirestore: FirebaseFirestore,
         userId:String?,
-        roomDatabase: AppRoomDatabase
+        roomDatabase: AppRoomDatabase,
+        resourceProvider: ResourceProvider
     ): DiaryRepository =
         DiaryRepositoryImp(
             firebaseFirestore = firebaseFirestore,
             userId = userId,
-            productDao = roomDatabase.productDao()
+            productDao = roomDatabase.productDao(),
+            resourceProvider = resourceProvider
         )
 
     @Singleton

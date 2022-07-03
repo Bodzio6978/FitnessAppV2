@@ -9,7 +9,7 @@ import com.gmail.bodziowaty6978.fitnessappv2.common.navigation.NavigationActions
 import com.gmail.bodziowaty6978.fitnessappv2.common.navigation.navigator.Navigator
 import com.gmail.bodziowaty6978.fitnessappv2.common.presentation.components.TextFieldState
 import com.gmail.bodziowaty6978.fitnessappv2.common.util.ResourceProvider
-import com.gmail.bodziowaty6978.fitnessappv2.common.util.Result
+import com.gmail.bodziowaty6978.fitnessappv2.common.util.CustomResult
 import com.gmail.bodziowaty6978.fitnessappv2.feature_auth.domain.use_case.AuthUseCases
 import com.gmail.bodziowaty6978.fitnessappv2.feature_auth.presentation.util.AuthEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -83,7 +83,7 @@ class RegisterViewModel @Inject constructor(
                         confirmPassword = _confirmPasswordState.value.text,
                         username = _usernameState.value.text
                     )
-                    if (result is Result.Error){
+                    if (result is CustomResult.Error){
                         _snackbarState.emit(result.message)
                     }else{
                         navigator.navigate(NavigationActions.RegisterScreen.registerToLoading())

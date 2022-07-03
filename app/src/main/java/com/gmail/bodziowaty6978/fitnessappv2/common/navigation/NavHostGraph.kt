@@ -24,6 +24,7 @@ import com.gmail.bodziowaty6978.fitnessappv2.feature_auth.presentation.login.Log
 import com.gmail.bodziowaty6978.fitnessappv2.feature_auth.presentation.register.RegisterScreen
 import com.gmail.bodziowaty6978.fitnessappv2.feature_auth.presentation.reset_password.ResetPasswordScreen
 import com.gmail.bodziowaty6978.fitnessappv2.feature_auth.presentation.util.AuthScreen
+import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.domain.model.Product
 import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.domain.model.ProductWithId
 import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.presentation.diary.DiaryScreen
 import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.presentation.product.ProductScreen
@@ -35,7 +36,8 @@ import com.gmail.bodziowaty6978.fitnessappv2.feature_summary.presentation.Summar
 @Composable
 fun NavHostGraph(
     navController: NavHostController = rememberNavController(),
-    navigator: Navigator
+    navigator: Navigator,
+    startDestination:String = Screen.LoadingScreen.route
 ) {
     val lifecycleOwner = LocalLifecycleOwner.current
     val navigatorState by navigator.navActions.asLifecycleAwareState(
@@ -55,9 +57,9 @@ fun NavHostGraph(
                     argument.value
                 )
             }
-            if (it.destination == "navigateUp"){
+            if (it.destination == "navigateUp") {
                 navController.navigateUp()
-            }else{
+            } else {
                 navController.navigate(it.destination, it.navOptions)
             }
         }
@@ -79,7 +81,7 @@ fun NavHostGraph(
         ) {
             NavHost(
                 navController = navController,
-                startDestination = Screen.LoadingScreen.route
+                startDestination = startDestination
             ) {
                 composable(
                     route = Screen.LoadingScreen.route
@@ -140,12 +142,12 @@ fun NavHostGraph(
                     arguments = listOf(
                         navArgument(
                             name = "mealName"
-                        ){
+                        ) {
                             type = NavType.StringType
                             defaultValue = "Breakfast"
                         }
                     )
-                ){ backStackEntry ->
+                ) { backStackEntry ->
                     bottomNavigationState = false
                     val mealName = backStackEntry.arguments?.getString("mealName")
                     SearchScreen(mealName!!)
@@ -153,9 +155,22 @@ fun NavHostGraph(
 
                 composable(
                     route = Screen.ProductScreen.route
-                ){
-                    val productWithId = navController.previousBackStackEntry?.arguments?.getParcelable<ProductWithId>("productWithId")
-                    ProductScreen(productWithId = productWithId!!)
+                ) {
+                    val productWithId =
+                        navController.previousBackStackEntry?.arguments?.getParcelable<ProductWithId>(
+                            "productWithId"
+                        )
+                    if (productWithId != null) {
+                        ProductScreen(productWithId = productWithId)
+                    } else {
+                        ProductScreen(
+                            productWithId = ProductWithId(
+                                product = Product(),
+                                productId = ""
+                            )
+                        )
+                    }
+
                 }
             }
         }

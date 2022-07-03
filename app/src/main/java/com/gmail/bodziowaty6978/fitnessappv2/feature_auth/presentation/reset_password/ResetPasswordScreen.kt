@@ -6,7 +6,6 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Email
-import androidx.compose.material.icons.filled.Lock
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
@@ -19,7 +18,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.gmail.bodziowaty6978.fitnessappv2.R
 import com.gmail.bodziowaty6978.fitnessappv2.common.presentation.components.DefaultTextField
 import com.gmail.bodziowaty6978.fitnessappv2.common.presentation.components.Toolbar
-import com.gmail.bodziowaty6978.fitnessappv2.common.util.Result
+import com.gmail.bodziowaty6978.fitnessappv2.common.util.CustomResult
 import com.gmail.bodziowaty6978.fitnessappv2.feature_auth.presentation.util.AuthEvent
 import kotlinx.coroutines.flow.collectLatest
 
@@ -35,12 +34,12 @@ fun ResetPasswordScreen(
     LaunchedEffect(key1 = true) {
         viewModel.uiState.collectLatest {
             when (it) {
-                is Result.Success -> {
+                is CustomResult.Success -> {
                     scaffoldState.snackbarHostState.showSnackbar(
                         message = "Successfully sent an email"
                     )
                 }
-                is Result.Error -> {
+                is CustomResult.Error -> {
                     scaffoldState.snackbarHostState.showSnackbar(
                         message = it.message
                     )

@@ -1,14 +1,18 @@
 package com.gmail.bodziowaty6978.fitnessappv2.feature_diary.data.repository.remote
 
+import android.util.Log
+import com.gmail.bodziowaty6978.fitnessappv2.R
 import com.gmail.bodziowaty6978.fitnessappv2.common.data.room.dao.ProductDao
 import com.gmail.bodziowaty6978.fitnessappv2.common.util.Constants
 import com.gmail.bodziowaty6978.fitnessappv2.common.util.Resource
-import com.gmail.bodziowaty6978.fitnessappv2.common.util.Result
+import com.gmail.bodziowaty6978.fitnessappv2.common.util.ResourceProvider
+import com.gmail.bodziowaty6978.fitnessappv2.common.util.CustomResult
 import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.domain.model.DiaryEntry
 import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.domain.model.DiaryEntryWithId
 import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.domain.model.Product
 import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.domain.model.ProductWithId
 import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.domain.repository.DiaryRepository
+import com.gmail.bodziowaty6978.fitnessappv2.util.TAG
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import kotlinx.coroutines.tasks.await
@@ -16,7 +20,8 @@ import kotlinx.coroutines.tasks.await
 class DiaryRepositoryImp(
     private val firebaseFirestore:FirebaseFirestore,
     private val productDao: ProductDao,
-    private val userId:String?
+    private val userId:String?,
+    private val resourceProvider: ResourceProvider
 ): DiaryRepository {
 
     private val userCollection = firebaseFirestore.collection(Constants.FIRESTORE_USER_COLLECTION)
@@ -34,6 +39,16 @@ class DiaryRepositoryImp(
             Resource.Success(mappedEntries)
         }catch (e:Exception){
             Resource.Error(uiText = e.message.toString(), data = emptyList())
+        }
+    }
+
+    override suspend fun saveProductToHistory(productWithId: ProductWithId): CustomResult {
+        return try {
+            productDao.saveProductToHistory(productWithId = productWithId)
+            CustomResult.Success
+        }catch (e:Exception){
+            Log.e(TAG,e.message.toString())
+            CustomResult.Error(message = resourceProvider.getString(R.string.unknown_error))
         }
     }
 
@@ -58,15 +73,15 @@ class DiaryRepositoryImp(
         }
     }
 
-    override suspend fun addDiaryEntry(diaryEntry: DiaryEntry): Result {
+    override suspend fun addDiaryEntry(diaryEntry: DiaryEntry): CustomResult {
         TODO("Not yet implemented")
     }
 
-    override suspend fun deleteDiaryEntry(diaryEntryId: String): Result {
+    override suspend fun deleteDiaryEntry(diaryEntryId: String): CustomResult {
         TODO("Not yet implemented")
     }
 
-    override suspend fun editDiaryEntry(diaryEntryWithId: DiaryEntryWithId): Result {
+    override suspend fun editDiaryEntry(diaryEntryWithId: DiaryEntryWithId): CustomResult {
         TODO("Not yet implemented")
     }
 }

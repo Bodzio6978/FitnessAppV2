@@ -1,7 +1,7 @@
 package com.gmail.bodziowaty6978.fitnessappv2.feature_diary.data.repository.remote
 
+import com.gmail.bodziowaty6978.fitnessappv2.common.util.CustomResult
 import com.gmail.bodziowaty6978.fitnessappv2.common.util.Resource
-import com.gmail.bodziowaty6978.fitnessappv2.common.util.Result
 import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.domain.model.DiaryEntry
 import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.domain.model.DiaryEntryWithId
 import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.domain.model.Product
@@ -19,30 +19,38 @@ class FakeDiaryRepository: DiaryRepository {
     }
 
     override suspend fun searchForProducts(productName: String): Resource<List<ProductWithId>> {
-        TODO("Not yet implemented")
+        return Resource.Success(
+            data = listOf(
+                ProductWithId(productName+"Id", Product(name = productName))
+            )
+        )
     }
 
-    override suspend fun addDiaryEntry(diaryEntry: DiaryEntry): Result {
+    override suspend fun addDiaryEntry(diaryEntry: DiaryEntry): CustomResult {
         diaryEntries.add(DiaryEntryWithId("$index",diaryEntry))
-        return Result.Success
+        return CustomResult.Success
     }
 
-    override suspend fun deleteDiaryEntry(diaryEntryId: String): Result {
+    override suspend fun deleteDiaryEntry(diaryEntryId: String): CustomResult {
         diaryEntries.forEach {
             if (it.id==diaryEntryId){
                 diaryEntries.remove(it)
             }
         }
-        return Result.Success
+        return CustomResult.Success
     }
 
-    override suspend fun editDiaryEntry(diaryEntryWithId: DiaryEntryWithId): Result {
+    override suspend fun editDiaryEntry(diaryEntryWithId: DiaryEntryWithId): CustomResult {
         deleteDiaryEntry(diaryEntryId = diaryEntryWithId.id)
         diaryEntries.add(DiaryEntryWithId(diaryEntryWithId.id,diaryEntryWithId.diaryEntry))
-        return Result.Success
+        return CustomResult.Success
     }
 
-    override suspend fun getLocalProductHistory(): Resource<List<Product>> {
-        TODO("Not yet implemented")
+    override suspend fun getLocalProductHistory(): Resource<List<ProductWithId>> {
+        return Resource.Success(data = emptyList())
+    }
+
+    override suspend fun saveProductToHistory(productWithId: ProductWithId): CustomResult {
+        return CustomResult.Success
     }
 }

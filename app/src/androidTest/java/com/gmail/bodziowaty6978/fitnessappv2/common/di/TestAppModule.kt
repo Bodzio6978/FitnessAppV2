@@ -5,8 +5,8 @@ import com.gmail.bodziowaty6978.fitnessappv2.common.domain.model.NutritionValues
 import com.gmail.bodziowaty6978.fitnessappv2.common.domain.model.UserInformation
 import com.gmail.bodziowaty6978.fitnessappv2.common.navigation.navigator.ComposeCustomNavigator
 import com.gmail.bodziowaty6978.fitnessappv2.common.navigation.navigator.Navigator
+import com.gmail.bodziowaty6978.fitnessappv2.common.util.CustomResult
 import com.gmail.bodziowaty6978.fitnessappv2.common.util.ResourceProvider
-import com.gmail.bodziowaty6978.fitnessappv2.common.util.Result
 import com.gmail.bodziowaty6978.fitnessappv2.feature_auth.domain.repository.AuthRepository
 import com.gmail.bodziowaty6978.fitnessappv2.feature_auth.domain.use_case.AuthUseCases
 import com.gmail.bodziowaty6978.fitnessappv2.feature_auth.domain.use_case.LogInUser
@@ -45,16 +45,16 @@ object TestAppModule {
     @Provides
     @Singleton
     fun provideAuthRepository(): AuthRepository = object : AuthRepository {
-        override suspend fun logInUser(email: String, password: String): Result {
-            return Result.Success
+        override suspend fun logInUser(email: String, password: String): CustomResult {
+            return CustomResult.Success
         }
 
-        override suspend fun registerUser(email: String, password: String): Result {
-            return Result.Success
+        override suspend fun registerUser(email: String, password: String): CustomResult {
+            return CustomResult.Success
         }
 
-        override suspend fun sendPasswordResetEmail(email: String): Result {
-            return Result.Success
+        override suspend fun sendPasswordResetEmail(email: String): CustomResult {
+            return CustomResult.Success
         }
     }
 
@@ -84,8 +84,8 @@ object TestAppModule {
         override suspend fun saveIntroductionInformation(
             userInformation: UserInformation,
             nutritionValues: NutritionValues
-        ): Result {
-            return Result.Success
+        ): CustomResult {
+            return CustomResult.Success
         }
     }
 
@@ -120,7 +120,13 @@ object TestAppModule {
 
     @Singleton
     @Provides
-    fun provideSearchForProductsUseCase(diaryRepository: DiaryRepository) : SearchForProducts = SearchForProducts(diaryRepository)
+    fun provideSearchForProductsUseCase(
+        diaryRepository: DiaryRepository,
+        resourceProvider: ResourceProvider
+    ) : SearchForProducts = SearchForProducts(
+        diaryRepository = diaryRepository,
+        resourceProvider = resourceProvider
+    )
 
     @Singleton
     @Provides
@@ -128,9 +134,9 @@ object TestAppModule {
 
     @Singleton
     @Provides
-    fun provideDiarySearchUseCases(diaryRepository: DiaryRepository): SearchDiaryUseCases =
+    fun provideDiarySearchUseCases(diaryRepository: DiaryRepository, searchForProducts: SearchForProducts): SearchDiaryUseCases =
         SearchDiaryUseCases(
-            searchForProducts = SearchForProducts(diaryRepository),
+            searchForProducts = searchForProducts,
             getDiaryHistory = GetDiaryHistory(diaryRepository)
         )
 }

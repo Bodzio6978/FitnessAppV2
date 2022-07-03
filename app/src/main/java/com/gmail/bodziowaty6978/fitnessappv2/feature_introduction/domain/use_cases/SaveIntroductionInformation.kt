@@ -3,7 +3,7 @@ package com.gmail.bodziowaty6978.fitnessappv2.feature_introduction.domain.use_ca
 import com.gmail.bodziowaty6978.fitnessappv2.R
 import com.gmail.bodziowaty6978.fitnessappv2.common.domain.model.UserInformation
 import com.gmail.bodziowaty6978.fitnessappv2.common.util.ResourceProvider
-import com.gmail.bodziowaty6978.fitnessappv2.common.util.Result
+import com.gmail.bodziowaty6978.fitnessappv2.common.util.CustomResult
 import com.gmail.bodziowaty6978.fitnessappv2.feature_introduction.domain.repository.IntroductionRepository
 import com.gmail.bodziowaty6978.fitnessappv2.feature_introduction.presentation.util.IntroductionExpectedQuestionAnswer
 
@@ -15,8 +15,8 @@ class SaveIntroductionInformation(
 
     suspend operator fun invoke(
         answers:Map<IntroductionExpectedQuestionAnswer,String>
-    ): Result {
-        var result: Result = Result.Success
+    ): CustomResult {
+        var customResult: CustomResult = CustomResult.Success
 
         val gender = answers[IntroductionExpectedQuestionAnswer.Gender]!!.toInt()
         val currentWeight = answers[IntroductionExpectedQuestionAnswer.CurrentWeight]!!.replace(",",".").toDoubleOrNull()
@@ -28,26 +28,26 @@ class SaveIntroductionInformation(
         val age = answers[IntroductionExpectedQuestionAnswer.Age]!!.replace(",",".").toIntOrNull()
 
         if (currentWeight==null||currentWeight<=0){
-            result = Result.Error(
+            customResult = CustomResult.Error(
                 message = resourceProvider.getString(R.string.please_make_sure_you_have_entered_your_weight)
             )
         }
         if (wantedWeight==null||wantedWeight<=0){
-            result = Result.Error(
+            customResult = CustomResult.Error(
                 message = resourceProvider.getString(R.string.please_make_sure_you_have_entered_your_desired_weight)
             )
         }
         if (height==null||height<=0){
-            result = Result.Error(
+            customResult = CustomResult.Error(
                 message = resourceProvider.getString(R.string.please_make_sure_you_have_entered_your_age)
             )
         }
         if (age==null||age<=0){
-            result = Result.Error(
+            customResult = CustomResult.Error(
                 message = resourceProvider.getString(R.string.please_make_sure_you_have_entered_your_age)
             )
         }
-        if (result !is Result.Error){
+        if (customResult !is CustomResult.Error){
             val nutritionValues = calculateNutritionValues(
                 gender ,
                 currentWeight!!,
@@ -58,7 +58,7 @@ class SaveIntroductionInformation(
                 wantedWeight!!,
                 age!!
             )
-            result = introductionRepository.saveIntroductionInformation(
+            customResult = introductionRepository.saveIntroductionInformation(
                 userInformation = UserInformation(
                     activityInADay = activityInDay,
                     typeOfWork = workType,
@@ -73,7 +73,7 @@ class SaveIntroductionInformation(
             )
         }
 
-        return result
+        return customResult
     }
 
 

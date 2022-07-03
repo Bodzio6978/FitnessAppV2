@@ -1,9 +1,8 @@
 package com.gmail.bodziowaty6978.fitnessappv2.feature_auth.domain.use_case
 
 import com.gmail.bodziowaty6978.fitnessappv2.common.util.ResourceProvider
-import com.gmail.bodziowaty6978.fitnessappv2.common.util.Result
+import com.gmail.bodziowaty6978.fitnessappv2.common.util.CustomResult
 import com.gmail.bodziowaty6978.fitnessappv2.feature_auth.domain.repository.AuthRepository
-import com.gmail.bodziowaty6978.fitnessappv2.feature_auth.domain.use_case.RegisterUser
 import com.gmail.bodziowaty6978.fitnessappv2.feature_auth.util.AuthConstants
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
@@ -34,7 +33,7 @@ internal class RegisterUserTest{
     fun setUp() = runTest{
         closeable = MockitoAnnotations.openMocks(this)
         authRepository = Mockito.mock(AuthRepository::class.java)
-        Mockito.`when`(authRepository.registerUser(anyString(),anyString())).thenReturn(Result.Success)
+        Mockito.`when`(authRepository.registerUser(anyString(),anyString())).thenReturn(CustomResult.Success)
         registerUser = RegisterUser(
             repository = authRepository,
             resourceProvider = ResourceProvider(context = RuntimeEnvironment.getApplication())
@@ -50,7 +49,7 @@ internal class RegisterUserTest{
             username = AuthConstants.ValidUsername
         )
 
-        assertTrue(result is Result.Error)
+        assertTrue(result is CustomResult.Error)
     }
 
     @Test
@@ -62,7 +61,7 @@ internal class RegisterUserTest{
             username = AuthConstants.ValidUsername
         )
 
-        assertTrue(result is Result.Error)
+        assertTrue(result is CustomResult.Error)
     }
 
     @Test
@@ -74,7 +73,7 @@ internal class RegisterUserTest{
             username = AuthConstants.ValidUsername
         )
 
-        assertTrue(result is Result.Error)
+        assertTrue(result is CustomResult.Error)
     }
 
     @Test
@@ -86,7 +85,7 @@ internal class RegisterUserTest{
             username = AuthConstants.ValidUsername
         )
 
-        assertTrue(result is Result.Error)
+        assertTrue(result is CustomResult.Error)
     }
 
     @Test
@@ -98,7 +97,7 @@ internal class RegisterUserTest{
             username = AuthConstants.ValidUsername
         )
 
-        assertTrue(result is Result.Error)
+        assertTrue(result is CustomResult.Error)
     }
 
 
@@ -112,7 +111,7 @@ internal class RegisterUserTest{
             username = AuthConstants.ValidUsername
         )
 
-        assertTrue(result is Result.Success )
+        assertTrue(result is CustomResult.Success )
     }
 
     @After

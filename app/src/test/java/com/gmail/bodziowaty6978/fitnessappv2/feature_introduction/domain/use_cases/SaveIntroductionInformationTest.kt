@@ -1,10 +1,8 @@
 package com.gmail.bodziowaty6978.fitnessappv2.feature_introduction.domain.use_cases
 
 import com.gmail.bodziowaty6978.fitnessappv2.common.util.ResourceProvider
-import com.gmail.bodziowaty6978.fitnessappv2.common.util.Result
+import com.gmail.bodziowaty6978.fitnessappv2.common.util.CustomResult
 import com.gmail.bodziowaty6978.fitnessappv2.feature_introduction.domain.repository.IntroductionRepository
-import com.gmail.bodziowaty6978.fitnessappv2.feature_introduction.domain.use_cases.CalculateNutritionValues
-import com.gmail.bodziowaty6978.fitnessappv2.feature_introduction.domain.use_cases.SaveIntroductionInformation
 import com.gmail.bodziowaty6978.fitnessappv2.feature_introduction.presentation.util.IntroductionExpectedQuestionAnswer
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
@@ -39,7 +37,7 @@ internal class SaveIntroductionInformationTest {
         Mockito.`when`(mockIntroductionRepository.saveIntroductionInformation(
             any(),
             any()
-        )).thenReturn(Result.Success)
+        )).thenReturn(CustomResult.Success)
         saveIntroductionInformation = SaveIntroductionInformation(
             calculateNutritionValues = CalculateNutritionValues(),
             resourceProvider = ResourceProvider(RuntimeEnvironment.getApplication()),
@@ -62,90 +60,90 @@ internal class SaveIntroductionInformationTest {
     fun `passed empty currentWeight, return Result Error`() = runTest {
         answers[IntroductionExpectedQuestionAnswer.CurrentWeight] = ""
         val result = saveIntroductionInformation(answers)
-        assertTrue(result is Result.Error)
+        assertTrue(result is CustomResult.Error)
     }
 
     @Test
     fun `passed empty wantedWeight, return Result Error`() = runTest {
         answers[IntroductionExpectedQuestionAnswer.DesiredWeight] = ""
         val result = saveIntroductionInformation(answers)
-        assertTrue(result is Result.Error)
+        assertTrue(result is CustomResult.Error)
     }
 
     @Test
     fun `passed empty age, return Result Error`() = runTest {
         answers[IntroductionExpectedQuestionAnswer.Age] = ""
         val result = saveIntroductionInformation(answers)
-        assertTrue(result is Result.Error)
+        assertTrue(result is CustomResult.Error)
     }
 
     @Test
     fun `passed empty height, return Result Error`() = runTest {
         answers[IntroductionExpectedQuestionAnswer.Height] = ""
         val result = saveIntroductionInformation(answers)
-        assertTrue(result is Result.Error)
+        assertTrue(result is CustomResult.Error)
     }
 
     @Test
     fun `passed letters as currentWeight, return Result Error`() = runTest {
         answers[IntroductionExpectedQuestionAnswer.CurrentWeight] = "abc"
         val result = saveIntroductionInformation(answers)
-        assertTrue(result is Result.Error)
+        assertTrue(result is CustomResult.Error)
     }
 
     @Test
     fun `passed letters as wantedWeight, return Result Error`() = runTest {
         answers[IntroductionExpectedQuestionAnswer.DesiredWeight] = "abc"
         val result = saveIntroductionInformation(answers)
-        assertTrue(result is Result.Error)
+        assertTrue(result is CustomResult.Error)
     }
 
     @Test
     fun `passed letters as age, return Result Error`() = runTest {
         answers[IntroductionExpectedQuestionAnswer.Age] = "abc"
         val result = saveIntroductionInformation(answers)
-        assertTrue(result is Result.Error)
+        assertTrue(result is CustomResult.Error)
     }
 
     @Test
     fun `passed letters as height, return Result Error`() = runTest {
         answers[IntroductionExpectedQuestionAnswer.Height] = "abc"
         val result = saveIntroductionInformation(answers)
-        assertTrue(result is Result.Error)
+        assertTrue(result is CustomResult.Error)
     }
 
     @Test
     fun `passed negative number as height, return Result Error`() = runTest {
         answers[IntroductionExpectedQuestionAnswer.Height] = "-50"
         val result = saveIntroductionInformation(answers)
-        assertTrue(result is Result.Error)
+        assertTrue(result is CustomResult.Error)
     }
 
     @Test
     fun `passed negative number as age, return Result Error`() = runTest {
         answers[IntroductionExpectedQuestionAnswer.Height] = "-50"
         val result = saveIntroductionInformation(answers)
-        assertTrue(result is Result.Error)
+        assertTrue(result is CustomResult.Error)
     }
 
     @Test
     fun `passed negative number as wantedWeight, return Result Error`() = runTest {
         answers[IntroductionExpectedQuestionAnswer.Height] = "-50"
         val result = saveIntroductionInformation(answers)
-        assertTrue(result is Result.Error)
+        assertTrue(result is CustomResult.Error)
     }
 
     @Test
     fun `passed negative number as currentWeight, return Result Error`() = runTest {
         answers[IntroductionExpectedQuestionAnswer.Height] = "-50"
         val result = saveIntroductionInformation(answers)
-        assertTrue(result is Result.Error)
+        assertTrue(result is CustomResult.Error)
     }
 
     @Test
     fun `passed correct data, Result Success`() = runTest{
         val result = saveIntroductionInformation(answers)
-        assertTrue(result is Result.Success)
+        assertTrue(result is CustomResult.Success)
     }
 
     @After

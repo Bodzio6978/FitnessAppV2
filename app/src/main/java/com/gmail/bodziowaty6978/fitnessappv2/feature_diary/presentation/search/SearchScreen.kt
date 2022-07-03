@@ -10,6 +10,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -34,15 +35,15 @@ fun SearchScreen(
         viewModel.initializeHistory()
     }
 
-
-
     Scaffold(
         floatingActionButton = {
             FloatingActionButton(
                 onClick = {
                     viewModel.onEvent(SearchEvent.ClickedSearch(searchBarState.text))
                 },
-                backgroundColor = MaterialTheme.colors.primaryVariant
+                backgroundColor = MaterialTheme.colors.primaryVariant,
+                modifier = Modifier
+                    .testTag(stringResource(id = R.string.SEARCH_BUTTON))
             ) {
                 Icon(
                     imageVector = Icons.Default.Search,

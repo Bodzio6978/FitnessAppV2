@@ -9,7 +9,7 @@ import com.gmail.bodziowaty6978.fitnessappv2.common.navigation.NavigationActions
 import com.gmail.bodziowaty6978.fitnessappv2.common.navigation.navigator.Navigator
 import com.gmail.bodziowaty6978.fitnessappv2.common.presentation.components.TextFieldState
 import com.gmail.bodziowaty6978.fitnessappv2.common.util.ResourceProvider
-import com.gmail.bodziowaty6978.fitnessappv2.common.util.Result
+import com.gmail.bodziowaty6978.fitnessappv2.common.util.CustomResult
 import com.gmail.bodziowaty6978.fitnessappv2.feature_auth.domain.use_case.AuthUseCases
 import com.gmail.bodziowaty6978.fitnessappv2.feature_auth.presentation.util.AuthEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -34,8 +34,8 @@ class ResetPasswordViewModel @Inject constructor(
     private val _isLoading = mutableStateOf<Boolean>(false)
     val isLoading: State<Boolean> = _isLoading
 
-    private val _uiState = MutableSharedFlow<Result>()
-    val uiState: SharedFlow<Result> = _uiState
+    private val _uiState = MutableSharedFlow<CustomResult>()
+    val uiState: SharedFlow<CustomResult> = _uiState
 
     fun onEvent(event: AuthEvent){
         when(event){

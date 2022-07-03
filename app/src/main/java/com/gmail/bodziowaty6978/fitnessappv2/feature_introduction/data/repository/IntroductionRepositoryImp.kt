@@ -3,7 +3,7 @@ package com.gmail.bodziowaty6978.fitnessappv2.feature_introduction.data.reposito
 import androidx.datastore.core.DataStore
 import com.gmail.bodziowaty6978.fitnessappv2.common.domain.model.NutritionValues
 import com.gmail.bodziowaty6978.fitnessappv2.common.domain.model.UserInformation
-import com.gmail.bodziowaty6978.fitnessappv2.common.util.Result
+import com.gmail.bodziowaty6978.fitnessappv2.common.util.CustomResult
 import com.gmail.bodziowaty6978.fitnessappv2.feature_introduction.domain.repository.IntroductionRepository
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
@@ -20,7 +20,7 @@ class IntroductionRepositoryImp(
     override suspend fun saveIntroductionInformation(
         userInformation: UserInformation,
         nutritionValues: NutritionValues
-    ): Result {
+    ): CustomResult {
         return try {
             val userRef = firestore.collection("users").document(userId!!)
             val batch = firestore.batch()
@@ -50,9 +50,9 @@ class IntroductionRepositoryImp(
                 )
             }
 
-            Result.Success
+            CustomResult.Success
         }catch (e:Exception){
-            Result.Error(e.message.toString())
+            CustomResult.Error(e.message.toString())
         }
 
     }

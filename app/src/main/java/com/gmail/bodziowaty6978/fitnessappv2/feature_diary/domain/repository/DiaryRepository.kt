@@ -1,7 +1,7 @@
 package com.gmail.bodziowaty6978.fitnessappv2.feature_diary.domain.repository
 
 import com.gmail.bodziowaty6978.fitnessappv2.common.util.Resource
-import com.gmail.bodziowaty6978.fitnessappv2.common.util.Result
+import com.gmail.bodziowaty6978.fitnessappv2.common.util.CustomResult
 import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.domain.model.DiaryEntry
 import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.domain.model.DiaryEntryWithId
 import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.domain.model.ProductWithId
@@ -14,9 +14,11 @@ interface DiaryRepository {
 
     suspend fun getLocalProductHistory():Resource<List<ProductWithId>>
 
-    suspend fun addDiaryEntry(diaryEntry: DiaryEntry):Result
+    suspend fun saveProductToHistory(productWithId: ProductWithId):CustomResult
 
-    suspend fun deleteDiaryEntry(diaryEntryId:String):Result
+    suspend fun addDiaryEntry(diaryEntry: DiaryEntry):CustomResult
 
-    suspend fun editDiaryEntry(diaryEntryWithId: DiaryEntryWithId):Result
+    suspend fun deleteDiaryEntry(diaryEntryId:String):CustomResult
+
+    suspend fun editDiaryEntry(diaryEntryWithId: DiaryEntryWithId):CustomResult
 }

@@ -3,6 +3,8 @@
     <string name="this_will_be_implemented_in_the_future">This Will Be Implemented In The Future.</string>
     <string name="wait">Wait…</string>
 
+    <string name="unknown_error">An unknown error has happened</string>
+
 <!--    Auth-->
     <string name="email_address">Email Address</string>
     <string name="password">Password</string>
@@ -216,6 +218,7 @@
     <string name="CONFIRM">CONFIRM</string>
     <string name="USERNAME">USERNAME</string>
     <string name="BUTTON">BUTTON</string>
-    <string name="TEXT_FIELD">TEXT FIELD</string>
+    <string name="SEARCH_TEXT_FIELD">SEARCH TEXT FIELD</string>
+    <string name="SEARCH_BUTTON">SEARCH BUTTON</string>
 
 </resources>

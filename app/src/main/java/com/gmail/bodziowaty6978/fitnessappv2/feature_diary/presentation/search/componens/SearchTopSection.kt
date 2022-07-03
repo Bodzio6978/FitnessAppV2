@@ -78,7 +78,7 @@ fun SearchTopSection(
             },
             modifier = Modifier
                 .fillMaxWidth()
-                .testTag(stringResource(id = R.string.TEXT_FIELD))
+                .testTag(stringResource(id = R.string.SEARCH_TEXT_FIELD))
                 .padding(horizontal = 20.dp),
             onValueChange = {
                 onEvent(SearchEvent.EnteredSearchText(it))
