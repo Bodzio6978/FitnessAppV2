@@ -14,22 +14,22 @@ fun Meal.sumNutritionValues(
     val sum = when(nutritionType){
         is NutritionType.Calories -> {
             this.diaryEntries.sumOf {
-                it.diaryEntry.calories
+                it.diaryEntry.nutritionValues.calories
             }
         }
         is NutritionType.Carbs -> {
             this.diaryEntries.sumOf {
-                it.diaryEntry.carbs
+                it.diaryEntry.nutritionValues.carbohydrates
             }
         }
         is NutritionType.Protein -> {
             this.diaryEntries.sumOf {
-                it.diaryEntry.protein
+                it.diaryEntry.nutritionValues.protein
             }
         }
         is NutritionType.Fat -> {
             this.diaryEntries.sumOf {
-                it.diaryEntry.fat
+                it.diaryEntry.nutritionValues.fat
             }
         }
     }

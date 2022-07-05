@@ -6,6 +6,7 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
@@ -16,6 +17,7 @@ import com.gmail.bodziowaty6978.fitnessappv2.common.data.singleton.CurrentDate
 import com.gmail.bodziowaty6978.fitnessappv2.common.presentation.ui.theme.LightRed
 import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.domain.model.ProductWithId
 import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.presentation.product.components.ProductNameSection
+import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.presentation.product.components.ProductNutritionSection
 import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.presentation.product.components.ProductTopSection
 
 
@@ -26,7 +28,13 @@ fun ProductScreen(
     mealName: String
 ) {
     val product = productWithId.product
+
     val weightState = viewModel.weightState
+    val nutritionData = viewModel.nutritionDataState.value
+
+    LaunchedEffect(key1 = true){
+        viewModel.initializeNutritionData(product)
+    }
 
     Scaffold(
         floatingActionButton = {
@@ -67,12 +75,13 @@ fun ProductScreen(
 
             ProductNameSection(
                 currentWeight = weightState.value,
-                productName = product.name,
-                productBrand = product.brand,
+                product = product,
                 onEvent = {
                     viewModel.onEvent(it)
                 }
             )
+
+            ProductNutritionSection(nutritionData = nutritionData)
 
         }
     }

@@ -108,7 +108,7 @@ fun DiaryMealSection(
                     .padding(end = 15.dp, start = 15.dp)
             ) {
                 MealSectionNutritionItem(
-                    currentValue = diaryEntriesValues.sumOf { it.diaryEntry.calories },
+                    currentValue = diaryEntriesValues.sumOf { it.diaryEntry.nutritionValues.calories },
                     wantedValue = wantedNutritionValues.calories,
                     name = stringResource(id = R.string.calories),
                     modifier = Modifier
@@ -118,7 +118,7 @@ fun DiaryMealSection(
 
 
                 MealSectionNutritionItem(
-                    currentValue = diaryEntriesValues.sumOf { it.diaryEntry.carbs }.toInt(),
+                    currentValue = diaryEntriesValues.sumOf { it.diaryEntry.nutritionValues.carbohydrates }.toInt(),
                     wantedValue = wantedNutritionValues.carbohydrates.toInt(),
                     name = stringResource(id = R.string.carbs),
                     modifier = Modifier
@@ -127,7 +127,7 @@ fun DiaryMealSection(
                 Spacer(modifier = Modifier.width(32.dp))
 
                 MealSectionNutritionItem(
-                    currentValue = diaryEntriesValues.sumOf { it.diaryEntry.protein }.toInt(),
+                    currentValue = diaryEntriesValues.sumOf { it.diaryEntry.nutritionValues.protein }.toInt(),
                     wantedValue = wantedNutritionValues.protein.toInt(),
                     name = stringResource(id = R.string.protein),
                     modifier = Modifier
@@ -138,7 +138,7 @@ fun DiaryMealSection(
 
 
                 MealSectionNutritionItem(
-                    currentValue = diaryEntriesValues.sumOf { it.diaryEntry.fat }.toInt(),
+                    currentValue = diaryEntriesValues.sumOf { it.diaryEntry.nutritionValues.fat }.toInt(),
                     wantedValue = wantedNutritionValues.fat.toInt(),
                     name = stringResource(id = R.string.fat),
                     modifier = Modifier
@@ -146,127 +146,4 @@ fun DiaryMealSection(
             }
         }
     }
-
-
-//    val diaryEntriesValues = meal.diaryEntries
-//
-//    Column(
-//        modifier = Modifier
-//            .fillMaxWidth()
-//            .padding(vertical = 10.dp)
-//            .testTag(meal.mealName)
-//    ) {
-//
-//        Text(
-//            text = meal.mealName,
-//            style = MaterialTheme.typography.body1,
-//            fontWeight = FontWeight.Bold,
-//            modifier = Modifier
-//                .padding(horizontal = 20.dp)
-//                .padding(bottom = if (diaryEntriesValues.isEmpty()) 5.dp else 0.dp)
-//        )
-//
-//        if (diaryEntriesValues.isNotEmpty()) {
-//            Row(
-//                verticalAlignment = Alignment.CenterVertically,
-//                modifier = Modifier
-//                    .fillMaxWidth()
-//                    .padding(horizontal = 20.dp)
-//                    .padding(bottom = 5.dp)
-//            ) {
-//
-//                Text(
-//                    text = "${diaryEntriesValues.sumOf { it.diaryEntry.calories }} kcal",
-//                    style = MaterialTheme.typography.body2,
-//                    color = TextGrey,
-//                    modifier = Modifier.weight(1F)
-//                )
-//
-//                Text(
-//                    text = "${diaryEntriesValues.sumOf { it.diaryEntry.carbs }}g",
-//                    style = MaterialTheme.typography.body2,
-//                    color = TextGrey,
-//                    modifier = Modifier.weight(1F),
-//                    textAlign = TextAlign.Center
-//                )
-//
-//                Text(
-//                    text = "${diaryEntriesValues.sumOf { it.diaryEntry.protein }}g",
-//                    style = MaterialTheme.typography.body2,
-//                    color = TextGrey,
-//                    modifier = Modifier.weight(1F),
-//                    textAlign = TextAlign.Center
-//                )
-//
-//                Text(
-//                    text = "${diaryEntriesValues.sumOf { it.diaryEntry.fat }}g",
-//                    style = MaterialTheme.typography.body2,
-//                    color = TextGrey,
-//                    modifier = Modifier.weight(1F),
-//                    textAlign = TextAlign.Center
-//                )
-//            }
-//        }
-//
-
-//
-//        Divider(
-//            color = TextGrey,
-//            modifier = Modifier
-//                .fillMaxWidth()
-//                .width(1.dp)
-//        )
-//
-//        ExtendedFloatingActionButton(
-//            text = {
-//                Text(
-//                    text = stringResource(id = R.string.add_product),
-//                    style = MaterialTheme.typography.body1,
-//                    fontWeight = FontWeight.Bold,
-//                    modifier = Modifier.padding(start = 10.dp)
-//                )
-//            },
-//            onClick = {
-//                onAddProductClick(meal.mealName)
-//            },
-//            icon = {
-//                Icon(
-//                    imageVector = Icons.Default.Add,
-//                    contentDescription = "Add icon",
-//                    modifier = Modifier.padding(top = 10.dp, bottom = 10.dp)
-//                )
-//            })
-//
-//        Row(
-//            modifier = Modifier
-//                .fillMaxWidth()
-//                .padding(horizontal = 20.dp)
-//                .clickable {
-//                    onAddProductClick(meal.mealName)
-//                }
-//                .padding(vertical = 8.dp)
-//                .background(
-//                    if (isSystemInDarkTheme()) MaterialTheme.colors.background else DarkPink
-//                )
-//                .clip(RoundedCornerShape(25))
-//                .shadow(elevation = 0.85.dp),
-//            verticalAlignment = Alignment.CenterVertically
-//        ) {
-//            Icon(
-//                imageVector = Icons.Default.Add,
-//                contentDescription = "Add icon",
-//                tint = MaterialTheme.colors.secondaryVariant,
-//                modifier = Modifier.padding(top = 10.dp, bottom = 10.dp)
-//            )
-//
-//            Text(
-//                text = stringResource(id = R.string.add_product),
-//                style = MaterialTheme.typography.body1,
-//                color = MaterialTheme.colors.secondaryVariant,
-//                fontWeight = FontWeight.Bold,
-//                modifier = Modifier.padding(start = 10.dp)
-//            )
-//
-//        }
-//    }
 }

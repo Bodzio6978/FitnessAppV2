@@ -7,7 +7,7 @@ import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.domain.model.Product
 fun DiaryEntry.toProduct(): Product {
     return Product(
         containerWeight = this.weight,
-        calories = this.calories,
+        nutritionValues = this.nutritionValues,
         unit = this.unit
     )
 }

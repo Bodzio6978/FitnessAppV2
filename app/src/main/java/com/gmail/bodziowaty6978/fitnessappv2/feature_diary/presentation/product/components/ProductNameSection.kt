@@ -22,12 +22,12 @@ import com.gmail.bodziowaty6978.fitnessappv2.R
 import com.gmail.bodziowaty6978.fitnessappv2.common.presentation.ui.theme.BlueViolet3
 import com.gmail.bodziowaty6978.fitnessappv2.common.presentation.ui.theme.TextGrey
 import com.gmail.bodziowaty6978.fitnessappv2.common.presentation.ui.theme.TextWhite
+import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.domain.model.Product
 import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.presentation.product.ProductEvent
 
 @Composable
 fun ProductNameSection(
-    productName:String,
-    productBrand:String?,
+    product: Product,
     onEvent:(ProductEvent) -> Unit,
     currentWeight:String
 ) {
@@ -61,13 +61,13 @@ fun ProductNameSection(
 
                     Row {
                         Text(
-                            text = productName,
+                            text = product.name,
                             style = MaterialTheme.typography.body2.copy(
                                 color = TextWhite
                             ),
                         )
 
-                        productBrand?.let {
+                        product.brand?.let {
                             Text(
                                 text = "(${it})",
                                 style = MaterialTheme.typography.body2.copy(
@@ -93,7 +93,7 @@ fun ProductNameSection(
                         BasicTextField(
                             value = currentWeight,
                             onValueChange = {
-                                onEvent(ProductEvent.EnteredWeight(it))
+                                onEvent(ProductEvent.EnteredWeight(it, product))
                             },
                             modifier = Modifier
                                 .width(80.dp)
@@ -134,7 +134,7 @@ fun ProductNameSection(
                 for(i in 50..200 step 50){
                     OutlinedButton(
                         onClick = {
-                            onEvent(ProductEvent.ClickedWeightButton(i))
+                            onEvent(ProductEvent.EnteredWeight(value = i.toString(), product = product))
                         },
                         border = BorderStroke(1.dp, BlueViolet3),
                         shape = RoundedCornerShape(25),

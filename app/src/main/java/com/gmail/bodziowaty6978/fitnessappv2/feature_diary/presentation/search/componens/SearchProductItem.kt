@@ -51,7 +51,7 @@ fun SearchProductItem(
             }
 
             Text(
-                text = product.calories.toString()+" kcal",
+                text = product.nutritionValues.calories.toString()+" kcal",
                 style = MaterialTheme.typography.body2.copy(
                     color = AquaBlue
                 )

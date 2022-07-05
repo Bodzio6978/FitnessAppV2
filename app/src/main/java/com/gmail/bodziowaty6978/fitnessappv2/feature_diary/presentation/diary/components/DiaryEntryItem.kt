@@ -69,7 +69,7 @@ fun DiaryEntryItem(
                         shape = RoundedCornerShape(50),
                     ) {
                         Text(
-                            text = "Kcal:" + diaryEntry.calories.toString(),
+                            text = "Kcal:" + diaryEntry.nutritionValues.calories.toString(),
                             style = MaterialTheme.typography.body2,
                             color = TextGrey,
                             modifier = Modifier
@@ -82,7 +82,7 @@ fun DiaryEntryItem(
                         shape = RoundedCornerShape(50),
                     ) {
                         Text(
-                            text = "Carb:" + diaryEntry.carbs.toString(),
+                            text = "Carb:" + diaryEntry.nutritionValues.carbohydrates.toString(),
                             style = MaterialTheme.typography.body2,
                             color = TextGrey,
                             modifier = Modifier
@@ -95,7 +95,7 @@ fun DiaryEntryItem(
                         shape = RoundedCornerShape(50),
                     ) {
                         Text(
-                            text = "Prot:" + diaryEntry.protein.toString(),
+                            text = "Prot:" + diaryEntry.nutritionValues.protein.toString(),
                             style = MaterialTheme.typography.body2,
                             color = TextGrey,
                             modifier = Modifier
@@ -108,7 +108,7 @@ fun DiaryEntryItem(
                         shape = RoundedCornerShape(50),
                     ) {
                         Text(
-                            text = "Fat:" + diaryEntry.fat.toString(),
+                            text = "Fat:" + diaryEntry.nutritionValues.fat.toString(),
                             style = MaterialTheme.typography.body2,
                             color = TextGrey,
                             modifier = Modifier

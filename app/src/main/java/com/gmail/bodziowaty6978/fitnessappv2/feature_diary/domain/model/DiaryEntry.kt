@@ -1,6 +1,7 @@
 package com.gmail.bodziowaty6978.fitnessappv2.feature_diary.domain.model
 
 import android.os.Parcelable
+import com.gmail.bodziowaty6978.fitnessappv2.common.domain.model.NutritionValues
 import kotlinx.parcelize.Parcelize
 import java.util.*
 
@@ -14,7 +15,4 @@ data class DiaryEntry(
     val brand: String = "",
     val weight: Double = 0.0,
     val unit: String = "",
-    val calories: Int = 0,
-    val carbs: Double = 0.0,
-    val protein: Double = 0.0,
-    val fat: Double = 0.0):Parcelable
+    val nutritionValues: NutritionValues = NutritionValues()):Parcelable
