@@ -4,9 +4,9 @@ import android.util.Log
 import com.gmail.bodziowaty6978.fitnessappv2.R
 import com.gmail.bodziowaty6978.fitnessappv2.common.data.room.dao.ProductDao
 import com.gmail.bodziowaty6978.fitnessappv2.common.util.Constants
+import com.gmail.bodziowaty6978.fitnessappv2.common.util.CustomResult
 import com.gmail.bodziowaty6978.fitnessappv2.common.util.Resource
 import com.gmail.bodziowaty6978.fitnessappv2.common.util.ResourceProvider
-import com.gmail.bodziowaty6978.fitnessappv2.common.util.CustomResult
 import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.domain.model.DiaryEntry
 import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.domain.model.DiaryEntryWithId
 import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.domain.model.Product
@@ -26,6 +26,7 @@ class DiaryRepositoryImp(
 
     private val userCollection = firebaseFirestore.collection(Constants.FIRESTORE_USER_COLLECTION)
     private val productCollection = firebaseFirestore.collection(Constants.FIRESTORE_PRODUCT_COLLECTION)
+    private val journalCollection = userCollection.document(userId!!).collection(Constants.FIRESTORE_JOURNAL_COLLECTION)
 
     override suspend fun getDiaryEntries(date: String): Resource<List<DiaryEntryWithId>> {
         return try {
@@ -74,7 +75,13 @@ class DiaryRepositoryImp(
     }
 
     override suspend fun addDiaryEntry(diaryEntry: DiaryEntry): CustomResult {
-        TODO("Not yet implemented")
+        return try {
+            journalCollection.add(diaryEntry)
+            CustomResult.Success
+        }catch (e:Exception){
+            Log.e(TAG,e.message.toString())
+            CustomResult.Error(resourceProvider.getString(R.string.unknown_error))
+        }
     }
 
     override suspend fun deleteDiaryEntry(diaryEntryId: String): CustomResult {

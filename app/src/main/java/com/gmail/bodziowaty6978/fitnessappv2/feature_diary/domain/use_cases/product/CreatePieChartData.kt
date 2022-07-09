@@ -1,8 +1,10 @@
 package com.gmail.bodziowaty6978.fitnessappv2.feature_diary.domain.use_cases.product
 
+import android.util.Log
 import com.github.mikephil.charting.data.PieEntry
 import com.gmail.bodziowaty6978.fitnessappv2.common.util.extensions.round
 import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.domain.model.Product
+import com.gmail.bodziowaty6978.fitnessappv2.util.TAG
 
 class CreatePieChartData {
 
@@ -19,6 +21,8 @@ class CreatePieChartData {
         val carbohydratesValue = (((caloriesFromCarbohydrates / sum * 100.0)).round(2)).toFloat()
         val proteinValue = (((caloriesFromProtein / sum * 100.0)).round(2)).toFloat()
         val fatValue = (((caloriesFromFat / sum * 100.0)).round(2)).toFloat()
+
+        Log.e(TAG,"$carbohydratesValue $proteinValue, $fatValue")
 
         return listOf(
             PieEntry(carbohydratesValue, "Carbohydrates"),

@@ -4,13 +4,11 @@ import android.text.format.DateUtils
 import com.gmail.bodziowaty6978.fitnessappv2.R
 import com.gmail.bodziowaty6978.fitnessappv2.common.domain.model.DateModel
 import com.gmail.bodziowaty6978.fitnessappv2.common.util.ResourceProvider
-import java.text.SimpleDateFormat
 import java.util.*
 
 fun Long.formatToAppDateModel(resourceProvider: ResourceProvider): DateModel {
-    val format = SimpleDateFormat("yyyy/MM/dd", Locale.getDefault())
     val currentDate = Date(this)
-    val formattedDate = format.format(currentDate)
+    val formattedDate = currentDate.formatToString()
 
     if (DateUtils.isToday(this)){
         return DateModel(this,formattedDate,resourceProvider.getString(R.string.today))

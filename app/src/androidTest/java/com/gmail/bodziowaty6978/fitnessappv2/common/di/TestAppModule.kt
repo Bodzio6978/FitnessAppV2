@@ -15,8 +15,10 @@ import com.gmail.bodziowaty6978.fitnessappv2.feature_auth.domain.use_case.ResetP
 import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.data.repository.remote.FakeDiaryRepository
 import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.domain.repository.DiaryRepository
 import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.domain.use_cases.*
+import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.domain.use_cases.product.AddDiaryEntry
 import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.domain.use_cases.product.CreatePieChartData
 import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.domain.use_cases.product.ProductUseCases
+import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.domain.use_cases.product.SaveProductToHistory
 import com.gmail.bodziowaty6978.fitnessappv2.feature_introduction.domain.repository.IntroductionRepository
 import com.gmail.bodziowaty6978.fitnessappv2.feature_introduction.domain.use_cases.CalculateNutritionValues
 import com.gmail.bodziowaty6978.fitnessappv2.feature_introduction.domain.use_cases.SaveIntroductionInformation
@@ -144,9 +146,14 @@ object TestAppModule {
 
     @Singleton
     @Provides
-    fun provideProductUseCases(): ProductUseCases =
+    fun provideProductUseCases(
+        diaryRepository: DiaryRepository
+    ): ProductUseCases =
         ProductUseCases(
             calculateNutritionValues = com.gmail.bodziowaty6978.fitnessappv2.feature_diary.domain.use_cases.product.CalculateNutritionValues(),
-            createPieChartData = CreatePieChartData()
+            createPieChartData = CreatePieChartData(),
+            addDiaryEntry = AddDiaryEntry(diaryRepository),
+            saveProductToHistory = SaveProductToHistory(diaryRepository)
+
         )
 }

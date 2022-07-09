@@ -8,7 +8,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class NutritionValues(
     val calories:Int = 285,
-    val carbohydrates:Double = 28.5,
-    val protein:Double = 21.375,
-    val fat:Double = 9.5
+    val carbohydrates:Double = 100.0,
+    val protein:Double = 50.0,
+    val fat:Double = 10.0
 ) : Parcelable

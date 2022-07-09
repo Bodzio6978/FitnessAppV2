@@ -1,6 +1,5 @@
 package com.gmail.bodziowaty6978.fitnessappv2.feature_diary.presentation.diary.components
 
-import android.util.Log
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -31,9 +30,6 @@ fun DiaryMealSection(
         fat = 83.3*25.0/100.0
     )
 ) {
-
-    Log.e("huj",wantedNutritionValues.toString())
-
     val diaryEntriesValues = meal.diaryEntries
 
     Card(

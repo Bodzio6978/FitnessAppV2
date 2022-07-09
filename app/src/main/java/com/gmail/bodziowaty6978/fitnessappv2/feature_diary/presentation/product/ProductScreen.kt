@@ -32,7 +32,7 @@ fun ProductScreen(
     val weightState = viewModel.weightState
     val nutritionData = viewModel.nutritionDataState.value
 
-    LaunchedEffect(key1 = true){
+    LaunchedEffect(key1 = true) {
         viewModel.initializeNutritionData(product)
     }
 
@@ -47,7 +47,12 @@ fun ProductScreen(
                     )
                 },
                 onClick = {
-                    /*TODO*/
+                    viewModel.onEvent(
+                        ProductEvent.ClickedAddProduct(
+                            productWithId = productWithId,
+                            mealName = mealName
+                        )
+                    )
                 },
                 icon = {
                     Icon(

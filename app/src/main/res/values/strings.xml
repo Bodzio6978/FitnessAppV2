@@ -63,6 +63,7 @@
     <string name="searching_for_products">Searching for products…</string>
     <string name="please_make_sure_you_have_entered_some_text_before_searching">Please make sure you have entered some text before searching for a product</string>
     <string name="product_name">Product name</string>
+    <string name="nutrition_values">Nutrition values</string>
 
     <string name="kcal"> Kcal</string>
     <string name="g_carb">g Carbs</string>

@@ -37,7 +37,7 @@ import com.gmail.bodziowaty6978.fitnessappv2.feature_summary.presentation.Summar
 fun NavHostGraph(
     navController: NavHostController = rememberNavController(),
     navigator: Navigator,
-    startDestination:String = Screen.ProductScreen.route + "?mealName={mealName}"
+    startDestination:String = Screen.LoadingScreen.route
 ) {
     val lifecycleOwner = LocalLifecycleOwner.current
     val navigatorState by navigator.navActions.asLifecycleAwareState(

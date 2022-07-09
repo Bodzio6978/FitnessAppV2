@@ -24,12 +24,12 @@ fun ChartSection(
     val backgroundColor = DarkGreyElevation3.toArgb()
 
     val colors = listOf<Int>(
+        LightGreen3.toArgb(),
+        backgroundColor,
         BlueViolet3.toArgb(),
         backgroundColor,
         OrangeYellow3.toArgb(),
         backgroundColor,
-        LightGreen3.toArgb(),
-        backgroundColor
     )
 
     AndroidView(
@@ -58,8 +58,9 @@ fun ChartSection(
             setHoleColor(backgroundColor)
 
             setCenterTextColor(Color.WHITE)
-            setCenterTextSize(14F)
-            transparentCircleRadius = 0f
+            setCenterTextSize(16F)
+            transparentCircleRadius = 0F
+            centerTextRadiusPercent = 90F
 
             setDrawCenterText(true)
 
