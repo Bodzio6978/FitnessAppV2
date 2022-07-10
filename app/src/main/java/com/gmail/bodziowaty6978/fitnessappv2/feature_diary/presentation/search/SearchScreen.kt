@@ -8,6 +8,7 @@ import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
@@ -18,7 +19,9 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.gmail.bodziowaty6978.fitnessappv2.R
 import com.gmail.bodziowaty6978.fitnessappv2.common.data.singleton.CurrentDate
 import com.gmail.bodziowaty6978.fitnessappv2.common.presentation.ui.theme.Beige1
+import com.gmail.bodziowaty6978.fitnessappv2.common.presentation.ui.theme.BlueViolet3
 import com.gmail.bodziowaty6978.fitnessappv2.common.presentation.ui.theme.LightRed
+import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.presentation.search.componens.BottomSearchAddItem
 import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.presentation.search.componens.SearchButton
 import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.presentation.search.componens.SearchProductItem
 import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.presentation.search.componens.SearchTopSection
@@ -50,20 +53,47 @@ fun SearchScreen(
                     contentDescription = "search"
                 )
             }
+        },
+        bottomBar = {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .shadow(elevation = 10.dp)
+            ) {
+                BottomSearchAddItem(
+                    modifier = Modifier.weight(1F),
+                    onClick = {
+                        viewModel.onEvent(SearchEvent.ClickedNewProduct(mealName = mealName))
+                    },
+                    name = stringResource(id = R.string.product),
+                    color = BlueViolet3
+                )
+
+                BottomSearchAddItem(
+                    modifier = Modifier.weight(1F),
+                    onClick = {
+
+                    },
+                    name = stringResource(id = R.string.recipe),
+                    color = Color.DarkGray,
+                    textColor = Color.DarkGray
+                )
+            }
         }
 
     ) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
+                .padding(it)
         ) {
             SearchTopSection(
                 searchState = searchBarState,
                 mealName = mealName,
                 date = CurrentDate.dateModel(LocalContext.current).valueToDisplay
                     ?: CurrentDate.dateModel(LocalContext.current).date,
-                onEvent = {
-                    viewModel.onEvent(it)
+                onEvent = { searchEvent ->
+                    viewModel.onEvent(searchEvent)
                 }
             )
 
@@ -105,39 +135,47 @@ fun SearchScreen(
                     }
                 )
             }
-            
+
             Spacer(modifier = Modifier.height(16.dp))
 
-            if (searchState is SearchState.Success){
+            when (searchState) {
+                is SearchState.Success -> {
+                    val items = searchState.products
 
-                val items = searchState.products
-
-                LazyColumn(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                ){
-                    items(items.size){
-                        SearchProductItem(product = items[it].product) {
-                            viewModel.onEvent(SearchEvent.ClickedSearchItem(items[it]))
+                    LazyColumn(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                    ) {
+                        items(items.size) { itemPosition ->
+                            SearchProductItem(product = items[itemPosition].product) {
+                                viewModel.onEvent(
+                                    SearchEvent.ClickedSearchItem(
+                                        item = items[itemPosition],
+                                        mealName = mealName
+                                    )
+                                )
+                            }
                         }
                     }
                 }
-            }else if(searchState is SearchState.Error){
-                Text(
-                    text = searchState.message,
-                    style = MaterialTheme.typography.body2.copy(
-                        color = LightRed
-                    ),
-                    modifier = Modifier
-                        .padding(start = 20.dp)
-                )
-            }else{
-                Text(
-                    text = stringResource(id = R.string.searching_for_products),
-                    style = MaterialTheme.typography.body2,
-                    modifier = Modifier
-                        .padding(start = 20.dp)
-                )
+                is SearchState.Error -> {
+                    Text(
+                        text = searchState.message,
+                        style = MaterialTheme.typography.body2.copy(
+                            color = LightRed
+                        ),
+                        modifier = Modifier
+                            .padding(start = 20.dp)
+                    )
+                }
+                else -> {
+                    Text(
+                        text = stringResource(id = R.string.searching_for_products),
+                        style = MaterialTheme.typography.body2,
+                        modifier = Modifier
+                            .padding(start = 20.dp)
+                    )
+                }
             }
         }
     }

@@ -1,6 +1,6 @@
 package com.gmail.bodziowaty6978.fitnessappv2.feature_diary.domain.model
 
-import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.domain.util.NutritionType
+import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.presentation.util.NutritionType
 
 
 data class Meal(

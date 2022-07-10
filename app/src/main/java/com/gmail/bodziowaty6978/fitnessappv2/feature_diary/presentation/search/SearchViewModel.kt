@@ -57,8 +57,10 @@ class SearchViewModel @Inject constructor(
                 )
             }
             is SearchEvent.ClickedSearchItem -> {
-                val clickedItem = event.item
-                navigator.navigate(NavigationActions.SearchScreen.searchToProduct(clickedItem))
+                navigator.navigate(NavigationActions.SearchScreen.searchToProduct(
+                    productWithId = event.item,
+                    mealName = event.mealName
+                ))
             }
         }
     }

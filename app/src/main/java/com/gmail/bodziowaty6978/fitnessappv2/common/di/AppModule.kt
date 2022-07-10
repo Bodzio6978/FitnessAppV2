@@ -171,10 +171,12 @@ object AppModule {
     @Provides
     fun provideSearchForProductsUseCase(
         diaryRepository: DiaryRepository,
-        resourceProvider: ResourceProvider
+        resourceProvider: ResourceProvider,
+        getDiaryHistory: GetDiaryHistory
     ) : SearchForProducts = SearchForProducts(
         diaryRepository = diaryRepository,
-        resourceProvider = resourceProvider
+        resourceProvider = resourceProvider,
+        getDiaryHistory = getDiaryHistory
     )
 
     @Singleton

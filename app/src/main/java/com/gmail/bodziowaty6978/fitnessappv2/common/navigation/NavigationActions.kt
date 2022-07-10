@@ -113,11 +113,20 @@ object NavigationActions {
         fun searchToDiary() = object : NavigationAction{
             override val destination: String = BottomBarScreen.Diary.route
         }
-        fun searchToProduct(productWithId: Parcelable) = object : NavigationAction{
-            override val destination: String = Screen.ProductScreen.route
+        fun searchToProduct(productWithId: Parcelable, mealName: String) = object : NavigationAction{
+            override val destination: String = Screen.ProductScreen.route + "?mealName=$mealName"
             // really weird I don`t know why it works but it works
             override val parcelableArguments: Map<String, Parcelable>
                 get() = mapOf(Pair("productWithId",productWithId),Pair("ProductWithId",productWithId))
+        }
+    }
+
+
+    //Product
+    object ProductScreen{
+        fun productToDiary() = object : NavigationAction {
+            override val destination: String = BottomBarScreen.Diary.route
+            override val navOptions: NavOptions = NavOptions.Builder().setPopUpTo(0,true).build()
         }
     }
 }

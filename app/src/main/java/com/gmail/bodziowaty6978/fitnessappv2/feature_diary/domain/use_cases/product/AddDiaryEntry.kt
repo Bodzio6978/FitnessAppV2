@@ -28,6 +28,7 @@ class AddDiaryEntry(
             time = System.currentTimeMillis(),
             brand = product.brand,
             weight = weight,
+            unit = product.unit.toString(),
             nutritionValues = nutritionValues
         )
 

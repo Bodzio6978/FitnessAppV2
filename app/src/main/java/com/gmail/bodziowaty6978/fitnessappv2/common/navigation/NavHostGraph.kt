@@ -27,6 +27,7 @@ import com.gmail.bodziowaty6978.fitnessappv2.feature_auth.presentation.util.Auth
 import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.domain.model.Product
 import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.domain.model.ProductWithId
 import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.presentation.diary.DiaryScreen
+import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.presentation.new_product.NewProductScreen
 import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.presentation.product.ProductScreen
 import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.presentation.search.SearchScreen
 import com.gmail.bodziowaty6978.fitnessappv2.feature_introduction.presentation.IntroductionScreen
@@ -180,6 +181,21 @@ fun NavHostGraph(
                         )
                     }
 
+                }
+
+                composable(
+                    Screen.NewProductScreen.route + "?mealName={mealName}",
+                    arguments = listOf(
+                        navArgument(
+                            name = "mealName"
+                        ) {
+                            type = NavType.StringType
+                            defaultValue = "Breakfast"
+                        }
+                    )
+                ){
+                    val mealName = it.arguments?.getString("mealName")
+                    NewProductScreen(mealName = mealName!!)
                 }
             }
         }

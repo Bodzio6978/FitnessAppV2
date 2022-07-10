@@ -8,6 +8,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
 @Composable
@@ -15,7 +16,8 @@ fun NutritionBottomItem(
     currentValue: Int,
     wantedValue: Int,
     name: String,
-    modifier: Modifier
+    modifier: Modifier,
+    progressColor:Color = MaterialTheme.colors.primary
 ) {
 
     Column(
@@ -31,7 +33,7 @@ fun NutritionBottomItem(
 
         LinearProgressIndicator(
             progress = currentValue.toFloat() / wantedValue.toFloat(),
-            color = MaterialTheme.colors.primaryVariant
+            color = progressColor
         )
 
         Text(

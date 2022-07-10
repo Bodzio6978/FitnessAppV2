@@ -1,7 +1,6 @@
 package com.gmail.bodziowaty6978.fitnessappv2.feature_diary.presentation.diary.components
 
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.Divider
 import androidx.compose.material.MaterialTheme
@@ -53,68 +52,42 @@ fun DiaryEntryItem(
                     )
                 }
 
-                Divider(modifier = Modifier
-                    .height(4.dp),
-                color = Color.Transparent)
+                Divider(
+                    modifier = Modifier
+                        .height(4.dp),
+                    color = Color.Transparent
+                )
 
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(horizontal = 13.dp),
+                        .padding(horizontal = 15.dp),
                     horizontalArrangement = Arrangement.SpaceBetween
-                ){
+                ) {
+                    Text(
+                        text = "Kcal:" + diaryEntry.nutritionValues.calories.toString(),
+                        style = MaterialTheme.typography.body2,
+                        color = TextGrey,
+                    )
 
-                    Card(
-                        elevation = 2.dp,
-                        shape = RoundedCornerShape(50),
-                    ) {
-                        Text(
-                            text = "Kcal:" + diaryEntry.nutritionValues.calories.toString(),
-                            style = MaterialTheme.typography.body2,
-                            color = TextGrey,
-                            modifier = Modifier
-                                .padding(horizontal = 6.dp, vertical = 3.dp)
-                        )
-                    }
+                    Text(
+                        text = "Carb:" + diaryEntry.nutritionValues.carbohydrates.toString(),
+                        style = MaterialTheme.typography.body2,
+                        color = TextGrey
+                    )
 
-                    Card(
-                        elevation = 2.dp,
-                        shape = RoundedCornerShape(50),
-                    ) {
-                        Text(
-                            text = "Carb:" + diaryEntry.nutritionValues.carbohydrates.toString(),
-                            style = MaterialTheme.typography.body2,
-                            color = TextGrey,
-                            modifier = Modifier
-                                .padding(horizontal = 6.dp, vertical = 3.dp)
-                        )
-                    }
+                    Text(
+                        text = "Prot:" + diaryEntry.nutritionValues.protein.toString(),
+                        style = MaterialTheme.typography.body2,
+                        color = TextGrey
+                    )
 
-                    Card(
-                        elevation = 2.dp,
-                        shape = RoundedCornerShape(50),
-                    ) {
-                        Text(
-                            text = "Prot:" + diaryEntry.nutritionValues.protein.toString(),
-                            style = MaterialTheme.typography.body2,
-                            color = TextGrey,
-                            modifier = Modifier
-                                .padding(horizontal = 6.dp, vertical = 3.dp)
-                        )
-                    }
+                    Text(
+                        text = "Fat:" + diaryEntry.nutritionValues.fat.toString(),
+                        style = MaterialTheme.typography.body2,
+                        color = TextGrey
+                    )
 
-                    Card(
-                        elevation = 2.dp,
-                        shape = RoundedCornerShape(50),
-                    ) {
-                        Text(
-                            text = "Fat:" + diaryEntry.nutritionValues.fat.toString(),
-                            style = MaterialTheme.typography.body2,
-                            color = TextGrey,
-                            modifier = Modifier
-                                .padding(horizontal = 6.dp, vertical = 3.dp)
-                        )
-                    }
                 }
             }
         }

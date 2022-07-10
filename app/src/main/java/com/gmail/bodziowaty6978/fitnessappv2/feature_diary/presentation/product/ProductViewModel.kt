@@ -57,6 +57,7 @@ class ProductViewModel @Inject constructor(
                     )
                     if (addingResult is CustomResult.Success){
                         productUseCases.saveProductToHistory(productWithId = event.productWithId)
+                        navigator.navigate(NavigationActions.ProductScreen.productToDiary() )
                     }
                 }
 

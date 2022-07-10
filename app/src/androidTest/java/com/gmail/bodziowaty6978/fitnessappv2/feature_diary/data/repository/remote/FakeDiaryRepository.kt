@@ -47,7 +47,7 @@ class FakeDiaryRepository: DiaryRepository {
     }
 
     override suspend fun getLocalProductHistory(): Resource<List<ProductWithId>> {
-        return Resource.Success(data = emptyList())
+        return Resource.Error(data = emptyList(), uiText = "")
     }
 
     override suspend fun saveProductToHistory(productWithId: ProductWithId): CustomResult {
