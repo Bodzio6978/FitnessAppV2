@@ -18,11 +18,11 @@ class AddDiaryEntry(
         productWithId: ProductWithId,
         mealName: String,
         dateModel: DateModel,
-        weight: Double?,
+        weight: Int?,
         nutritionValues: NutritionValues,
     ): CustomResult {
         return weight?.let {
-            if (weight==0.0){
+            if (weight==0){
                 CustomResult.Error(
                     message = resourceProvider.getString(R.string.incorrect_weight_was_entered)
                 )

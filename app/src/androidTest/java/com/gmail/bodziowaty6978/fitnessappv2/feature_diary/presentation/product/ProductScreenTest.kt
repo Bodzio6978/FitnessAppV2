@@ -48,7 +48,7 @@ internal class ProductScreenTest {
 
     @Test
     fun weightEntered_TextUpdates(){
-        val text = "12,5"
+        val text = "12"
         val weightTextField = composeRule.onNodeWithTag(composeRule.activity.getString(R.string.WEIGHT_TEXT_FIELD))
         weightTextField.assertIsDisplayed().performTextClearance()
         weightTextField.performTextInput(text)
@@ -64,5 +64,24 @@ internal class ProductScreenTest {
             weightButton.performClick()
             weightTextField.assert(hasText(i.toString()))
         }
+    }
+
+    @Test
+    fun clickedAddProductButton_EmptyWeight_SnackbarVisible(){
+        val addProductButton = composeRule.onNodeWithTag(composeRule.activity.getString(R.string.add_product))
+        val weightTextField = composeRule.onNodeWithTag(composeRule.activity.getString(R.string.WEIGHT_TEXT_FIELD))
+        weightTextField.performTextClearance()
+        addProductButton.performClick()
+        composeRule.onNodeWithTag(composeRule.activity.getString(R.string.incorrect_weight_was_entered))
+    }
+
+    @Test
+    fun clickedAddProductButton_IncorrectWeight_SnackbarVisible(){
+        val addProductButton = composeRule.onNodeWithTag(composeRule.activity.getString(R.string.add_product))
+        val weightTextField = composeRule.onNodeWithTag(composeRule.activity.getString(R.string.WEIGHT_TEXT_FIELD))
+        weightTextField.performTextClearance()
+        weightTextField.performTextInput("abc")
+        addProductButton.performClick()
+        composeRule.onNodeWithTag(composeRule.activity.getString(R.string.incorrect_weight_was_entered))
     }
 }

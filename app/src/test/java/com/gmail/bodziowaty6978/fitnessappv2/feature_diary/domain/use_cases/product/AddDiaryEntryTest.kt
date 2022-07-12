@@ -57,7 +57,7 @@ internal class AddDiaryEntryTest{
     fun weight0_ResultError() = runTest{
         val result = addDiaryEntry(
             productWithId = ProductWithId(productId = "", product = Product()),
-            weight = 0.0,
+            weight = 0,
             dateModel = DateModel(),
             nutritionValues = NutritionValues(),
             mealName = ""
@@ -69,7 +69,7 @@ internal class AddDiaryEntryTest{
     fun correctData_ResultSuccess() = runTest {
         val result = addDiaryEntry(
             productWithId = ProductWithId(productId = "", product = Product()),
-            weight = 10.0,
+            weight = 10,
             dateModel = DateModel(),
             nutritionValues = NutritionValues(),
             mealName = ""

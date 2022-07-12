@@ -10,6 +10,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.gmail.bodziowaty6978.fitnessappv2.R
@@ -32,11 +33,20 @@ fun ProductScreen(
     val weightState = viewModel.weightState
     val nutritionData = viewModel.nutritionDataState.value
 
+    val scaffoldState = rememberScaffoldState()
+
     LaunchedEffect(key1 = true) {
         viewModel.initializeNutritionData(product)
     }
 
+    LaunchedEffect(key1 = true){
+        viewModel.errorState.collect{
+            scaffoldState.snackbarHostState.showSnackbar(it)
+        }
+    }
+
     Scaffold(
+        scaffoldState = scaffoldState,
         floatingActionButton = {
             ExtendedFloatingActionButton(
                 text = {
@@ -60,7 +70,9 @@ fun ProductScreen(
                         contentDescription = "Add"
                     )
                 },
-                backgroundColor = LightRed
+                backgroundColor = LightRed,
+                modifier = Modifier
+                    .testTag(stringResource(id = R.string.add_product))
             )
         }
     ) {

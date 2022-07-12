@@ -41,13 +41,13 @@ class ProductViewModel @Inject constructor(
         when (event) {
             is ProductEvent.EnteredWeight -> {
                 viewModelScope.launch(Dispatchers.Default) {
-                    val enteredValue = event.value.replace(",", ".").toDoubleOrNull()
+                    val enteredValue = event.value.replace(",", "").replace(".", "").toIntOrNull()
 
                     enteredValue?.let {
                         _weightState.value = it.toString()
                         _nutritionDataState.value = nutritionDataState.value.copy(
                             nutritionValues = productUseCases.calculateNutritionValues(
-                                weight = it,
+                                weight = it.toDouble(),
                                 product = event.product
                             )
                         )
@@ -60,7 +60,7 @@ class ProductViewModel @Inject constructor(
                     val addingResult = productUseCases.addDiaryEntry(
                         productWithId = event.productWithId,
                         mealName = event.mealName,
-                        weight = _weightState.value.replace(",", ".").toDoubleOrNull(),
+                        weight = _weightState.value.toIntOrNull(),
                         dateModel = CurrentDate.dateModel(resourceProvider = resourceProvider),
                         nutritionValues = _nutritionDataState.value.nutritionValues
                     )

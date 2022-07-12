@@ -126,10 +126,12 @@ object TestAppModule {
     @Provides
     fun provideSearchForProductsUseCase(
         diaryRepository: DiaryRepository,
-        resourceProvider: ResourceProvider
+        resourceProvider: ResourceProvider,
+        getDiaryHistory: GetDiaryHistory
     ) : SearchForProducts = SearchForProducts(
         diaryRepository = diaryRepository,
-        resourceProvider = resourceProvider
+        resourceProvider = resourceProvider,
+        getDiaryHistory = getDiaryHistory
     )
 
     @Singleton
@@ -147,12 +149,13 @@ object TestAppModule {
     @Singleton
     @Provides
     fun provideProductUseCases(
-        diaryRepository: DiaryRepository
+        diaryRepository: DiaryRepository,
+        resourceProvider: ResourceProvider
     ): ProductUseCases =
         ProductUseCases(
             calculateNutritionValues = com.gmail.bodziowaty6978.fitnessappv2.feature_diary.domain.use_cases.product.CalculateNutritionValues(),
             createPieChartData = CreatePieChartData(),
-            addDiaryEntry = AddDiaryEntry(diaryRepository),
+            addDiaryEntry = AddDiaryEntry(diaryRepository, resourceProvider = resourceProvider),
             saveProductToHistory = SaveProductToHistory(diaryRepository)
 
         )
