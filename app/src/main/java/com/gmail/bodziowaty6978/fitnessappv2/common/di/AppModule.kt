@@ -194,12 +194,13 @@ object AppModule {
     @Singleton
     @Provides
     fun provideProductUseCases(
-        diaryRepository: DiaryRepository
+        diaryRepository: DiaryRepository,
+         resourceProvider: ResourceProvider
     ): ProductUseCases =
         ProductUseCases(
             calculateNutritionValues = com.gmail.bodziowaty6978.fitnessappv2.feature_diary.domain.use_cases.product.CalculateNutritionValues(),
             createPieChartData = CreatePieChartData(),
-            addDiaryEntry = AddDiaryEntry(diaryRepository),
+            addDiaryEntry = AddDiaryEntry(diaryRepository, resourceProvider = resourceProvider),
             saveProductToHistory = SaveProductToHistory(diaryRepository)
 
         )

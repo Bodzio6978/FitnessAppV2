@@ -16,6 +16,8 @@ import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.presentation.product.
 import com.gmail.bodziowaty6978.fitnessappv2.util.TAG
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -26,24 +28,31 @@ class ProductViewModel @Inject constructor(
     private val resourceProvider: ResourceProvider
 ) : ViewModel() {
 
-    private val _weightState = mutableStateOf("100.0")
+    private val _weightState = mutableStateOf("100")
     val weightState: State<String> = _weightState
 
     private val _nutritionDataState = mutableStateOf(NutritionData())
     val nutritionDataState: State<NutritionData> = _nutritionDataState
 
+    private val _errorState = MutableSharedFlow<String>()
+    val errorState: SharedFlow<String> = _errorState
+
     fun onEvent(event: ProductEvent) {
         when (event) {
             is ProductEvent.EnteredWeight -> {
                 viewModelScope.launch(Dispatchers.Default) {
-                    val enteredValue = event.value.replace(",", ".").toDouble()
-                    _weightState.value = event.value
-                    _nutritionDataState.value = nutritionDataState.value.copy(
-                        nutritionValues = productUseCases.calculateNutritionValues(
-                            weight = enteredValue,
-                            product = event.product
+                    val enteredValue = event.value.replace(",", ".").toDoubleOrNull()
+
+                    enteredValue?.let {
+                        _weightState.value = it.toString()
+                        _nutritionDataState.value = nutritionDataState.value.copy(
+                            nutritionValues = productUseCases.calculateNutritionValues(
+                                weight = it,
+                                product = event.product
+                            )
                         )
-                    )
+                    } ?: run {_weightState.value = ""}
+
                 }
             }
             is ProductEvent.ClickedAddProduct -> {
@@ -51,13 +60,13 @@ class ProductViewModel @Inject constructor(
                     val addingResult = productUseCases.addDiaryEntry(
                         productWithId = event.productWithId,
                         mealName = event.mealName,
-                        weight = _weightState.value.replace(",",".").toDouble(),
+                        weight = _weightState.value.replace(",", ".").toDoubleOrNull(),
                         dateModel = CurrentDate.dateModel(resourceProvider = resourceProvider),
                         nutritionValues = _nutritionDataState.value.nutritionValues
                     )
-                    if (addingResult is CustomResult.Success){
+                    if (addingResult is CustomResult.Success) {
                         productUseCases.saveProductToHistory(productWithId = event.productWithId)
-                        navigator.navigate(NavigationActions.ProductScreen.productToDiary() )
+                        navigator.navigate(NavigationActions.ProductScreen.productToDiary())
                     }
                 }
 

@@ -30,9 +30,13 @@ internal class SearchForProductsTest{
         Mockito.`when`(mockDiaryRepository.searchForProducts(Mockito.anyString())).thenReturn(
             Resource.Success(data = emptyList())
         )
+        Mockito.`when`(mockDiaryRepository.getLocalProductHistory()).thenReturn(
+            Resource.Error(uiText = "")
+        )
         searchForProducts = SearchForProducts(
             diaryRepository = mockDiaryRepository,
-            resourceProvider = ResourceProvider(RuntimeEnvironment.getApplication())
+            resourceProvider = ResourceProvider(RuntimeEnvironment.getApplication()),
+            getDiaryHistory = GetDiaryHistory(mockDiaryRepository)
         )
     }
 
@@ -40,6 +44,12 @@ internal class SearchForProductsTest{
     fun searchForProducts_ResourceSuccess() = runTest{
         val result = searchForProducts("abc")
         assertTrue(result is Resource.Success)
+    }
+
+    @Test
+    fun emptyProductName_ResourceError() = runTest{
+        val result = searchForProducts("")
+        assertTrue(result is Resource.Error)
     }
 
 }

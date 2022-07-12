@@ -66,6 +66,7 @@
     <string name="nutrition_values">Nutrition values</string>
     <string name="product">Product</string>
     <string name="recipe">Recipe</string>
+    <string name="incorrect_weight_was_entered">Incorrect weight was entered</string>
 
     <string name="kcal"> Kcal</string>
     <string name="g_carb">g Carbs</string>

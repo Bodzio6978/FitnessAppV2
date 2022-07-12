@@ -5,7 +5,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class DateModel(
-    val timestamp:Long,
-    val date:String,
+    val timestamp:Long = System.currentTimeMillis(),
+    val date:String = "",
     val valueToDisplay:String? = null
 ):Parcelable
