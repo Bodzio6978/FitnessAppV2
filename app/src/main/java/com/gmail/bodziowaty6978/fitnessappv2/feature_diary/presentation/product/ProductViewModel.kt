@@ -47,7 +47,7 @@ class ProductViewModel @Inject constructor(
                         _weightState.value = it.toString()
                         _nutritionDataState.value = nutritionDataState.value.copy(
                             nutritionValues = productUseCases.calculateNutritionValues(
-                                weight = it.toDouble(),
+                                weight = it,
                                 product = event.product
                             )
                         )

@@ -15,6 +15,7 @@ import com.gmail.bodziowaty6978.fitnessappv2.feature_auth.domain.use_case.ResetP
 import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.data.repository.remote.FakeDiaryRepository
 import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.domain.repository.DiaryRepository
 import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.domain.use_cases.*
+import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.domain.use_cases.new_product.SaveNewProduct
 import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.domain.use_cases.product.AddDiaryEntry
 import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.domain.use_cases.product.CreatePieChartData
 import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.domain.use_cases.product.ProductUseCases
@@ -35,7 +36,7 @@ object TestAppModule {
 
     @Singleton
     @Provides
-    fun provideNavigator():Navigator = ComposeCustomNavigator()
+    fun provideNavigator(): Navigator = ComposeCustomNavigator()
 
     @Provides
     @Singleton
@@ -64,7 +65,10 @@ object TestAppModule {
 
     @Provides
     @Singleton
-    fun provideAuthUseCases(authRepository: AuthRepository, resourceProvider: ResourceProvider): AuthUseCases = AuthUseCases(
+    fun provideAuthUseCases(
+        authRepository: AuthRepository,
+        resourceProvider: ResourceProvider
+    ): AuthUseCases = AuthUseCases(
         logInUser = LogInUser(
             repository = authRepository,
             resourceProvider = resourceProvider
@@ -95,7 +99,8 @@ object TestAppModule {
 
     @Provides
     @Singleton
-    fun provideCalculateNutritionValuesUseCase(): CalculateNutritionValues = CalculateNutritionValues()
+    fun provideCalculateNutritionValuesUseCase(): CalculateNutritionValues =
+        CalculateNutritionValues()
 
     @Provides
     @Singleton
@@ -128,7 +133,7 @@ object TestAppModule {
         diaryRepository: DiaryRepository,
         resourceProvider: ResourceProvider,
         getDiaryHistory: GetDiaryHistory
-    ) : SearchForProducts = SearchForProducts(
+    ): SearchForProducts = SearchForProducts(
         diaryRepository = diaryRepository,
         resourceProvider = resourceProvider,
         getDiaryHistory = getDiaryHistory
@@ -136,11 +141,15 @@ object TestAppModule {
 
     @Singleton
     @Provides
-    fun provideGetDiaryHistoryUseCase(diaryRepository: DiaryRepository) : GetDiaryHistory = GetDiaryHistory(diaryRepository)
+    fun provideGetDiaryHistoryUseCase(diaryRepository: DiaryRepository): GetDiaryHistory =
+        GetDiaryHistory(diaryRepository)
 
     @Singleton
     @Provides
-    fun provideDiarySearchUseCases(diaryRepository: DiaryRepository, searchForProducts: SearchForProducts): SearchDiaryUseCases =
+    fun provideDiarySearchUseCases(
+        diaryRepository: DiaryRepository,
+        searchForProducts: SearchForProducts
+    ): SearchDiaryUseCases =
         SearchDiaryUseCases(
             searchForProducts = searchForProducts,
             getDiaryHistory = GetDiaryHistory(diaryRepository)
@@ -159,4 +168,14 @@ object TestAppModule {
             saveProductToHistory = SaveProductToHistory(diaryRepository)
 
         )
+
+    @Singleton
+    @Provides
+    fun provideSaveNewProductUseCase(
+        diaryRepository: DiaryRepository,
+        resourceProvider: ResourceProvider
+    ): SaveNewProduct = SaveNewProduct(
+        diaryRepository = diaryRepository,
+        resourceProvider = resourceProvider
+    )
 }

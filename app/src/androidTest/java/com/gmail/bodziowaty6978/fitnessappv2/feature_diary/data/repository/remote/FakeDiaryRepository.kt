@@ -53,4 +53,8 @@ class FakeDiaryRepository: DiaryRepository {
     override suspend fun saveProductToHistory(productWithId: ProductWithId): CustomResult {
         return CustomResult.Success
     }
+
+    override suspend fun saveNewProduct(product: Product): CustomResult {
+        return CustomResult.Success
+    }
 }

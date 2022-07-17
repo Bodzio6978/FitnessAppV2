@@ -110,9 +110,10 @@ object NavigationActions {
 
     //Search
     object SearchScreen{
-        fun searchToDiary() = object : NavigationAction{
-            override val destination: String = BottomBarScreen.Diary.route
+        fun searchToNewProduct(mealName: String) = object : NavigationAction{
+            override val destination: String = Screen.NewProductScreen.route
         }
+
         fun searchToProduct(productWithId: Parcelable, mealName: String) = object : NavigationAction{
             override val destination: String = Screen.ProductScreen.route + "?mealName=$mealName"
             // really weird I don`t know why it works but it works
@@ -128,5 +129,8 @@ object NavigationActions {
             override val destination: String = BottomBarScreen.Diary.route
             override val navOptions: NavOptions = NavOptions.Builder().setPopUpTo(0,true).build()
         }
+    }
+
+    object NewProductScreen{
     }
 }

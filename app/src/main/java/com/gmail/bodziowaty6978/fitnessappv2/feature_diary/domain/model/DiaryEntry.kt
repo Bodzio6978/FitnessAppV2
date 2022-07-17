@@ -12,7 +12,6 @@ data class DiaryEntry(
     val mealName: String = "",
     val date: String = Date(System.currentTimeMillis()).toString(),
     val time:Long = System.currentTimeMillis(),
-    val brand: String? = "",
     val weight: Int = 0,
     val unit: String = "g",
     val nutritionValues: NutritionValues = NutritionValues()):Parcelable

@@ -66,20 +66,7 @@ fun ProductNameSection(
                                 color = TextWhite
                             ),
                         )
-
-                        product.brand?.let {
-                            Text(
-                                text = "(${it})",
-                                style = MaterialTheme.typography.body2.copy(
-                                    color = TextGrey
-                                )
-                            )
-                        }
-
-
                     }
-
-
                 }
 
                 Row(

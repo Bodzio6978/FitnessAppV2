@@ -67,6 +67,18 @@
     <string name="product">Product</string>
     <string name="recipe">Recipe</string>
     <string name="incorrect_weight_was_entered">Incorrect weight was entered</string>
+    <string name="in_container">In Container</string>
+    <string name="in_average">In Average</string>
+    <string name="in_100g">In 100 g</string>
+    <string name="in_100ml">In 100 ml</string>
+    <string name="container_weight">Container weight</string>
+    <string name="average_weight">Average weight</string>
+    <string name="please_make_product_name_is_not_empty">Please make sure product name is not empty</string>
+
+    <string-array name="units">
+        <item>g</item>
+        <item>ml</item>
+    </string-array>
 
     <string name="kcal"> Kcal</string>
     <string name="g_carb">g Carbs</string>
@@ -75,7 +87,7 @@
     <string name="fatStar"> Fat*</string>
     <string name="delete">delete</string>
     <string name="meal_has_been_removed">Meal Has Been Removed</string>
-    <string name="name">Name*</string>
+    <string name="name">Name</string>
     <string name="carbohydratesStar">Carbohydrates*</string>
     <string name="proteinStar">Protein*</string>
     <string name="brand">Brand</string>
@@ -85,9 +97,7 @@
     <string name="carbs">Carbs</string>
     <string name="protein">Protein</string>
 
-    <string name="container_weight">Container weight</string>
-    <string name="portion_weight_star">Portion weight*</string>
-    <string name="container_weight_star">Container weight*</string>
+
     <string name="add">Add</string>
     <string name="add_button">Add button</string>
 
@@ -116,11 +126,7 @@
     <string name="please_make_sure_you_have_entered_your_height">Please Make Sure You Have Entered Your Height</string>
     <string name="search">SEARCH</string>
     <string name="back_button">Back button</string>
-    <string name="in_container">In container</string>
-    <string name="in_portion">In portion</string>
 
-    <string name="in_100g">In 100 g</string>
-    <string name="in_100ml">In 100 ml</string>
 
     <string name="nutrition_values_in">Nutrition values in:</string>
     <string name="g">g</string>

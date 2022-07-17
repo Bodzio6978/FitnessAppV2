@@ -6,7 +6,7 @@ import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.domain.model.Product
 
 class CalculateNutritionValues{
 
-    operator fun invoke(weight: Double, product: Product): NutritionValues {
+    operator fun invoke(weight: Int, product: Product): NutritionValues {
         val nutritionValues = product.nutritionValues
 
         val newCalories = (nutritionValues.calories.toDouble() / 100.0 * weight).toInt()

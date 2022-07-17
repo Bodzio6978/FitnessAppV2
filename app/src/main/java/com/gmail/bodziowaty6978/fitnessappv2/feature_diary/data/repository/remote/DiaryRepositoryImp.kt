@@ -1,6 +1,5 @@
 package com.gmail.bodziowaty6978.fitnessappv2.feature_diary.data.repository.remote
 
-import android.util.Log
 import com.gmail.bodziowaty6978.fitnessappv2.R
 import com.gmail.bodziowaty6978.fitnessappv2.common.data.room.dao.ProductDao
 import com.gmail.bodziowaty6978.fitnessappv2.common.util.Constants
@@ -12,7 +11,6 @@ import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.domain.model.DiaryEnt
 import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.domain.model.Product
 import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.domain.model.ProductWithId
 import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.domain.repository.DiaryRepository
-import com.gmail.bodziowaty6978.fitnessappv2.util.TAG
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import kotlinx.coroutines.tasks.await
@@ -39,6 +37,7 @@ class DiaryRepositoryImp(
             }
             Resource.Success(mappedEntries)
         }catch (e:Exception){
+            e.printStackTrace()
             Resource.Error(uiText = e.message.toString(), data = emptyList())
         }
     }
@@ -48,7 +47,7 @@ class DiaryRepositoryImp(
             productDao.saveProductToHistory(productWithId = productWithId)
             CustomResult.Success
         }catch (e:Exception){
-            Log.e(TAG,e.message.toString())
+            e.printStackTrace()
             CustomResult.Error(message = resourceProvider.getString(R.string.unknown_error))
         }
     }
@@ -58,6 +57,7 @@ class DiaryRepositoryImp(
             val result = productDao.getHistory()
             Resource.Success(data = result)
         }catch (e:Exception){
+            e.printStackTrace()
             Resource.Error(data = emptyList(), uiText = e.message.toString())
         }
     }
@@ -70,6 +70,7 @@ class DiaryRepositoryImp(
             }
             return Resource.Success(data = mappedQuery)
         }catch (e:Exception){
+            e.printStackTrace()
             Resource.Error(uiText = e.message.toString(), data = emptyList())
         }
     }
@@ -79,8 +80,18 @@ class DiaryRepositoryImp(
             journalCollection.add(diaryEntry)
             CustomResult.Success
         }catch (e:Exception){
-            Log.e(TAG,e.message.toString())
+            e.printStackTrace()
             CustomResult.Error(resourceProvider.getString(R.string.unknown_error))
+        }
+    }
+
+    override suspend fun saveNewProduct(product: Product): CustomResult {
+        return try {
+            productCollection.add(product)
+            CustomResult.Success
+        }catch (e:Exception){
+            e.printStackTrace()
+            CustomResult.Error(message = resourceProvider.getString(R.string.unknown_error))
         }
     }
 

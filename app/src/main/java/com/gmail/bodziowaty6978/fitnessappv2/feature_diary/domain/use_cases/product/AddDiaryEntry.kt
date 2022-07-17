@@ -35,7 +35,6 @@ class AddDiaryEntry(
                     mealName = mealName,
                     date = dateModel.date,
                     time = System.currentTimeMillis(),
-                    brand = product.brand,
                     weight = it,
                     unit = product.unit,
                     nutritionValues = nutritionValues

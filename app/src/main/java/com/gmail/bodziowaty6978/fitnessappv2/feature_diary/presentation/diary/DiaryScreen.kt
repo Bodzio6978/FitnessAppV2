@@ -15,7 +15,6 @@ import com.gmail.bodziowaty6978.fitnessappv2.datastoreNutrition
 import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.presentation.diary.components.CalendarSection
 import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.presentation.diary.components.DiaryMealSection
 import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.presentation.diary.components.NutritionBottomSection
-import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.presentation.diary.components.NutritionTopSection
 
 @Composable
 fun DiaryScreen(
@@ -56,7 +55,6 @@ fun DiaryScreen(
                     )
                 }
             )
-            NutritionTopSection()
 
             Column(
                 modifier = Modifier

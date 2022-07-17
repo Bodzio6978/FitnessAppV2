@@ -62,6 +62,9 @@ class SearchViewModel @Inject constructor(
                     mealName = event.mealName
                 ))
             }
+            is SearchEvent.ClickedNewProduct -> {
+                navigator.navigate(NavigationActions.SearchScreen.searchToNewProduct(event.mealName))
+            }
         }
     }
     fun initializeHistory(){
