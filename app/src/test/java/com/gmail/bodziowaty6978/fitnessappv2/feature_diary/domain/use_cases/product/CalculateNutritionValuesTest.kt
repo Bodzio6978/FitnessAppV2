@@ -17,7 +17,7 @@ internal class CalculateNutritionValuesTest{
     @Test
     fun randomValues1_CorrectNewValues(){
         val newValues = calculateNutritionValues(
-            weight = 100.0,
+            weight = 100,
             product = Product(
                 nutritionValues = NutritionValues(
                     calories = 100,
@@ -36,7 +36,7 @@ internal class CalculateNutritionValuesTest{
     @Test
     fun randomValues2_CorrectNewValues(){
         val newValues = calculateNutritionValues(
-            weight = 170.0,
+            weight = 170,
             product = Product(
                 nutritionValues = NutritionValues(
                     calories = 19,
@@ -55,7 +55,7 @@ internal class CalculateNutritionValuesTest{
     @Test
     fun randomValues3_CorrectNewValues(){
         val newValues = calculateNutritionValues(
-            weight = 60.0,
+            weight = 60,
             product = Product(
                 nutritionValues = NutritionValues(
                     calories = 92,

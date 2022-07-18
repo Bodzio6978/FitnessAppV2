@@ -185,7 +185,6 @@ internal class NewProductScreenTest {
     fun inContainer_ContainerWeightTextChanged(){
         val inContainer = composeRule.onNodeWithTag(composeRule.activity.getString(R.string.in_container))
         inContainer.performClick().performClick()
-        Thread.sleep(10000)
         composeRule.onNodeWithText(composeRule.activity.getString(R.string.container_weight)+"*").assertIsDisplayed()
     }
 
@@ -193,7 +192,6 @@ internal class NewProductScreenTest {
     fun inAverage_ContainerWeightTextChanged(){
         val inAverage = composeRule.onNodeWithTag(composeRule.activity.getString(R.string.in_average))
         inAverage.performClick().performClick()
-        Thread.sleep(10000)
         composeRule.onNodeWithText(composeRule.activity.getString(R.string.average_weight)+"*").assertIsDisplayed()
     }
 
@@ -217,5 +215,19 @@ internal class NewProductScreenTest {
         composeRule.onNodeWithTag(dropdownMenuItems[0]+"DROPDOWN_MENU_ITEM").performClick()
 
         composeRule.onNodeWithText(composeRule.activity.getString(R.string.in_100g)).assertIsDisplayed()
+    }
+
+    @Test
+    fun selectItemFromDropDownMenu_CorrectItemDisplayed(){
+        val dropdownMenuItems = composeRule.activity.resources.getStringArray(R.array.units).toMutableList()
+        val dropDownMenu = composeRule.onNodeWithTag(composeRule.activity.getString(R.string.container_weight)+"DROPDOWN_MENU")
+
+        composeRule.onNodeWithText(dropdownMenuItems[0]).assertIsDisplayed()
+        dropdownMenuItems.removeAt(0)
+        dropdownMenuItems.forEach {
+            dropDownMenu.performClick()
+            composeRule.onNodeWithTag(it+"DROPDOWN_MENU_ITEM").performClick()
+            composeRule.onNodeWithText(it).assertIsDisplayed()
+        }
     }
 }
