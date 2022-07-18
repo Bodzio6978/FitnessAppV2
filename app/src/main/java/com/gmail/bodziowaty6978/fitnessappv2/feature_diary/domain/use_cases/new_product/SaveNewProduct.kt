@@ -1,15 +1,17 @@
 package com.gmail.bodziowaty6978.fitnessappv2.feature_diary.domain.use_cases.new_product
 
+import android.util.Log
 import com.gmail.bodziowaty6978.fitnessappv2.R
-import com.gmail.bodziowaty6978.fitnessappv2.common.domain.model.NutritionValues
 import com.gmail.bodziowaty6978.fitnessappv2.common.util.CustomResult
 import com.gmail.bodziowaty6978.fitnessappv2.common.util.ResourceProvider
 import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.domain.model.Product
 import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.domain.repository.DiaryRepository
+import com.gmail.bodziowaty6978.fitnessappv2.util.TAG
 
 class SaveNewProduct(
     private val diaryRepository: DiaryRepository,
-    private val resourceProvider: ResourceProvider
+    private val resourceProvider: ResourceProvider,
+    private val calculateNutritionValuesIn100G: CalculateNutritionValuesIn100G
 ) {
 
     suspend operator fun invoke(
@@ -28,6 +30,12 @@ class SaveNewProduct(
         val proteinValue = protein.toDoubleOrNull()
         val fatValue = fat.toDoubleOrNull()
         val containerWeightValue = containerWeight.toIntOrNull()
+
+        Log.e(TAG,caloriesValue.toString())
+        Log.e(TAG,carbohydratesValue.toString())
+        Log.e(TAG,proteinValue.toString())
+        Log.e(TAG,fatValue.toString())
+        Log.e(TAG,containerWeightValue.toString())
 
         if (name.isBlank()) {
             return CustomResult.Error(resourceProvider.getString(R.string.please_make_product_name_is_not_empty))
@@ -50,11 +58,12 @@ class SaveNewProduct(
             position = position,
             unit = unit,
             barcode = barcode.ifBlank { null },
-            nutritionValues = NutritionValues(
+            nutritionValues = calculateNutritionValuesIn100G(
                 calories = caloriesValue,
                 carbohydrates = carbohydratesValue,
                 protein = proteinValue,
-                fat = fatValue
+                fat = fatValue,
+                weight = containerWeightValue
             )
         )
 

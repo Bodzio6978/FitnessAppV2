@@ -1,5 +1,6 @@
 package com.gmail.bodziowaty6978.fitnessappv2.feature_diary.presentation.new_product
 
+import android.util.Log
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material.icons.filled.ArrowDropUp
@@ -8,8 +9,10 @@ import androidx.lifecycle.viewModelScope
 import com.gmail.bodziowaty6978.fitnessappv2.R
 import com.gmail.bodziowaty6978.fitnessappv2.common.navigation.NavigationActions
 import com.gmail.bodziowaty6978.fitnessappv2.common.navigation.navigator.Navigator
+import com.gmail.bodziowaty6978.fitnessappv2.common.util.CustomResult
 import com.gmail.bodziowaty6978.fitnessappv2.common.util.ResourceProvider
 import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.domain.use_cases.new_product.SaveNewProduct
+import com.gmail.bodziowaty6978.fitnessappv2.util.TAG
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -152,10 +155,14 @@ class NewProductViewModel @Inject constructor(
 
             is NewProductEvent.ClickedSaveButton -> {
                 viewModelScope.launch(Dispatchers.IO) {
+                    _state.update {
+                        it.copy(isLoading = true)
+                    }
+
                     val state = _state.value
-                    saveNewProduct(
+                    val result = saveNewProduct(
                         name = state.productName,
-                        containerWeight = state.containerWeight,
+                        containerWeight = state.containerWeightValue,
                         position = state.nutritionSelectedTabIndex,
                         unit = state.dropDownItems[state.dropDownSelectedIndex],
                         barcode = state.barcode,
@@ -163,6 +170,30 @@ class NewProductViewModel @Inject constructor(
                         carbohydrates = state.carbohydrates,
                         protein = state.protein,
                         fat = state.fat,
+                    )
+
+                    Log.e(TAG,result.toString())
+
+                    if(result is CustomResult.Error){
+                        _state.update {
+                            it.copy(
+                                isLoading = false,
+                                errorMessage = result.message
+                            )
+                        }
+                    }
+
+                    _state.update {
+                        it.copy(
+                            isLoading = false,
+                        )
+                    }
+                }
+            }
+            is NewProductEvent.ShowedSnackbar -> {
+                _state.update {
+                    it.copy(
+                        errorMessage = null,
                     )
                 }
             }

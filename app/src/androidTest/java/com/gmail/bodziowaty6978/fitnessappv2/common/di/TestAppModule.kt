@@ -15,6 +15,7 @@ import com.gmail.bodziowaty6978.fitnessappv2.feature_auth.domain.use_case.ResetP
 import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.data.repository.remote.FakeDiaryRepository
 import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.domain.repository.DiaryRepository
 import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.domain.use_cases.*
+import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.domain.use_cases.new_product.CalculateNutritionValuesIn100G
 import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.domain.use_cases.new_product.SaveNewProduct
 import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.domain.use_cases.product.AddDiaryEntry
 import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.domain.use_cases.product.CreatePieChartData
@@ -176,6 +177,7 @@ object TestAppModule {
         resourceProvider: ResourceProvider
     ): SaveNewProduct = SaveNewProduct(
         diaryRepository = diaryRepository,
-        resourceProvider = resourceProvider
+        resourceProvider = resourceProvider,
+        calculateNutritionValuesIn100G = CalculateNutritionValuesIn100G()
     )
 }
