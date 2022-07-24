@@ -4,6 +4,8 @@ import com.gmail.bodziowaty6978.fitnessappv2.R
 import com.gmail.bodziowaty6978.fitnessappv2.common.util.Resource
 import com.gmail.bodziowaty6978.fitnessappv2.common.util.ResourceProvider
 import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.domain.repository.DiaryRepository
+import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.domain.use_cases.diary.GetDiaryEntries
+import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.domain.use_cases.diary.SortDiaryEntries
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.After
@@ -26,7 +28,7 @@ internal class GetDiaryEntriesTest{
     private lateinit var mockDiaryRepository: DiaryRepository
 
     private lateinit var closable:AutoCloseable
-    private lateinit var getDiaryEntries:GetDiaryEntries
+    private lateinit var getDiaryEntries: GetDiaryEntries
     private lateinit var sortDiaryEntries: SortDiaryEntries
     private lateinit var resourceProvider: ResourceProvider
 

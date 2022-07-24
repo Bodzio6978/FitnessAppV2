@@ -1,4 +1,4 @@
-package com.gmail.bodziowaty6978.fitnessappv2.feature_diary.domain.use_cases
+package com.gmail.bodziowaty6978.fitnessappv2.feature_diary.domain.use_cases.diary
 
 import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.domain.model.DiaryEntryWithId
 import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.domain.model.Meal

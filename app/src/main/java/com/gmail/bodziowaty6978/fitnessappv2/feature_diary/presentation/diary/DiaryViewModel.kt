@@ -12,7 +12,7 @@ import com.gmail.bodziowaty6978.fitnessappv2.common.navigation.navigator.Navigat
 import com.gmail.bodziowaty6978.fitnessappv2.common.util.Resource
 import com.gmail.bodziowaty6978.fitnessappv2.common.util.ResourceProvider
 import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.domain.model.Meal
-import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.domain.use_cases.GetDiaryEntries
+import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.domain.use_cases.diary.GetDiaryEntries
 import com.gmail.bodziowaty6978.fitnessappv2.util.TAG
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
