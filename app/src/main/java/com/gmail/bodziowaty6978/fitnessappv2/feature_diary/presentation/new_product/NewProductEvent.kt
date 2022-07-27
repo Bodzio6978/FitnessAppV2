@@ -1,7 +1,6 @@
 package com.gmail.bodziowaty6978.fitnessappv2.feature_diary.presentation.new_product
 
 sealed class NewProductEvent {
-    object ShowedSnackbar:NewProductEvent()
     object ClickedBackArrow:NewProductEvent()
     object ClickedDropDownMenu:NewProductEvent()
     object ClickedSaveButton:NewProductEvent()

@@ -1,17 +1,20 @@
 package com.gmail.bodziowaty6978.fitnessappv2.feature_introduction.presentation
 
+import android.util.Log
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.gmail.bodziowaty6978.fitnessappv2.R
-import com.gmail.bodziowaty6978.fitnessappv2.common.navigation.NavigationActions
-import com.gmail.bodziowaty6978.fitnessappv2.common.navigation.navigator.Navigator
-import com.gmail.bodziowaty6978.fitnessappv2.common.util.ResourceProvider
+import com.gmail.bodziowaty6978.fitnessappv2.common.domain.navigation.Navigator
+import com.gmail.bodziowaty6978.fitnessappv2.common.domain.snackbar.SnackbarTextHolder
+import com.gmail.bodziowaty6978.fitnessappv2.common.presentation.navigation.NavigationActions
 import com.gmail.bodziowaty6978.fitnessappv2.common.util.CustomResult
+import com.gmail.bodziowaty6978.fitnessappv2.common.util.ResourceProvider
 import com.gmail.bodziowaty6978.fitnessappv2.feature_introduction.domain.model.Question
 import com.gmail.bodziowaty6978.fitnessappv2.feature_introduction.domain.use_cases.SaveIntroductionInformation
 import com.gmail.bodziowaty6978.fitnessappv2.feature_introduction.presentation.util.IntroductionExpectedQuestionAnswer
+import com.gmail.bodziowaty6978.fitnessappv2.util.TAG
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -23,7 +26,8 @@ import javax.inject.Inject
 class IntroductionViewModel @Inject constructor(
     resourceProvider: ResourceProvider,
     private val saveIntroductionInformation: SaveIntroductionInformation,
-    private val navigator: Navigator
+    private val navigator: Navigator,
+    private val snackbarTextHolder: SnackbarTextHolder
 ): ViewModel(){
 
     private val _questionState = mutableStateOf<Map<IntroductionExpectedQuestionAnswer, Question>>(
@@ -106,10 +110,9 @@ class IntroductionViewModel @Inject constructor(
             is IntroductionEvent.FinishIntroduction -> {
                 viewModelScope.launch(Dispatchers.IO) {
                     val result = saveIntroductionInformation(answers = _introductionAnswerState.value)
+                    Log.e(TAG,result.toString())
                     if (result is CustomResult.Error){
-                        _introductionUiEvent.emit(
-                            IntroductionUiEvent.ShowSnackbar(result.message)
-                        )
+                        snackbarTextHolder.showSnackbarText(result.message)
                     }else{
                         navigator.navigate(NavigationActions.IntroductionScreen.introductionToSummary())
                     }

@@ -4,8 +4,8 @@ import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import com.gmail.bodziowaty6978.fitnessappv2.R
 import com.gmail.bodziowaty6978.fitnessappv2.common.di.AppModule
-import com.gmail.bodziowaty6978.fitnessappv2.common.navigation.NavHostGraph
-import com.gmail.bodziowaty6978.fitnessappv2.common.navigation.navigator.Navigator
+import com.gmail.bodziowaty6978.fitnessappv2.common.presentation.navigation.NavHostGraph
+import com.gmail.bodziowaty6978.fitnessappv2.common.domain.navigation.Navigator
 import com.gmail.bodziowaty6978.fitnessappv2.common.presentation.MainActivity
 import com.gmail.bodziowaty6978.fitnessappv2.common.presentation.ui.theme.FitnessAppV2Theme
 import com.gmail.bodziowaty6978.fitnessappv2.common.presentation.util.Screen
@@ -31,7 +31,7 @@ internal class SearchScreenTest {
     val composeRule = createAndroidComposeRule<MainActivity>()
 
     @Inject
-    lateinit var navigator:Navigator
+    lateinit var navigator: Navigator
 
     @Before
     fun setUp() {

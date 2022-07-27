@@ -35,20 +35,11 @@ fun ProductScreen(
     val weightState = viewModel.weightState
     val nutritionData = viewModel.nutritionDataState.value
 
-    val scaffoldState = rememberScaffoldState()
-
     LaunchedEffect(key1 = true) {
         viewModel.initializeNutritionData(product)
     }
 
-    LaunchedEffect(key1 = true){
-        viewModel.errorState.collect{
-            scaffoldState.snackbarHostState.showSnackbar(it)
-        }
-    }
-
     Scaffold(
-        scaffoldState = scaffoldState,
         floatingActionButton = {
             ExtendedFloatingActionButton(
                 text = {

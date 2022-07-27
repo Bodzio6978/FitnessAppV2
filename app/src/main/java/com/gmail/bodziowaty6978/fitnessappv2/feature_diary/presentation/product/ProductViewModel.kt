@@ -6,8 +6,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.gmail.bodziowaty6978.fitnessappv2.common.data.singleton.CurrentDate
-import com.gmail.bodziowaty6978.fitnessappv2.common.navigation.NavigationActions
-import com.gmail.bodziowaty6978.fitnessappv2.common.navigation.navigator.Navigator
+import com.gmail.bodziowaty6978.fitnessappv2.common.domain.navigation.Navigator
+import com.gmail.bodziowaty6978.fitnessappv2.common.presentation.navigation.NavigationActions
 import com.gmail.bodziowaty6978.fitnessappv2.common.util.CustomResult
 import com.gmail.bodziowaty6978.fitnessappv2.common.util.ResourceProvider
 import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.domain.model.Product
@@ -16,8 +16,6 @@ import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.presentation.product.
 import com.gmail.bodziowaty6978.fitnessappv2.util.TAG
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -33,9 +31,6 @@ class ProductViewModel @Inject constructor(
 
     private val _nutritionDataState = mutableStateOf(NutritionData())
     val nutritionDataState: State<NutritionData> = _nutritionDataState
-
-    private val _errorState = MutableSharedFlow<String>()
-    val errorState: SharedFlow<String> = _errorState
 
     fun onEvent(event: ProductEvent) {
         when (event) {

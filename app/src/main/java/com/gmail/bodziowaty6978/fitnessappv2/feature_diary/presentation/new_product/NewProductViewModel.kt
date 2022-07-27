@@ -7,8 +7,9 @@ import androidx.compose.material.icons.filled.ArrowDropUp
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.gmail.bodziowaty6978.fitnessappv2.R
-import com.gmail.bodziowaty6978.fitnessappv2.common.navigation.NavigationActions
-import com.gmail.bodziowaty6978.fitnessappv2.common.navigation.navigator.Navigator
+import com.gmail.bodziowaty6978.fitnessappv2.common.domain.navigation.Navigator
+import com.gmail.bodziowaty6978.fitnessappv2.common.domain.snackbar.SnackbarTextHolder
+import com.gmail.bodziowaty6978.fitnessappv2.common.presentation.navigation.NavigationActions
 import com.gmail.bodziowaty6978.fitnessappv2.common.util.CustomResult
 import com.gmail.bodziowaty6978.fitnessappv2.common.util.ResourceProvider
 import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.domain.use_cases.new_product.SaveNewProduct
@@ -25,7 +26,8 @@ import javax.inject.Inject
 class NewProductViewModel @Inject constructor(
     private val navigator: Navigator,
     private val resourceProvider: ResourceProvider,
-    private val saveNewProduct: SaveNewProduct
+    private val saveNewProduct: SaveNewProduct,
+    private val snackbarTextHolder: SnackbarTextHolder
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(
@@ -178,9 +180,9 @@ class NewProductViewModel @Inject constructor(
                         _state.update {
                             it.copy(
                                 isLoading = false,
-                                errorMessage = result.message
                             )
                         }
+                        snackbarTextHolder.showSnackbarText(result.message)
                     }
 
                     _state.update {
@@ -188,13 +190,6 @@ class NewProductViewModel @Inject constructor(
                             isLoading = false,
                         )
                     }
-                }
-            }
-            is NewProductEvent.ShowedSnackbar -> {
-                _state.update {
-                    it.copy(
-                        errorMessage = null,
-                    )
                 }
             }
         }

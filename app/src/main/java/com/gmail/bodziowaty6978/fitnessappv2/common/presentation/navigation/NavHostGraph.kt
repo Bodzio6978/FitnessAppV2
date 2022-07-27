@@ -1,10 +1,11 @@
-package com.gmail.bodziowaty6978.fitnessappv2.common.navigation
+package com.gmail.bodziowaty6978.fitnessappv2.common.presentation.navigation
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Surface
+import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalLifecycleOwner
@@ -14,8 +15,10 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.gmail.bodziowaty6978.fitnessappv2.common.navigation.navigator.Navigator
+import com.gmail.bodziowaty6978.fitnessappv2.common.domain.navigation.Navigator
+import com.gmail.bodziowaty6978.fitnessappv2.common.domain.snackbar.SnackbarTextHolder
 import com.gmail.bodziowaty6978.fitnessappv2.common.presentation.components.BottomBar
+import com.gmail.bodziowaty6978.fitnessappv2.common.presentation.components.DefaultSnackbarHost
 import com.gmail.bodziowaty6978.fitnessappv2.common.presentation.util.BottomBarScreen
 import com.gmail.bodziowaty6978.fitnessappv2.common.presentation.util.Screen
 import com.gmail.bodziowaty6978.fitnessappv2.common.util.extensions.asLifecycleAwareState
@@ -38,11 +41,19 @@ import com.gmail.bodziowaty6978.fitnessappv2.feature_summary.presentation.Summar
 fun NavHostGraph(
     navController: NavHostController = rememberNavController(),
     navigator: Navigator,
+    snackbarTextHolder:SnackbarTextHolder,
     startDestination:String = Screen.LoadingScreen.route
 //    startDestination:String = Screen.NewProductScreen.route + "?mealName={mealName}"
 ) {
+    val scaffoldState = rememberScaffoldState()
+
     val lifecycleOwner = LocalLifecycleOwner.current
     val navigatorState by navigator.navActions.asLifecycleAwareState(
+        lifecycleOwner = lifecycleOwner,
+        initialState = null
+    )
+
+    val snackbarTextHolderState by snackbarTextHolder.snackbarText.asLifecycleAwareState(
         lifecycleOwner = lifecycleOwner,
         initialState = null
     )
@@ -67,13 +78,25 @@ fun NavHostGraph(
         }
     }
 
+    LaunchedEffect(key1 = snackbarTextHolderState){
+        snackbarTextHolderState?.let {
+            scaffoldState.snackbarHostState.showSnackbar(it)
+        }
+    }
+
 
     Scaffold(
         bottomBar = {
             if (bottomNavigationState) {
                 BottomBar(navController = navController)
             }
-        }
+        },
+        snackbarHost = {
+            DefaultSnackbarHost(
+                snackbarHostState = it
+            )
+        },
+        scaffoldState = scaffoldState
     ) { paddingValues ->
         Surface(
             modifier = Modifier

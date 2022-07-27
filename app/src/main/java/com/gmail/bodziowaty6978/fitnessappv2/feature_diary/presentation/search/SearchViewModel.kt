@@ -5,9 +5,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.gmail.bodziowaty6978.fitnessappv2.R
-import com.gmail.bodziowaty6978.fitnessappv2.common.navigation.NavigationActions
-import com.gmail.bodziowaty6978.fitnessappv2.common.navigation.navigator.Navigator
+import com.gmail.bodziowaty6978.fitnessappv2.common.domain.navigation.Navigator
 import com.gmail.bodziowaty6978.fitnessappv2.common.presentation.components.TextFieldState
+import com.gmail.bodziowaty6978.fitnessappv2.common.presentation.navigation.NavigationActions
 import com.gmail.bodziowaty6978.fitnessappv2.common.util.Resource
 import com.gmail.bodziowaty6978.fitnessappv2.common.util.ResourceProvider
 import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.domain.use_cases.search.SearchDiaryUseCases
@@ -57,7 +57,8 @@ class SearchViewModel @Inject constructor(
                 )
             }
             is SearchEvent.ClickedSearchItem -> {
-                navigator.navigate(NavigationActions.SearchScreen.searchToProduct(
+                navigator.navigate(
+                    NavigationActions.SearchScreen.searchToProduct(
                     productWithId = event.item,
                     mealName = event.mealName
                 ))

@@ -1,8 +1,8 @@
-package com.gmail.bodziowaty6978.fitnessappv2.common.navigation
+package com.gmail.bodziowaty6978.fitnessappv2.common.presentation.navigation
 
 import android.os.Parcelable
 import androidx.navigation.NavOptions
-import com.gmail.bodziowaty6978.fitnessappv2.common.navigation.model.NavigationAction
+import com.gmail.bodziowaty6978.fitnessappv2.common.domain.navigation.NavigationAction
 import com.gmail.bodziowaty6978.fitnessappv2.common.presentation.util.BottomBarScreen
 import com.gmail.bodziowaty6978.fitnessappv2.common.presentation.util.Screen
 import com.gmail.bodziowaty6978.fitnessappv2.feature_auth.presentation.util.AuthScreen
@@ -10,7 +10,7 @@ import com.gmail.bodziowaty6978.fitnessappv2.feature_auth.presentation.util.Auth
 object NavigationActions {
 
     object General{
-        fun navigateUp() = object :NavigationAction{
+        fun navigateUp() = object : NavigationAction {
             override val destination: String = "navigateUp"
         }
     }
@@ -110,11 +110,12 @@ object NavigationActions {
 
     //Search
     object SearchScreen{
-        fun searchToNewProduct(mealName: String) = object : NavigationAction{
+        fun searchToNewProduct(mealName: String) = object : NavigationAction {
             override val destination: String = Screen.NewProductScreen.route
         }
 
-        fun searchToProduct(productWithId: Parcelable, mealName: String) = object : NavigationAction{
+        fun searchToProduct(productWithId: Parcelable, mealName: String) = object :
+            NavigationAction {
             override val destination: String = Screen.ProductScreen.route + "?mealName=$mealName"
             // really weird I don`t know why it works but it works
             override val parcelableArguments: Map<String, Parcelable>

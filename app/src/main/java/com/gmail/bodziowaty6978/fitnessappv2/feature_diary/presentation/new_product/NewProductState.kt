@@ -18,6 +18,5 @@ data class NewProductState(
     val fat:String ="",
     val nutritionSelectedTabIndex:Int = 0,
     val barcode:String = "",
-    val errorMessage:String? = null,
     val isLoading:Boolean = false,
 )

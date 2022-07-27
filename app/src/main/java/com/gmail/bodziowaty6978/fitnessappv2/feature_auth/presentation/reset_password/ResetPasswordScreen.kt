@@ -7,7 +7,6 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
@@ -18,38 +17,16 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.gmail.bodziowaty6978.fitnessappv2.R
 import com.gmail.bodziowaty6978.fitnessappv2.common.presentation.components.DefaultTextField
 import com.gmail.bodziowaty6978.fitnessappv2.common.presentation.components.Toolbar
-import com.gmail.bodziowaty6978.fitnessappv2.common.util.CustomResult
 import com.gmail.bodziowaty6978.fitnessappv2.feature_auth.presentation.util.AuthEvent
-import kotlinx.coroutines.flow.collectLatest
 
 @Composable
 fun ResetPasswordScreen(
     viewModel: ResetPasswordViewModel = hiltViewModel()
 ) {
-
-    val scaffoldState = rememberScaffoldState()
     val isLoadingState = viewModel.isLoading.value
     val emailState = viewModel.emailState.value
 
-    LaunchedEffect(key1 = true) {
-        viewModel.uiState.collectLatest {
-            when (it) {
-                is CustomResult.Success -> {
-                    scaffoldState.snackbarHostState.showSnackbar(
-                        message = "Successfully sent an email"
-                    )
-                }
-                is CustomResult.Error -> {
-                    scaffoldState.snackbarHostState.showSnackbar(
-                        message = it.message
-                    )
-                }
-            }
-        }
-    }
-
     Scaffold(
-        scaffoldState = scaffoldState,
         topBar = {
             Toolbar(
                 title = stringResource(id = R.string.reset_your_password),

@@ -1,21 +1,16 @@
 package com.gmail.bodziowaty6978.fitnessappv2.feature_auth.presentation.login
 
-import android.util.Log
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Lock
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
@@ -26,29 +21,16 @@ import com.gmail.bodziowaty6978.fitnessappv2.R
 import com.gmail.bodziowaty6978.fitnessappv2.common.presentation.components.DefaultTextField
 import com.gmail.bodziowaty6978.fitnessappv2.common.presentation.components.Toolbar
 import com.gmail.bodziowaty6978.fitnessappv2.feature_auth.presentation.util.AuthEvent
-import com.gmail.bodziowaty6978.fitnessappv2.util.TAG
-import kotlinx.coroutines.flow.collectLatest
 
 @Composable
 fun LoginScreen(
     viewModel: LoginViewModel = hiltViewModel()
 ) {
-
-    val scaffoldState = rememberScaffoldState()
     val isLoadingState = viewModel.isLoading.value
     val emailState = viewModel.emailState.value
     val passwordState = viewModel.passwordState.value
 
-    LaunchedEffect(key1 = true) {
-        viewModel.snackbarState.collectLatest {
-            scaffoldState.snackbarHostState.showSnackbar(
-                message = it
-            )
-        }
-    }
-
     Scaffold(
-        scaffoldState = scaffoldState,
         topBar = {
             Toolbar(
                 title = stringResource(id = R.string.login),
@@ -56,7 +38,7 @@ fun LoginScreen(
             ) {
 
             }
-        }
+        },
     ) {
 
         Box(
@@ -102,7 +84,6 @@ fun LoginScreen(
                             viewModel.onEvent(
                                 AuthEvent.EnteredPassword(password = it)
                             )
-                            Log.e(TAG,it)
                         },
                         keyboardOptions = KeyboardOptions().copy(
                             keyboardType = KeyboardType.Password,

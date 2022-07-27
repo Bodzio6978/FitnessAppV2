@@ -7,8 +7,10 @@ import androidx.room.Room
 import com.gmail.bodziowaty6978.fitnessappv2.common.data.room.AppRoomDatabase
 import com.gmail.bodziowaty6978.fitnessappv2.common.domain.model.NutritionValues
 import com.gmail.bodziowaty6978.fitnessappv2.common.domain.model.UserInformation
-import com.gmail.bodziowaty6978.fitnessappv2.common.navigation.navigator.ComposeCustomNavigator
-import com.gmail.bodziowaty6978.fitnessappv2.common.navigation.navigator.Navigator
+import com.gmail.bodziowaty6978.fitnessappv2.common.domain.navigation.Navigator
+import com.gmail.bodziowaty6978.fitnessappv2.common.domain.snackbar.SnackbarTextHolder
+import com.gmail.bodziowaty6978.fitnessappv2.common.presentation.navigation.ComposeCustomNavigator
+import com.gmail.bodziowaty6978.fitnessappv2.common.presentation.snackbar.CustomSnackbarTextHolder
 import com.gmail.bodziowaty6978.fitnessappv2.common.util.ResourceProvider
 import com.gmail.bodziowaty6978.fitnessappv2.datastoreInformation
 import com.gmail.bodziowaty6978.fitnessappv2.datastoreNutrition
@@ -61,6 +63,9 @@ object AppModule {
     @Singleton
     @Provides
     fun provideNavigator(): Navigator = ComposeCustomNavigator()
+
+    @Provides
+    fun provideSnackbarTextHolder():SnackbarTextHolder = CustomSnackbarTextHolder()
 
     @Provides
     @Singleton

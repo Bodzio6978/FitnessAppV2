@@ -10,7 +10,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
@@ -36,7 +35,6 @@ fun IntroductionScreen(
 
     val pagerState = rememberPagerState(initialPage = 0)
     val keyboardController = LocalSoftwareKeyboardController.current
-    val scaffoldState = rememberScaffoldState()
 
     var arrowState by remember {
         mutableStateOf(0)
@@ -66,18 +64,11 @@ fun IntroductionScreen(
                         keyboardController?.hide()
                     }
                 }
-                is IntroductionUiEvent.ShowSnackbar -> {
-                    scaffoldState.snackbarHostState.showSnackbar(
-                        it.message
-                    )
-                }
             }
         }
     }
 
-    Scaffold(
-        scaffoldState = scaffoldState
-    ) {
+    Scaffold{
         Box(
             modifier = Modifier
                 .fillMaxSize()

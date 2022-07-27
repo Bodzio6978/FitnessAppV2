@@ -10,7 +10,6 @@ import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Lock
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -24,30 +23,19 @@ import com.gmail.bodziowaty6978.fitnessappv2.R
 import com.gmail.bodziowaty6978.fitnessappv2.common.presentation.components.DefaultTextField
 import com.gmail.bodziowaty6978.fitnessappv2.common.presentation.components.Toolbar
 import com.gmail.bodziowaty6978.fitnessappv2.feature_auth.presentation.util.AuthEvent
-import kotlinx.coroutines.flow.collectLatest
 
 @Composable
 fun RegisterScreen(
     viewModel: RegisterViewModel = hiltViewModel()
 ) {
-
-    val scaffoldState = rememberScaffoldState()
     val isLoadingState = viewModel.isLoading.value
     val usernameState = viewModel.usernameState.value
     val emailState = viewModel.emailState.value
     val passwordState = viewModel.passwordState.value
     val confirmPasswordState = viewModel.confirmPasswordState.value
 
-    LaunchedEffect(key1 = true) {
-        viewModel.snackbarState.collectLatest {
-            scaffoldState.snackbarHostState.showSnackbar(
-                message = it
-            )
-        }
-    }
 
     Scaffold(
-        scaffoldState = scaffoldState,
         topBar = {
             Toolbar(title = stringResource(id = R.string.register), isBackArrowVisible = true) {
                 viewModel.onEvent(AuthEvent.RegisterLoginButtonClicked)

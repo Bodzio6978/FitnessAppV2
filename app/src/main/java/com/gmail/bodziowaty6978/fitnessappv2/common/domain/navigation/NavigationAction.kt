@@ -1,4 +1,4 @@
-package com.gmail.bodziowaty6978.fitnessappv2.common.navigation.model
+package com.gmail.bodziowaty6978.fitnessappv2.common.domain.navigation
 
 import android.os.Parcelable
 import androidx.navigation.NavOptions

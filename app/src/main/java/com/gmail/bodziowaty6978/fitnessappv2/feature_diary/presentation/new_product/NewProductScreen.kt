@@ -5,7 +5,6 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Save
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
@@ -20,28 +19,15 @@ import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.presentation.diary.co
 import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.presentation.new_product.components.ContainerWeightSection
 import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.presentation.new_product.components.NutritionSection
 import com.gmail.bodziowaty6978.fitnessappv2.feature_diary.presentation.new_product.components.TextFieldSection
-import kotlinx.coroutines.flow.collectLatest
 
 @Composable
 fun NewProductScreen(
     mealName: String,
     viewModel: NewProductViewModel = hiltViewModel()
 ) {
-
     val state = viewModel.state.collectAsState().value
-    val scaffoldState = rememberScaffoldState()
-
-    LaunchedEffect(key1 = true){
-        viewModel.state.collectLatest {
-            it.errorMessage?.let { message ->
-                scaffoldState.snackbarHostState.showSnackbar(message)
-                viewModel.onEvent(NewProductEvent.ShowedSnackbar)
-            }
-        }
-    }
 
         Scaffold(
-            scaffoldState = scaffoldState,
             floatingActionButton = {
                 if(!state.isLoading){
                     FloatingActionButton(

@@ -17,6 +17,7 @@ class AuthRepositoryImp(
             ).await()
             CustomResult.Success
         } catch (e: Exception) {
+            e.printStackTrace()
             CustomResult.Error(e.message.toString())
         }
     }
@@ -32,6 +33,7 @@ class AuthRepositoryImp(
             ).await()
             CustomResult.Success
         } catch (e: Exception) {
+            e.printStackTrace()
             CustomResult.Error(e.message.toString())
         }
     }
@@ -41,6 +43,7 @@ class AuthRepositoryImp(
             firebaseAuth.sendPasswordResetEmail(email).await()
             CustomResult.Success
         } catch (e: Exception) {
+            e.printStackTrace()
             CustomResult.Error(e.message.toString())
         }
     }

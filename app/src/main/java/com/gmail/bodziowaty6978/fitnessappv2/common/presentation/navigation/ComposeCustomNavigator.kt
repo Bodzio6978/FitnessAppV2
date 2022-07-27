@@ -1,12 +1,13 @@
-package com.gmail.bodziowaty6978.fitnessappv2.common.navigation.navigator
+package com.gmail.bodziowaty6978.fitnessappv2.common.presentation.navigation
 
-import com.gmail.bodziowaty6978.fitnessappv2.common.navigation.model.NavigationAction
+import com.gmail.bodziowaty6978.fitnessappv2.common.domain.navigation.NavigationAction
+import com.gmail.bodziowaty6978.fitnessappv2.common.domain.navigation.Navigator
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 
-class ComposeCustomNavigator:Navigator {
+class ComposeCustomNavigator: Navigator {
 
     private val _navActions: MutableStateFlow<NavigationAction?> by lazy {
         MutableStateFlow(null)
